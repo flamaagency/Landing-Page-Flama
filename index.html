@@ -5,32 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FLAMA Agency - Potenciamos tus ventas</title>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#131313',
-                            card: '#1a1a1a',
-                            primary: '#7854FF',
-                            primaryLight: '#a68eff',
-                            primaryHover: '#6a4be6',
-                            red: '#FF5540',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { colors: { brand: { dark: '#131313', card: '#1a1a1a', primary: '#7854FF', primaryLight: '#a68eff', primaryHover: '#6a4be6', red: '#FF5540' } }, fontFamily: { sans: ['ui-sans-serif', 'system-ui', 'sans-serif'] } } } }
     </script>
-
     <style>
-        /* --- ANIMACIONES GLOBALES DE SCROLL --- */
+        /* ANIMACIONES Y UTILIDADES */
         .js-animate {
             opacity: 0;
             transform: translateY(40px) scale(0.98);
@@ -49,7 +29,6 @@
             color: #ffffff;
         }
 
-        /* --- SWITCH DE PRECIOS --- */
         .toggle-checkbox:checked {
             right: 0;
             border-color: #7854FF;
@@ -59,39 +38,33 @@
             background-color: #7854FF;
         }
 
-        /* --- EFECTO FLAMA INICIO: NEÓN LIMPIO Y EXTERIOR --- */
         .flama-letter-glow {
             fill: #ffffff;
             filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
             transition: filter 0.4s ease;
         }
 
-        /* 1. Neón dinámico FINITO - Capa 1: Resplandor Líquido (Rápido) */
-        .flama-neon-glow {
+        .flama-neon-glow,
+        .flama-neon-core {
             fill: transparent;
-            stroke: url(#neon-gradient);
-            stroke-width: 1.2px;
             stroke-linejoin: round;
             stroke-linecap: round;
             stroke-dasharray: 7.5 92.5;
             stroke-dashoffset: 80;
             opacity: 0;
-            filter: drop-shadow(0 0 4px rgba(120, 84, 255, 0.9)) drop-shadow(0 0 10px rgba(255, 114, 94, 0.7));
             animation: flama-neon-run 1s cubic-bezier(0.8, 0, 0.2, 1) forwards;
         }
 
-        /* 1b. Neón dinámico FINITO - Capa 2: Núcleo Brillante central */
+        .flama-neon-glow {
+            stroke: url(#neon-gradient);
+            stroke-width: 1.2px;
+            filter: drop-shadow(0 0 4px rgba(120, 84, 255, 0.9)) drop-shadow(0 0 10px rgba(255, 114, 94, 0.7));
+        }
+
         .flama-neon-core {
-            fill: transparent;
             stroke: #ffffff;
             stroke-width: 0.3px;
-            stroke-linejoin: round;
-            stroke-linecap: round;
-            stroke-dasharray: 7.5 92.5;
-            stroke-dashoffset: 80;
-            opacity: 0;
             filter: blur(0.2px);
-            animation: flama-neon-run 1s cubic-bezier(0.8, 0, 0.2, 1) forwards;
         }
 
         @keyframes flama-neon-run {
@@ -100,10 +73,7 @@
                 opacity: 0;
             }
 
-            10% {
-                opacity: 1;
-            }
-
+            10%,
             75% {
                 opacity: 1;
             }
@@ -114,7 +84,6 @@
             }
         }
 
-        /* 2. Relleno blanco estático */
         .flama-fill-final {
             fill: #ffffff;
             opacity: 0;
@@ -139,7 +108,6 @@
             transition: filter 0.3s ease;
         }
 
-        /* --- NUEVA ANIMACIÓN DINÁMICA DE LETRAS --- */
         .dynamic-letter {
             opacity: 0;
             transform: translateY(30px) scale(0.85);
@@ -151,9 +119,6 @@
             transform: translateY(0) scale(1);
         }
 
-        /* ---------------------------------------------------- */
-
-        /* UTILS */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -168,7 +133,6 @@
             height: 32px;
         }
 
-        /* --- LÍNEA DE SCROLL INFERIOR --- */
         .scroll-line-container {
             width: 2px;
             height: 80px;
@@ -195,10 +159,7 @@
                 opacity: 0;
             }
 
-            20% {
-                opacity: 1;
-            }
-
+            20%,
             80% {
                 opacity: 1;
             }
@@ -209,27 +170,54 @@
             }
         }
 
-        /* MÁSCARA DEL CARRUSEL REESCRITA PARA NO ROMPER LA ONDA */
         .wave-track-mask {
             -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
             mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+
+        /* OPTIMIZACIÓN DE LISTAS */
+        .li-mkt {
+            position: relative;
+            padding-left: 1.25rem;
+            text-align: left;
+        }
+
+        .li-mkt::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            background: url('data:image/svg+xml;utf8,<svg fill="%237854FF" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 4l10 6-10 6V4z"/></svg>') no-repeat center;
+            background-size: contain;
+        }
+
+        .li-web {
+            position: relative;
+            padding-left: 1.25rem;
+            text-align: left;
+        }
+
+        .li-web::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #7854FF;
+            font-weight: 900;
         }
     </style>
 </head>
 
 <body class="font-sans relative">
-
     <div id="smoke-bg" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
-
     <div class="relative z-10">
-
-        <!-- Navbar mejorado sin bordes extraños y animaciones suaves -->
+        <!-- Navbar -->
         <nav id="main-nav"
-            class="fixed w-full z-50 py-6 bg-transparent transition-all duration-300 ease-in-out transform translate-y-0 border-none shadow-none">
+            class="fixed w-full z-50 py-6 bg-transparent transition-all duration-300 ease-in-out transform border-none shadow-none">
             <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                <a href="#inicio" class="font-bold text-3xl tracking-widest flex items-center gap-3">
-                    <img src="img/logotipo-flama-agency.svg" alt="FLAMA Icono" class="h-6 md:h-8">
-                </a>
+                <a href="#inicio" class="font-bold text-3xl tracking-widest flex items-center gap-3"><img
+                        src="img/logotipo-flama-agency.svg" alt="FLAMA" class="h-6 md:h-8"></a>
                 <ul
                     class="hidden md:flex items-center gap-10 text-[11px] font-bold tracking-[0.1em] text-white uppercase">
                     <li><a href="#inicio" class="text-white border-b-2 border-brand-primary pb-1">INICIO</a></li>
@@ -237,37 +225,24 @@
                     <li><a href="#planes" class="hover:text-brand-primary transition-colors pb-1">PLANES</a></li>
                     <li><a href="#clientes" class="hover:text-brand-primary transition-colors pb-1">CLIENTES</a></li>
                     <li><a href="#contacto" class="hover:text-brand-primary transition-colors pb-1">CONTACTO</a></li>
-                    <li>
-                        <a href="https://wa.me/51979456610" target="_blank"
-                            class="bg-white text-brand-primary px-8 py-3 rounded font-black hover:bg-gray-200 transition-colors ml-4">
-                            WHATSAPP
-                        </a>
+                    <li><a href="https://wa.me/51979456610" target="_blank"
+                            class="bg-white text-brand-primary px-8 py-3 rounded font-black hover:bg-gray-200 transition-colors ml-4">WHATSAPP</a>
                     </li>
                 </ul>
             </div>
         </nav>
 
+        <!-- Header Hero -->
         <header id="inicio"
             class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-32 pb-24 relative">
-
             <div id="hero-logo-container"
-                class="relative flex flex-row items-end justify-center gap-3 md:gap-6 w-full h-32 md:h-64 mb-16 max-w-[90%] mx-auto overflow-visible">
-
-                <!-- Letra F -->
+                class="relative flex items-end justify-center gap-3 md:gap-6 w-full h-32 md:h-64 mb-16 max-w-[90%] mx-auto">
                 <svg id="flama-1" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 36.5 49.66">
-                    <g>
-                        <path class="flama-letter-glow" d="M9.5,8.41v12.28h23.95v8.75H9.5v20.22H0V0h36.5v8.41H9.5Z" />
-                    </g>
+                    <path class="flama-letter-glow" d="M9.5,8.41v12.28h23.95v8.75H9.5v20.22H0V0h36.5v8.41H9.5Z" />
                 </svg>
-
-                <!-- Letra L -->
                 <svg id="flama-2" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 35.75 49.66">
-                    <g>
-                        <path class="flama-letter-glow" d="M35.75,41.25v8.41H0V0h9.5v41.25h26.25Z" />
-                    </g>
+                    <path class="flama-letter-glow" d="M35.75,41.25v8.41H0V0h9.5v41.25h26.25Z" />
                 </svg>
-
-                <!-- Llama central -->
                 <svg id="flama-3"
                     class="h-full w-auto opacity-0 transition-opacity duration-700 overflow-visible flama-letter-svg"
                     viewBox="0 0 51.69 50.52">
@@ -291,49 +266,33 @@
                             d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
                     </g>
                 </svg>
-
-                <!-- Letra M -->
                 <svg id="flama-4" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 50 49.59">
-                    <g>
-                        <path class="flama-letter-glow"
-                            d="M50,0v49.59h-9.5v-25.1l-15.53,18.66-15.47-18.66v25.1H0V0h.61l24.35,28.63L49.39,0h.61Z" />
-                    </g>
+                    <path class="flama-letter-glow"
+                        d="M50,0v49.59h-9.5v-25.1l-15.53,18.66-15.47-18.66v25.1H0V0h.61l24.35,28.63L49.39,0h.61Z" />
                 </svg>
-
-                <!-- Letra A -->
                 <svg id="flama-5" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 51.69 49.59">
-                    <g>
-                        <path class="flama-letter-glow"
-                            d="M0,49.59L25.37,0h.95l25.37,49.59h-10.31l-3.86-7.8H14.11l-3.8,7.8H0ZM18.72,33.51h14.18l-7.05-14.99-7.12,14.99Z" />
-                    </g>
+                    <path class="flama-letter-glow"
+                        d="M0,49.59L25.37,0h.95l25.37,49.59h-10.31l-3.86-7.8H14.11l-3.8,7.8H0ZM18.72,33.51h14.18l-7.05-14.99-7.12,14.99Z" />
                 </svg>
-
             </div>
-
             <div class="flex flex-col items-center w-full max-w-[1200px] mx-auto js-animate z-20"
                 style="transition-delay: 1500ms;">
                 <h2
-                    class="text-3xl md:text-5xl text-white font-black uppercase tracking-tight leading-tight mb-10 text-center w-full">
-                    POTENCIAMOS TUS VENTAS MEDIANTE<br>MARKETING Y TECNOLOGÍA
-                </h2>
-
+                    class="text-3xl md:text-5xl text-white font-black uppercase tracking-tight leading-tight mb-10 w-full">
+                    POTENCIAMOS TUS VENTAS MEDIANTE<br>MARKETING Y TECNOLOGÍA</h2>
                 <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
                     <a href="#planes"
-                        class="bg-brand-primary px-16 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-brand-primaryHover transition-colors shadow-lg shadow-brand-primary/30">
-                        COTIZAR
-                    </a>
+                        class="bg-brand-primary px-16 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-brand-primaryHover transition-colors shadow-lg shadow-brand-primary/30">COTIZAR</a>
                     <button onclick="openModal('videoModal')"
                         class="flex items-center gap-4 group cursor-pointer bg-transparent border-none p-0 text-left">
                         <div
                             class="border border-brand-red rounded flex items-center justify-center w-12 h-12 group-hover:bg-brand-red/10 transition-colors">
-                            <span class="text-brand-red text-lg ml-1">▷</span>
-                        </div>
-                        <span class="text-brand-red text-[10px] tracking-[0.2em] uppercase font-bold">VER REEL
-                            <br>2026</span>
+                            <span class="text-brand-red text-lg ml-1">▷</span></div>
+                        <span class="text-brand-red text-[10px] tracking-[0.2em] uppercase font-bold">VER
+                            REEL<br>2026</span>
                     </button>
                 </div>
             </div>
-
             <div class="w-full flex justify-center js-animate z-20 absolute bottom-10 left-0 ml-[5px]"
                 style="transition-delay: 2000ms;">
                 <div class="flex flex-col items-center">
@@ -346,102 +305,87 @@
             </div>
         </header>
 
-        <section id="servicios" class="py-24 max-w-[1400px] mx-auto px-6 js-animate mt-12 border-t-0">
+        <!-- Servicios -->
+        <section id="servicios" class="py-24 max-w-[1400px] mx-auto px-6 js-animate mt-12">
             <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
-                <div>
-                    <span
+                <div><span
                         class="text-brand-red text-[10px] font-bold tracking-[0.2em] uppercase mb-2 block">CONOCE</span>
-                    <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">NUESTROS SERVICIOS
-                    </h3>
+                    <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">NUESTROS SERVICIOS</h3>
                 </div>
-                <div class="max-w-sm text-right text-gray-400 text-xs leading-relaxed">
-                    Combinamos precisión técnica con disrupción creativa para dominar mercados digitales saturados.
-                </div>
+                <div class="max-w-sm text-right text-gray-400 text-xs leading-relaxed">Combinamos precisión técnica con
+                    disrupción creativa para dominar mercados digitales saturados.</div>
             </div>
-
             <div class="border border-gray-800 rounded-sm overflow-hidden mb-8">
                 <div class="grid grid-cols-1 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-gray-800">
-                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full">
-                        <span class="text-4xl font-mono text-gray-700 mb-12 block">01</span>
-                        <div class="text-brand-primary mb-6 service-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full"><span
+                            class="text-4xl font-mono text-gray-700 mb-12 block">01</span>
+                        <div class="text-brand-primary mb-6 service-icon"><svg fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
                                 </path>
-                            </svg>
-                        </div>
+                            </svg></div>
                         <h4 class="text-lg font-black uppercase text-white mb-4 leading-tight">BRANDING Y<br>MARCA</h4>
                         <p class="text-gray-500 text-[11px] leading-relaxed">Identidades forjadas para resistir el paso
-                            del tiempo y la competencia.</p>
+                            de tiempo.</p>
                     </div>
-                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full">
-                        <span class="text-4xl font-mono text-gray-700 mb-12 block">02</span>
-                        <div class="text-brand-red mb-6 service-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full"><span
+                            class="text-4xl font-mono text-gray-700 mb-12 block">02</span>
+                        <div class="text-brand-red mb-6 service-icon"><svg fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
                                 </path>
-                            </svg>
-                        </div>
+                            </svg></div>
                         <h4 class="text-lg font-black uppercase text-white mb-4 leading-tight">PRODUCCIÓN<br>AUDIOVISUAL
                         </h4>
-                        <p class="text-gray-500 text-[11px] leading-relaxed">Narrativas cinemáticas de alto impacto
-                            visual y sonoro.</p>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Narrativas cinemáticas de alto impacto.</p>
                     </div>
-                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full">
-                        <span class="text-4xl font-mono text-gray-700 mb-12 block">03</span>
-                        <div class="text-brand-primary mb-6 service-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full"><span
+                            class="text-4xl font-mono text-gray-700 mb-12 block">03</span>
+                        <div class="text-brand-primary mb-6 service-icon"><svg fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122">
                                 </path>
-                            </svg>
-                        </div>
+                            </svg></div>
                         <h4 class="text-lg font-black uppercase text-white mb-4 leading-tight">DIGITAL<br>MARKETING</h4>
-                        <p class="text-gray-500 text-[11px] leading-relaxed">Estrategias basadas en datos para un
-                            crecimiento exponencial.</p>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Estrategias basadas en datos exponenciales.
+                        </p>
                     </div>
-                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full">
-                        <span class="text-4xl font-mono text-gray-700 mb-12 block">04</span>
-                        <div class="text-brand-red mb-6 service-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full"><span
+                            class="text-4xl font-mono text-gray-700 mb-12 block">04</span>
+                        <div class="text-brand-red mb-6 service-icon"><svg fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
                                 </path>
-                            </svg>
-                        </div>
+                            </svg></div>
                         <h4 class="text-lg font-black uppercase text-white mb-4 leading-tight">MASS<br>MESSAGING</h4>
-                        <p class="text-gray-500 text-[11px] leading-relaxed">Comunicación masiva segmentada con altísima
-                            tasa de conversión.</p>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Comunicación masiva con alta conversión.
+                        </p>
                     </div>
-                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full">
-                        <span class="text-4xl font-mono text-gray-700 mb-12 block">05</span>
-                        <div class="text-brand-primary mb-6 service-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full"><span
+                            class="text-4xl font-mono text-gray-700 mb-12 block">05</span>
+                        <div class="text-brand-primary mb-6 service-icon"><svg fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                        </div>
+                            </svg></div>
                         <h4 class="text-lg font-black uppercase text-white mb-4 leading-tight">PUBLICIDAD<br>FÍSICA Y
                             ADS</h4>
-                        <p class="text-gray-500 text-[11px] leading-relaxed">Campañas agresivas que dominan el espacio
-                            publicitario físico y digital.</p>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Campañas agresivas que dominan espacios.
+                        </p>
                     </div>
                 </div>
             </div>
-
             <button onclick="openModal('pdfModal')"
-                class="text-brand-red text-[11px] font-bold tracking-[0.2em] uppercase hover:text-white transition-colors flex items-center gap-2 cursor-pointer bg-transparent border-none p-0">
-                VER BROCHURE <span class="text-lg">→</span>
-            </button>
+                class="text-brand-red text-[11px] font-bold tracking-[0.2em] uppercase hover:text-white transition flex items-center gap-2 cursor-pointer bg-transparent border-none p-0">VER
+                BROCHURE <span class="text-lg">→</span></button>
         </section>
 
-        <section id="planes" class="py-24 max-w-[1400px] mx-auto px-6 border-t-0">
+        <!-- Planes -->
+        <section id="planes" class="py-24 max-w-[1400px] mx-auto px-6">
             <h3 class="text-3xl md:text-5xl font-black mb-4 uppercase tracking-tighter js-animate">PLANES DE <br><span
                     class="text-brand-red">IGNICIÓN</span></h3>
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 js-animate"
@@ -456,16 +400,14 @@
                             class="px-4 py-1 text-[11px] uppercase tracking-wider rounded text-gray-400 hover:text-white transition-all duration-300">Desarrollo
                             Web</button>
                     </div>
-
                     <div class="flex items-center gap-3 text-sm">
                         <span class="text-gray-400 font-semibold text-[11px] uppercase tracking-wider transition-colors"
                             id="label-mensual">Mensual</span>
-                        <div
-                            class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                            <input type="checkbox" name="toggle" id="toggle-descuento"
-                                class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-300 ease-in-out" />
-                            <label for="toggle-descuento"
-                                class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-600 cursor-pointer transition-colors"></label>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200">
+                            <input type="checkbox" id="toggle-descuento"
+                                class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-300" /><label
+                                for="toggle-descuento"
+                                class="toggle-label block h-5 rounded-full bg-gray-600 cursor-pointer transition-colors"></label>
                         </div>
                         <span class="text-gray-400 font-semibold text-[11px] uppercase tracking-wider transition-colors"
                             id="label-anual">3 Meses <span class="text-brand-red ml-1">-15%</span></span>
@@ -473,520 +415,231 @@
                 </div>
             </div>
 
+            <!-- Marketing Grid -->
             <div id="planes-marketing-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-                <div class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 relative flex flex-col js-animate hover:border-gray-600 transition duration-300"
+                <!-- Emprendedor -->
+                <div class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300"
                     style="transition-delay: 100ms;">
                     <span class="text-[10px] font-bold text-gray-500 mb-6 block">01</span>
                     <h4 class="text-2xl font-black uppercase text-white mb-2">PLAN EMPRENDEDOR</h4>
                     <p class="text-brand-primary text-[10px] uppercase tracking-widest font-bold mb-8">FACEBOOK /
                         INSTAGRAM / TIKTOK</p>
-
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Propuesta de contenido para RRSS. (Cronograma de publicaciones).</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Diseño de perfil y portada.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Diseño de 06 piezas gráficas en sus versiones post e historia al mes.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Diseño de 02 piezas videográficas no mayores a 30" (reels) al mes.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Programación y publicación de las 8 piezas en formato post e historia.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Servicio de community manager y gestión de pauta digital.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Gestión de pauta digital.</li>
+                        <li class="li-mkt">Propuesta de contenido para RRSS.</li>
+                        <li class="li-mkt">Diseño de perfil y portada.</li>
+                        <li class="li-mkt">Diseño de 06 piezas gráficas (post/historia) al mes.</li>
+                        <li class="li-mkt">Diseño de 02 piezas videográficas (reels) al mes.</li>
+                        <li class="li-mkt">Programación y publicación de 8 piezas.</li>
+                        <li class="li-mkt">Servicio de community manager.</li>
+                        <li class="li-mkt">Gestión de pauta digital.</li>
                     </ul>
                     <div class="flex justify-between items-end mt-auto pt-8 border-t border-gray-800/50">
                         <div data-precio-base="1200">
-                            <p class="text-4xl font-black text-white leading-none">
-                                S/ <span class="precio-valor">1,200</span><span
-                                    class="text-[10px] text-gray-500 font-normal ml-1 tracking-normal">.00 (Tarifa
-                                    mensual)</span>
-                            </p>
-                        </div>
-                        <a href="https://wa.me/51979456610?text=Hola,%20quisiera%20consultar%20sobre%20el%20Plan%20Emprendedor"
-                            target="_blank"
-                            class="text-brand-primary text-[11px] font-black tracking-widest uppercase hover:text-white transition-colors">COTIZAR</a>
+                            <p class="text-4xl font-black text-white leading-none">S/ <span
+                                    class="precio-valor">1,200</span><span
+                                    class="text-[10px] text-gray-500 font-normal ml-1">.00/mes</span></p>
+                        </div><a href="https://wa.me/51979456610" target="_blank"
+                            class="text-brand-primary text-[11px] font-black tracking-widest uppercase hover:text-white transition">COTIZAR</a>
                     </div>
                 </div>
-
-                <div class="bg-[#1a1a1a] p-8 rounded-sm border-2 border-brand-primary relative flex flex-col js-animate shadow-2xl shadow-brand-primary/10 z-10 scale-105 transform hover:scale-110 transition duration-300"
+                <!-- Profesional -->
+                <div class="bg-[#1a1a1a] p-8 rounded-sm border-2 border-brand-primary relative flex flex-col js-animate shadow-2xl z-10 scale-105 transform hover:scale-110 transition duration-300"
                     style="transition-delay: 200ms;">
                     <span
-                        class="absolute top-0 right-0 bg-brand-primary text-white text-[9px] px-3 py-1.5 uppercase font-bold rounded-bl-sm tracking-widest">RECOMENDADO</span>
-                    <span class="text-[10px] font-bold text-gray-500 mb-6 block">02</span>
+                        class="absolute top-0 right-0 bg-brand-primary text-white text-[9px] px-3 py-1.5 uppercase font-bold rounded-bl-sm tracking-widest">RECOMENDADO</span><span
+                        class="text-[10px] font-bold text-gray-500 mb-6 block">02</span>
                     <h4 class="text-2xl font-black uppercase text-brand-primary mb-2">PLAN PROFESIONAL</h4>
                     <p class="text-brand-primary text-[10px] uppercase tracking-widest font-bold mb-8">FACEBOOK /
                         INSTAGRAM / TIKTOK</p>
-
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Propuesta de contenido para RRSS. (Cronograma de publicaciones).</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Diseño de perfil y portada.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Diseño de 08 piezas gráficas en sus versiones post e historia al mes.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Diseño de 04 piezas videográficas no mayores a 30" (reels) al mes.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Programación y publicación de las 12 piezas en formato post e historia.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Servicio de community manager y gestión de pauta digital.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> 15 fotografías publicitarias al mes.*</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Gestión de pauta digital.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Reporte mensual digital.</li>
+                        <li class="li-mkt">Propuesta de contenido para RRSS.</li>
+                        <li class="li-mkt">Diseño de perfil y portada.</li>
+                        <li class="li-mkt">Diseño de 08 piezas gráficas al mes.</li>
+                        <li class="li-mkt">Diseño de 04 piezas videográficas (reels) al mes.</li>
+                        <li class="li-mkt">Programación y publicación de 12 piezas.</li>
+                        <li class="li-mkt">Community manager y gestión de pauta.</li>
+                        <li class="li-mkt">15 fotografías publicitarias al mes.*</li>
+                        <li class="li-mkt">Reporte mensual digital.</li>
                     </ul>
                     <div class="mt-auto pt-8 border-t border-gray-800/50 flex flex-col items-center">
                         <div data-precio-base="1600">
-                            <p class="text-4xl font-black text-white leading-none mb-6">
-                                S/ <span class="precio-valor">1,600</span><span
-                                    class="text-[10px] text-gray-500 font-normal ml-1 tracking-normal">.00 (Tarifa
-                                    mensual)</span>
-                            </p>
-                        </div>
-                        <a href="https://wa.me/51979456610?text=Hola,%20quisiera%20consultar%20sobre%20el%20Plan%20Profesional"
-                            target="_blank"
-                            class="w-full text-center bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] tracking-widest uppercase hover:bg-brand-primaryHover transition shadow-lg shadow-brand-primary/20 block">SOLICITAR</a>
+                            <p class="text-4xl font-black text-white leading-none mb-6">S/ <span
+                                    class="precio-valor">1,600</span><span
+                                    class="text-[10px] text-gray-500 font-normal ml-1">.00/mes</span></p>
+                        </div><a href="https://wa.me/51979456610" target="_blank"
+                            class="w-full text-center bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] tracking-widest uppercase hover:bg-brand-primaryHover transition block">SOLICITAR</a>
                     </div>
                 </div>
-
-                <div class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 relative flex flex-col js-animate hover:border-gray-600 transition duration-300"
+                <!-- Empresario -->
+                <div class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300"
                     style="transition-delay: 300ms;">
                     <span class="text-[10px] font-bold text-gray-500 mb-6 block">03</span>
                     <h4 class="text-2xl font-black uppercase text-white mb-2">PLAN EMPRESARIO</h4>
                     <p class="text-brand-primary text-[10px] uppercase tracking-widest font-bold mb-8">FACEBOOK /
                         INSTAGRAM / TIKTOK</p>
-
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Propuesta de contenido para RRSS. (Cronograma de publicaciones).</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Diseño de perfil y portada.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Diseño de 10 piezas gráficas en sus versiones post e historia al mes.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Diseño de 06 piezas videográficas no mayores a 30" (reels) al mes.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Programación y publicación de las 16 piezas en formato post e historia.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Servicio de community manager y gestión de pauta digital.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> 25 fotografías publicitarias al mes.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Gestión de pauta digital.</li>
-                        <li class="flex items-start gap-3 text-left"><svg
-                                class="w-3 h-3 text-brand-primary mt-0.5 flex-shrink-0" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path d="M5 4l10 6-10 6V4z" />
-                            </svg> Reporte mensual digital.</li>
+                        <li class="li-mkt">Propuesta de contenido para RRSS.</li>
+                        <li class="li-mkt">Diseño de perfil y portada.</li>
+                        <li class="li-mkt">Diseño de 10 piezas gráficas al mes.</li>
+                        <li class="li-mkt">Diseño de 06 piezas videográficas (reels).</li>
+                        <li class="li-mkt">Programación y publicación de 16 piezas.</li>
+                        <li class="li-mkt">Community manager y gestión de pauta.</li>
+                        <li class="li-mkt">25 fotografías publicitarias al mes.</li>
+                        <li class="li-mkt">Reporte mensual digital.</li>
                     </ul>
                     <div class="flex justify-between items-end mt-auto pt-8 border-t border-gray-800/50">
                         <div data-precio-base="2000">
-                            <p class="text-4xl font-black text-white leading-none">
-                                S/ <span class="precio-valor">2,000</span><span
-                                    class="text-[10px] text-gray-500 font-normal ml-1 tracking-normal">.00 (Tarifa
-                                    mensual)</span>
-                            </p>
-                        </div>
-                        <a href="https://wa.me/51979456610?text=Hola,%20quisiera%20consultar%20sobre%20el%20Plan%20Empresario"
-                            target="_blank"
-                            class="text-brand-primary text-[11px] font-black tracking-widest uppercase hover:text-white transition-colors">COTIZAR</a>
+                            <p class="text-4xl font-black text-white leading-none">S/ <span
+                                    class="precio-valor">2,000</span><span
+                                    class="text-[10px] text-gray-500 font-normal ml-1">.00/mes</span></p>
+                        </div><a href="https://wa.me/51979456610" target="_blank"
+                            class="text-brand-primary text-[11px] font-black tracking-widest uppercase hover:text-white transition">COTIZAR</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Web Grid (Hidden by default) -->
             <div id="planes-web-grid" class="hidden grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-                <div class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 relative flex flex-col js-animate hover:border-gray-600 transition duration-300"
-                    style="transition-delay: 100ms;">
+                <div
+                    class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
                     <h4 class="text-2xl font-black uppercase text-white mb-4">LANDING PAGE</h4>
                     <div data-precio-base="1200" class="mb-4">
-                        <p class="text-4xl font-black text-white leading-none">
-                            S/ <span class="precio-valor">1,200</span>
-                        </p>
+                        <p class="text-4xl font-black text-white leading-none">S/ <span
+                                class="precio-valor">1,200</span></p>
                     </div>
-                    <p class="text-gray-400 text-xs mb-8">Pago único (3 meses de garantía)</p>
-
+                    <p class="text-gray-400 text-xs mb-8">Pago único (3 meses garantía)</p>
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
-                        <li class="flex items-start gap-3 text-left"><span
-                                class="text-brand-primary font-black mt-0.5">✓</span> Diseño One-Page responsivo.</li>
-                        <li class="flex items-start gap-3 text-left"><span
-                                class="text-brand-primary font-black mt-0.5">✓</span> Dominio y Hosting (1 año).</li>
-                        <li class="flex items-start gap-3 text-left"><span
-                                class="text-brand-primary font-black mt-0.5">✓</span> Botón a WhatsApp.</li>
+                        <li class="li-web">Diseño One-Page responsivo.</li>
+                        <li class="li-web">Dominio y Hosting (1 año).</li>
+                        <li class="li-web">Botón a WhatsApp.</li>
                     </ul>
-                    <div class="mt-auto pt-6 border-t border-gray-800/50 flex flex-col items-center">
-                        <a href="https://wa.me/51979456610?text=Hola,%20quisiera%20consultar%20sobre%20el%20desarrollo%20de%20una%20Landing%20Page"
+                    <div class="mt-auto pt-6 border-t border-gray-800/50"><a href="https://wa.me/51979456610"
                             target="_blank"
-                            class="w-full border border-gray-600 text-white font-black py-4 rounded-sm text-[11px] tracking-widest uppercase hover:bg-gray-800 transition text-center block">CONTACTAR</a>
+                            class="w-full border border-gray-600 text-white font-black py-4 rounded-sm text-[11px] uppercase hover:bg-gray-800 transition text-center block">CONTACTAR</a>
                     </div>
                 </div>
-
-                <div class="bg-[#1a1a1a] p-8 rounded-sm border-2 border-brand-primary relative flex flex-col js-animate shadow-2xl shadow-brand-primary/10 z-10 scale-105 transform hover:scale-110 transition duration-300"
-                    style="transition-delay: 200ms;">
+                <div
+                    class="bg-[#1a1a1a] p-8 rounded-sm border-2 border-brand-primary flex flex-col js-animate shadow-2xl scale-105 transform hover:scale-110 transition duration-300 relative">
                     <span
-                        class="absolute top-0 right-0 bg-brand-primary text-white text-[9px] px-3 py-1.5 uppercase font-bold rounded-bl-sm tracking-widest">RECOMENDADO</span>
+                        class="absolute top-0 right-0 bg-brand-primary text-white text-[9px] px-3 py-1.5 uppercase font-bold rounded-bl-sm">RECOMENDADO</span>
                     <h4 class="text-2xl font-black uppercase text-white mb-4">WEB CORPORATIVA</h4>
                     <div data-precio-base="1800" class="mb-4">
-                        <p class="text-4xl font-black text-brand-primary leading-none">
-                            S/ <span class="precio-valor">1,800</span>
-                        </p>
+                        <p class="text-4xl font-black text-brand-primary leading-none">S/ <span
+                                class="precio-valor">1,800</span></p>
                     </div>
-                    <p class="text-gray-400 text-xs mb-8">Pago único (3 meses de garantía)</p>
-
+                    <p class="text-gray-400 text-xs mb-8">Pago único (3 meses garantía)</p>
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
-                        <li class="flex items-start gap-3 text-left"><span
-                                class="text-brand-primary font-black mt-0.5">✓</span> Web multisección.</li>
-                        <li class="flex items-start gap-3 text-left"><span
-                                class="text-brand-primary font-black mt-0.5">✓</span> Panel autoadministrable.</li>
-                        <li class="flex items-start gap-3 text-left"><span
-                                class="text-brand-primary font-black mt-0.5">✓</span> Dominio y Hosting (1 año).</li>
-                        <li class="flex items-start gap-3 text-left"><span
-                                class="text-brand-primary font-black mt-0.5">✓</span> SEO y Google Analytics.</li>
+                        <li class="li-web">Web multisección.</li>
+                        <li class="li-web">Panel autoadministrable.</li>
+                        <li class="li-web">Dominio y Hosting (1 año).</li>
+                        <li class="li-web">SEO y Google Analytics.</li>
                     </ul>
-                    <div class="mt-auto pt-8 border-t border-gray-800/50 flex flex-col items-center">
-                        <a href="https://wa.me/51979456610?text=Hola,%20quisiera%20consultar%20sobre%20el%20desarrollo%20de%20una%20Web%20Corporativa"
+                    <div class="mt-auto pt-8 border-t border-gray-800/50"><a href="https://wa.me/51979456610"
                             target="_blank"
-                            class="w-full bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] tracking-widest uppercase hover:bg-brand-primaryHover transition shadow-lg shadow-brand-primary/20 text-center block">CONTRATAR
-                            AHORA</a>
-                    </div>
+                            class="w-full bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] uppercase hover:bg-brand-primaryHover transition text-center block">CONTRATAR
+                            AHORA</a></div>
                 </div>
-
-                <div class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 relative flex flex-col js-animate hover:border-gray-600 transition duration-300"
-                    style="transition-delay: 300ms;">
+                <div
+                    class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
                     <h4 class="text-2xl font-black uppercase text-white mb-4">SISTEMAS A MEDIDA</h4>
                     <div class="mb-4">
                         <p class="text-4xl font-black text-white leading-none">COTIZAR</p>
                     </div>
-                    <p class="text-gray-400 text-xs mb-8">Previa evaluación (3 meses de garantía)</p>
-
+                    <p class="text-gray-400 text-xs mb-8">Previa evaluación (3 meses garantía)</p>
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
-                        <li class="flex items-start gap-3 text-left"><span
-                                class="text-brand-primary font-black mt-0.5">✓</span> Software personalizado y apps.
-                        </li>
-                        <li class="flex items-start gap-3 text-left"><span
-                                class="text-brand-primary font-black mt-0.5">✓</span> Arquitectura escalable.</li>
-                        <li class="flex items-start gap-3 text-left"><span
-                                class="text-brand-primary font-black mt-0.5">✓</span> Integración de APIs.</li>
-                        <li class="flex items-start gap-3 text-left"><span
-                                class="text-brand-primary font-black mt-0.5">✓</span> Pasarelas de pago.</li>
+                        <li class="li-web">Software personalizado y apps.</li>
+                        <li class="li-web">Arquitectura escalable.</li>
+                        <li class="li-web">Integración de APIs y Pasarelas.</li>
                     </ul>
-                    <div class="mt-auto pt-6 border-t border-gray-800/50 flex flex-col items-center">
-                        <a href="https://wa.me/51979456610?text=Hola,%20quisiera%20consultar%20sobre%20el%20desarrollo%20de%20un%20Sistema%20a%20Medida"
+                    <div class="mt-auto pt-6 border-t border-gray-800/50"><a href="https://wa.me/51979456610"
                             target="_blank"
-                            class="w-full border border-gray-600 text-white font-black py-4 rounded-sm text-[11px] tracking-widest uppercase hover:bg-gray-800 transition text-center block">CONTACTAR</a>
+                            class="w-full border border-gray-600 text-white font-black py-4 rounded-sm text-[11px] uppercase hover:bg-gray-800 transition text-center block">CONTACTAR</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Notas -->
             <div class="mt-16 js-animate" style="transition-delay: 400ms;">
                 <div
                     class="bg-[#161618] border border-gray-800 rounded-sm p-8 md:p-10 relative overflow-hidden shadow-2xl">
                     <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-brand-primary to-brand-red">
                     </div>
-
-                    <p
-                        class="text-brand-primary text-[11px] mb-8 font-bold flex items-start gap-2 max-w-3xl leading-relaxed">
-                        <span class="text-lg leading-none mt-[-4px]">*</span>
-                        <span>Las fotografías, piezas y videos deben coordinarse dentro del mes puesto que no son
-                            acumulables.</span>
-                    </p>
-
+                    <p class="text-brand-primary text-[11px] mb-8 font-bold flex items-start gap-2 max-w-3xl"><span
+                            class="text-lg leading-none mt-[-4px]">*</span><span>Las fotografías, piezas y videos deben
+                            coordinarse dentro del mes puesto que no son acumulables.</span></p>
                     <div class="mb-6 flex items-center gap-4">
                         <h5 class="text-xs font-black uppercase text-white tracking-widest">NOTAS</h5>
                         <div class="h-px bg-gray-800 flex-grow"></div>
                     </div>
-
                     <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 text-[11px] text-gray-400">
-                        <li class="flex items-start gap-2"><span class="text-brand-red font-black mt-0.5">•</span> Los
-                            precios anteriormente indicados no incluyen el 18% del I.G.V.</li>
-                        <li class="flex items-start gap-2"><span class="text-brand-red font-black mt-0.5">•</span> La
-                            forma de pago será 100% adelantado (inicio de mes).</li>
-                        <li class="flex items-start gap-2"><span class="text-brand-red font-black mt-0.5">•</span> La
-                            cotización tiene una validez de 10 días calendario.</li>
-                        <li class="flex items-start gap-2"><span class="text-brand-red font-black mt-0.5">•</span> No se
-                            incluye presupuesto para pauta digital.</li>
-                        <li class="flex items-start gap-2"><span class="text-brand-red font-black mt-0.5">•</span> Todo
-                            requerimiento fuera de la cotización será considerado como adicional.</li>
-                        <li class="flex items-start gap-2"><span class="text-brand-red font-black mt-0.5">•</span> No
-                            incluye programación web, ni elaboración de página web.</li>
+                        <li><span class="text-brand-red font-black mr-2">•</span> Precios no incluyen el 18% del I.G.V.
+                        </li>
+                        <li><span class="text-brand-red font-black mr-2">•</span> Forma de pago: 100% adelantado (inicio
+                            de mes).</li>
+                        <li><span class="text-brand-red font-black mr-2">•</span> Cotización válida por 10 días
+                            calendario.</li>
+                        <li><span class="text-brand-red font-black mr-2">•</span> No se incluye presupuesto para pauta
+                            digital.</li>
+                        <li><span class="text-brand-red font-black mr-2">•</span> Requerimientos extra serán
+                            considerados adicionales.</li>
+                        <li><span class="text-brand-red font-black mr-2">•</span> Marketing no incluye programación web.
+                        </li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section class="bg-brand-primary py-12 js-animate border-t-0">
+        <!-- CTA Section -->
+        <section class="bg-brand-primary py-12 js-animate">
             <div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-                <h4 class="text-2xl md:text-4xl font-black uppercase text-white tracking-tighter leading-none">
-                    ¿Listo para romper <br>el molde?
-                </h4>
-                <div class="flex justify-end">
-                    <a href="#contacto"
-                        class="bg-white text-brand-primary px-10 py-4 rounded-sm font-black uppercase tracking-widest text-[11px] hover:bg-gray-100 transition-colors shadow-lg shadow-black/20">
-                        TRABAJEMOS JUNTOS
-                    </a>
-                </div>
+                <h4 class="text-2xl md:text-4xl font-black uppercase text-white tracking-tighter leading-none">¿Listo
+                    para romper <br>el molde?</h4><a href="#contacto"
+                    class="bg-white text-brand-primary px-10 py-4 rounded-sm font-black uppercase tracking-widest text-[11px] hover:bg-gray-100 transition shadow-lg">TRABAJEMOS
+                    JUNTOS</a>
             </div>
         </section>
 
-        <section id="clientes" class="py-24 js-animate overflow-hidden border-t-0 border-b-0 relative">
+        <!-- Clientes Dinámicos -->
+        <section id="clientes" class="py-24 js-animate overflow-hidden relative">
             <div class="max-w-[1400px] mx-auto px-6">
                 <h3 class="text-sm font-bold uppercase tracking-[0.2em] text-gray-400 mb-12">ELLOS CONFÍAN EN NOSOTROS
                 </h3>
             </div>
-
-            <!-- EL CONTENEDOR MÁSCARA AHORA ESTÁ AFUERA PARA NO ROMPER EL JAVASCRIPT -->
             <div class="relative w-full overflow-hidden py-10 wave-track-mask">
-                <div id="wave-track" class="flex flex-nowrap items-center gap-4 w-max px-2 h-[160px]">
-
-                    <!-- AQUÍ ESTÁN TODOS LOS LOGOS CON FONDOS GRISES SÓLIDOS. SIN OPACIDAD. SIN FILTROS INVERT. -->
-
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/automotores-inka-flama.svg" alt="Automotores Inka"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/beaute-flama.svg" alt="Beaute" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/brandm-flama.svg" alt="BrandM" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/brasas-club.svg" alt="Brasas Club" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/contrunor-flama.svg" alt="Contrunor" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/fecasa-flama.svg" alt="Fecasa" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/haray-flama.svg" alt="Haray" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/impultsa-flama.svg" alt="Impultsa" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/irvin-flama-flama.svg" alt="Irvin Flama"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/la-granja-flama.svg" alt="La Granja" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/mannucci-flama.svg" alt="Mannucci" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/mar-verde-flama.svg" alt="Mar Verde" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/mirano-flama.svg" alt="Mirano" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/mr-li-flama.svg" alt="Mr Li" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/peru-drive-flama.svg" alt="Peru Drive"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/pizzeteria-flama.svg" alt="Pizzeteria"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/prime-glof-flama.svg" alt="Prime Glof"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/rca-flama.svg" alt="RCA" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/rio-alto-flama.svg" alt="Rio Alto" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/tipica-flama.svg" alt="Tipica" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/zumo-mar-flama.svg" alt="Zumo Mar" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/canvax-flama.svg" alt="Canvax" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/los-portales-flama.svg" alt="Los Portales"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/maranathan-flama.svg" alt="Maranathan"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/mi-lord-flama.svg" alt="Mi Lord" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/oriente-flama.svg" alt="Oriente" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/rr-flama.svg" alt="RR" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div
-                        class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative">
-                        <img src="img/santa-cruz-flama.svg" alt="Santa Cruz"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                </div>
+                <div id="wave-track" class="flex flex-nowrap items-center gap-4 w-max px-2 h-[160px]"></div>
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- MODALES (VENTANAS EMERGENTES) -->
-        <!-- ========================================== -->
-
-        <!-- Modal del Video Local -->
+        <!-- MODALES -->
         <div id="videoModal"
             class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm transition-opacity duration-300">
-            <div class="relative w-full max-w-sm h-[85vh] mx-4 bg-[#0a0a0a] border border-gray-800 rounded-lg shadow-2xl p-1 transform transition-all scale-95 opacity-0"
-                id="videoModalContent">
-                <!-- Botón Cerrar -->
+            <div
+                class="relative w-full max-w-sm h-[85vh] mx-4 bg-[#0a0a0a] border border-gray-800 rounded-lg shadow-2xl p-1 transform scale-95 opacity-0 transition-all">
                 <button onclick="closeModal('videoModal')"
-                    class="absolute -top-4 -right-4 bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-red-600 transition z-10 shadow-lg cursor-pointer">
-                    ✕
-                </button>
-                <!-- Reproductor de Video HTML5 adaptado al alto -->
+                    class="absolute -top-4 -right-4 bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-red-600 transition z-10 shadow-lg">✕</button>
                 <div class="relative w-full h-full rounded overflow-hidden bg-black flex items-center justify-center">
                     <video id="myLocalVideo" class="max-w-full max-h-full" controls preload="none">
                         <source src="video/flama-reel.mp4" type="video/mp4">
-                        Tu navegador no soporta la etiqueta de video.
-                    </video>
-                </div>
+                    </video></div>
             </div>
         </div>
-
-        <!-- Modal del PDF Local -->
         <div id="pdfModal"
             class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm transition-opacity duration-300">
-            <div class="relative w-full max-w-6xl h-[85vh] mx-4 bg-[#1a1a1a] border border-gray-800 rounded-lg shadow-2xl p-1 transform transition-all scale-95 opacity-0"
-                id="pdfModalContent">
-                <!-- Botón Cerrar -->
+            <div
+                class="relative w-full max-w-6xl h-[85vh] mx-4 bg-[#1a1a1a] border border-gray-800 rounded-lg shadow-2xl p-1 transform scale-95 opacity-0 transition-all">
                 <button onclick="closeModal('pdfModal')"
-                    class="absolute -top-4 -right-4 bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-red-600 transition z-10 shadow-lg cursor-pointer">
-                    ✕
-                </button>
-                <!-- Visor de PDF -->
-                <div class="w-full h-full rounded overflow-hidden bg-white">
-                    <embed src="pdf/brochure-flama.pdf" type="application/pdf" width="100%" height="100%" />
-                </div>
+                    class="absolute -top-4 -right-4 bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-red-600 transition z-10 shadow-lg">✕</button>
+                <div class="w-full h-full rounded overflow-hidden bg-white"><embed src="pdf/brochure-flama.pdf"
+                        type="application/pdf" width="100%" height="100%" /></div>
             </div>
         </div>
 
-        <section class="py-32 max-w-[1400px] mx-auto px-6 border-t-0 overflow-hidden">
+        <!-- Diana & Manifiesto -->
+        <section class="py-32 max-w-[1400px] mx-auto px-6 overflow-hidden">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
                 <div class="relative w-full max-w-md js-animate" style="transition-delay: 100ms;">
-                    <div class="aspect-[4/5] bg-gray-900 rounded-sm border border-gray-800 overflow-hidden">
-                        <img src="img/diana-imagen-flama.jpg" alt="Diana Galvez - Gerente de Flama Agency"
-                            class="w-full h-full object-cover">
+                    <div class="aspect-[4/5] bg-gray-900 rounded-sm border border-gray-800 overflow-hidden"><img
+                            src="img/diana-imagen-flama.jpg" alt="Diana Galvez" class="w-full h-full object-cover">
                     </div>
                     <div
                         class="absolute -bottom-8 right-0 bg-brand-card p-6 border border-gray-800 shadow-2xl z-10 w-64">
@@ -998,83 +651,67 @@
                 <div class="pt-12 js-animate" style="transition-delay: 300ms;">
                     <p class="text-brand-primary text-[10px] font-bold tracking-[0.2em] uppercase mb-4">NUESTRO
                         MANIFIESTO</p>
-                    <h3
-                        class="text-5xl md:text-7xl font-black uppercase mb-8 leading-[0.9] tracking-tighter text-white">
-                        LA ESTÉTICA ES <br><span class="text-gray-500">RESISTENCIA.</span>
-                    </h3>
-                    <p class="text-gray-400 text-sm mb-12 leading-relaxed max-w-lg">
-                        No hacemos marketing tradicional. Construimos marcas que no pueden ser ignoradas. Cada pixel,
-                        cada strategy y cada campaña está diseñada con un propósito: dominar el mercado y volver
-                        irrelevante a tu competencia.
-                    </p>
-
+                    <h3 class="text-5xl md:text-7xl font-black uppercase mb-8 leading-[0.9] tracking-tighter">LA
+                        ESTÉTICA ES <br><span class="text-gray-500">RESISTENCIA.</span></h3>
+                    <p class="text-gray-400 text-sm mb-12 leading-relaxed max-w-lg">No hacemos marketing tradicional.
+                        Construimos marcas que no pueden ser ignoradas. Cada pixel y estrategia está diseñada para
+                        dominar el mercado.</p>
                     <div class="flex flex-wrap gap-6 mb-16 items-center">
                         <img src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-photoshop.png"
-                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-300"
-                            alt="Photoshop">
-                        <img src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-premiere-pro.png"
-                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-300"
-                            alt="Premiere">
-                        <img src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-after-effects.png"
-                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-300"
-                            alt="After Effects">
-                        <img src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-indesign.png"
-                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-300"
-                            alt="InDesign">
-                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/freepik.svg"
-                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-300 filter invert"
-                            alt="Freepik">
-                        <img src="https://img.icons8.com/ios-filled/50/FFFFFF/canva.png"
-                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-300"
-                            alt="Canva">
+                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition"><img
+                            src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-premiere-pro.png"
+                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition"><img
+                            src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-after-effects.png"
+                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition"><img
+                            src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-indesign.png"
+                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition"><img
+                            src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/freepik.svg"
+                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition invert"><img
+                            src="https://img.icons8.com/ios-filled/50/FFFFFF/canva.png"
+                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition">
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 pt-10 border-t border-gray-800/50">
                         <div>
-                            <div class="text-brand-primary mb-3">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="text-brand-primary mb-3"><svg class="w-8 h-8" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
+                                </svg></div>
                             <p class="text-4xl font-black text-white mb-2">+10</p>
-                            <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">AÑOS DE EXPERIENCIA
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">AÑOS EXPERIENCIA
                             </p>
                         </div>
                         <div>
-                            <div class="text-brand-primary mb-3">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="text-brand-primary mb-3"><svg class="w-8 h-8" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                                </svg>
-                            </div>
+                                </svg></div>
                             <p class="text-4xl font-black text-white mb-2">+20</p>
                             <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">MARCAS ESCALADAS
                             </p>
                         </div>
                         <div>
-                            <div class="text-brand-red mb-3">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="text-brand-red mb-3"><svg class="w-8 h-8" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
                                     </path>
-                                </svg>
-                            </div>
+                                </svg></div>
                             <p class="text-4xl font-black text-brand-red mb-2">100%</p>
-                            <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">PROYECTOS EXITOSOS
-                            </p>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">ÉXITO PROYECTOS</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Contacto -->
         <section id="contacto"
-            class="py-32 max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center border-t-0">
+            class="py-32 max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
             <div class="js-animate" style="transition-delay: 100ms;">
-                <h3 class="text-6xl md:text-8xl font-black uppercase mb-4 tracking-tighter leading-[0.9]">
-                    ¿LISTO PARA <br><span class="text-brand-red">ENCENDER</span> <br>LA MECHA?
-                </h3>
+                <h3 class="text-6xl md:text-8xl font-black uppercase mb-4 tracking-tighter leading-[0.9]">¿LISTO PARA
+                    <br><span class="text-brand-red">ENCENDER</span> <br>LA MECHA?</h3>
             </div>
             <div class="bg-[#161618] p-10 md:p-12 rounded-sm border border-gray-800 js-animate relative shadow-2xl"
                 style="transition-delay: 300ms;">
@@ -1082,500 +719,182 @@
                     class="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-red opacity-10 blur rounded-sm">
                 </div>
                 <form id="whatsappForm" class="space-y-8 relative z-10">
-                    <div class="border-b border-gray-700 pb-2">
-                        <label
-                            class="block text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">NOMBRE</label>
-                        <input type="text" id="waName"
-                            class="w-full bg-transparent border-none text-white focus:outline-none focus:ring-0 placeholder-gray-700 text-sm"
-                            required>
-                    </div>
-                    <div class="border-b border-gray-700 pb-2">
-                        <label
-                            class="block text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">EMAIL</label>
-                        <input type="email" id="waEmail"
-                            class="w-full bg-transparent border-none text-white focus:outline-none focus:ring-0 placeholder-gray-700 text-sm"
-                            required>
-                    </div>
-                    <div class="border-b border-gray-700 pb-2">
-                        <label
-                            class="block text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">MENSAJE</label>
-                        <textarea id="waMessage"
-                            class="w-full bg-transparent border-none text-white focus:outline-none focus:ring-0 resize-none h-16 placeholder-gray-700 text-sm"
-                            required></textarea>
-                    </div>
+                    <div class="border-b border-gray-700 pb-2"><label
+                            class="block text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">NOMBRE</label><input
+                            type="text" id="waName"
+                            class="w-full bg-transparent border-none text-white focus:outline-none placeholder-gray-700 text-sm"
+                            required></div>
+                    <div class="border-b border-gray-700 pb-2"><label
+                            class="block text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">EMAIL</label><input
+                            type="email" id="waEmail"
+                            class="w-full bg-transparent border-none text-white focus:outline-none placeholder-gray-700 text-sm"
+                            required></div>
+                    <div class="border-b border-gray-700 pb-2"><label
+                            class="block text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">MENSAJE</label><textarea
+                            id="waMessage"
+                            class="w-full bg-transparent border-none text-white focus:outline-none resize-none h-16 placeholder-gray-700 text-sm"
+                            required></textarea></div>
                     <button type="submit"
-                        class="w-full bg-brand-primary py-5 rounded-sm font-black uppercase tracking-widest text-[11px] hover:bg-brand-primaryHover transition-colors mt-8 text-white shadow-lg shadow-brand-primary/20">
-                        ENVIAR MENSAJE
-                    </button>
+                        class="w-full bg-brand-primary py-5 rounded-sm font-black uppercase tracking-widest text-[11px] hover:bg-brand-primaryHover transition-colors mt-8 text-white shadow-lg">ENVIAR
+                        MENSAJE</button>
                 </form>
             </div>
         </section>
 
-        <footer class="bg-transparent py-24 js-animate relative overflow-hidden border-t-0"
-            style="transition-delay: 200ms;">
+        <!-- Footer -->
+        <footer class="bg-transparent py-24 js-animate relative overflow-hidden" style="transition-delay: 200ms;">
             <div class="max-w-[1400px] mx-auto px-6 flex flex-col items-center">
-
                 <div id="footer-logo-container"
-                    class="relative flex flex-row items-end justify-center gap-1 md:gap-2 w-full h-12 md:h-20 mb-6 js-animate overflow-visible"
+                    class="relative flex items-end justify-center gap-1 md:gap-2 w-full h-12 md:h-20 mb-6 js-animate overflow-visible"
                     style="transition-delay: 400ms;">
                     <img src="img/flama-agency-1.svg" id="f-flama-1"
-                        class="h-full w-auto opacity-0 transition-opacity duration-700 overflow-visible" />
-                    <img src="img/flama-agency-2.svg" id="f-flama-2"
-                        class="h-full w-auto opacity-0 transition-opacity duration-700 overflow-visible" />
-                    <img src="img/flama-agency-3.svg" id="f-flama-3"
-                        class="h-full w-auto opacity-0 transition-opacity duration-700 overflow-visible" />
-                    <img src="img/flama-agency-4.svg" id="f-flama-4"
-                        class="h-full w-auto opacity-0 transition-opacity duration-700 overflow-visible" />
-                    <img src="img/flama-agency-5.svg" id="f-flama-5"
-                        class="h-full w-auto opacity-0 transition-opacity duration-700 overflow-visible" />
+                        class="h-full w-auto opacity-0 transition-opacity duration-700" /><img
+                        src="img/flama-agency-2.svg" id="f-flama-2"
+                        class="h-full w-auto opacity-0 transition-opacity duration-700" /><img
+                        src="img/flama-agency-3.svg" id="f-flama-3"
+                        class="h-full w-auto opacity-0 transition-opacity duration-700" /><img
+                        src="img/flama-agency-4.svg" id="f-flama-4"
+                        class="h-full w-auto opacity-0 transition-opacity duration-700" /><img
+                        src="img/flama-agency-5.svg" id="f-flama-5"
+                        class="h-full w-auto opacity-0 transition-opacity duration-700" />
                 </div>
-
                 <div class="text-white text-lg md:text-3xl tracking-[1em] font-light mb-24 ml-4 js-animate"
-                    style="transition-delay: 500ms;">
-                    AGENCY
-                </div>
-
-                <div class="w-full flex flex-col md:flex-row justify-between items-start gap-12 pt-12 border-t-0 js-animate"
+                    style="transition-delay: 500ms;">AGENCY</div>
+                <div class="w-full flex flex-col md:flex-row justify-between items-start gap-12 pt-12 js-animate"
                     style="transition-delay: 600ms;">
                     <div class="flex flex-col gap-6">
                         <h4 class="text-brand-red text-xs font-bold uppercase tracking-widest">SOCIAL</h4>
                         <div class="flex flex-wrap gap-8 text-[11px] font-bold text-gray-300 uppercase tracking-widest">
-                            <a href="#" class="hover:text-white transition-colors">FACEBOOK</a>
-                            <a href="#" class="hover:text-white transition-colors">INSTAGRAM</a>
-                            <a href="#" class="hover:text-white transition-colors">LINKEDIN</a>
-                        </div>
+                            <a href="#" class="hover:text-white transition">FACEBOOK</a><a href="#"
+                                class="hover:text-white transition">INSTAGRAM</a><a href="#"
+                                class="hover:text-white transition">LINKEDIN</a></div>
                     </div>
                     <div class="flex flex-col gap-6 md:items-end">
                         <h4 class="text-brand-red text-xs font-bold uppercase tracking-widest">CONTACTO</h4>
                         <div
                             class="flex flex-wrap gap-8 text-[11px] font-bold text-gray-300 uppercase tracking-widest md:justify-end">
                             <a href="mailto:agencyflama@gmail.com"
-                                class="hover:text-white transition-colors">agencyflama@gmail.com</a>
-                            <a href="https://wa.me/51979456610" target="_blank"
-                                class="flex items-center gap-2 hover:text-white transition-colors">
-                                <img src="https://img.icons8.com/ios-filled/50/FFFFFF/whatsapp--v1.png" alt="WhatsApp"
-                                    class="w-4 h-4">
-                                +51 979 456 610
-                            </a>
-                        </div>
+                                class="hover:text-white transition">agencyflama@gmail.com</a><a
+                                href="https://wa.me/51979456610" target="_blank"
+                                class="flex items-center gap-2 hover:text-white transition"><img
+                                    src="https://img.icons8.com/ios-filled/50/FFFFFF/whatsapp--v1.png"
+                                    class="w-4 h-4">+51 979 456 610</a></div>
                     </div>
                 </div>
             </div>
         </footer>
-
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            /* 1. ANIMACIÓN DEL LOGO FLAMA Y OBSERVER */
+            setTimeout(() => { if (document.getElementById('flama-3')) document.getElementById('flama-3').style.opacity = '1'; }, 100);
+            setTimeout(() => { [1, 2, 4, 5].forEach((n, i) => { const el = document.getElementById(`flama-${n}`); if (el) setTimeout(() => el.classList.add('show'), i * 120); }); }, 1100);
 
-            /* --- 1. ANIMACIÓN DEL LOGO FLAMA --- */
-            const flama3 = document.getElementById('flama-3');
-            const flama2 = document.getElementById('flama-2');
-            const flama4 = document.getElementById('flama-4');
-            const flama1 = document.getElementById('flama-1');
-            const flama5 = document.getElementById('flama-5');
-
-            // 1. Iniciar la animación de la llama central
-            setTimeout(() => {
-                if (flama3) { flama3.style.opacity = '1'; }
-            }, 100);
-
-            // 2. Mostrar las letras (F, L, M, A) justo DESPUÉS de que el neón termine (1100ms)
-            setTimeout(() => {
-                const letters = [flama1, flama2, flama4, flama5];
-                letters.forEach((letter, index) => {
-                    if (letter) {
-                        setTimeout(() => {
-                            letter.classList.add('show');
-                        }, index * 120); // Cascada rápida de 120ms entre cada letra
-                    }
-                });
-            }, 1100);
-
-            /* --- 2. ANIMACIONES OBSERVER --- */
-            const observer = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        obs.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
+            const observer = new IntersectionObserver((entries, obs) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
             document.querySelectorAll('.js-animate').forEach(el => observer.observe(el));
 
-            /* --- 3. SWITCH DE PRECIOS --- */
-            const toggle = document.getElementById('toggle-descuento');
-            const labelMensual = document.getElementById('label-mensual');
-            const labelAnual = document.getElementById('label-anual');
-
-            const btnMarketing = document.getElementById('btn-marketing');
-            const btnWeb = document.getElementById('btn-web');
-            const gridMarketing = document.getElementById('planes-marketing-grid');
-            const gridWeb = document.getElementById('planes-web-grid');
-
-            if (btnMarketing && btnWeb && gridMarketing && gridWeb) {
-                const switchGrid = (showMarketing) => {
-                    if (showMarketing) {
-                        btnMarketing.classList.add('bg-gray-800', 'text-white', 'font-bold');
-                        btnMarketing.classList.remove('text-gray-400');
-                        btnWeb.classList.remove('bg-gray-800', 'text-white', 'font-bold');
-                        btnWeb.classList.add('text-gray-400');
-
-                        gridWeb.classList.replace('grid', 'hidden');
-                        gridMarketing.classList.replace('hidden', 'grid');
-                    } else {
-                        btnWeb.classList.add('bg-gray-800', 'text-white', 'font-bold');
-                        btnWeb.classList.remove('text-gray-400');
-                        btnMarketing.classList.remove('bg-gray-800', 'text-white', 'font-bold');
-                        btnMarketing.classList.add('text-gray-400');
-
-                        gridMarketing.classList.replace('grid', 'hidden');
-                        gridWeb.classList.replace('hidden', 'grid');
-                    }
-
-                    const activeGrid = showMarketing ? gridMarketing : gridWeb;
-                    const cards = activeGrid.querySelectorAll('.js-animate');
-                    cards.forEach(c => c.classList.remove('is-visible'));
-                    setTimeout(() => { cards.forEach(c => c.classList.add('is-visible')); }, 50);
-                };
-
-                btnMarketing.addEventListener('click', () => switchGrid(true));
-                btnWeb.addEventListener('click', () => switchGrid(false));
-            }
-
-            if (toggle) {
-                toggle.addEventListener('change', function () {
-                    const esAnual = this.checked;
-                    labelMensual.classList.toggle('text-white', !esAnual);
-                    labelMensual.classList.toggle('text-gray-400', esAnual);
-                    labelAnual.classList.toggle('text-white', esAnual);
-                    labelAnual.classList.toggle('text-gray-400', !esAnual);
-
-                    document.querySelectorAll('[data-precio-base]').forEach(el => {
-                        const precioBase = parseInt(el.getAttribute('data-precio-base'));
-                        const spanPrecio = el.querySelector('.precio-valor');
-
-                        if (spanPrecio) {
-                            const finalPrice = esAnual ? Math.round(precioBase * 0.85) : precioBase;
-                            spanPrecio.innerText = finalPrice.toLocaleString('en-US');
-                        }
-                    });
-                });
-            }
-
-            /* --- 4. ORBES LUMINOSOS Y CUADRADOS DE FONDO --- */
-            const smokeContainer = document.getElementById('smoke-bg');
-            const animatedElements = [];
-            const initialScrollY = window.scrollY || document.documentElement.scrollTop;
-
-            const orbsConfig = [
-                { top: 10, left: 15 }, { top: 25, left: 75 },
-                { top: 60, left: 20 }, { top: 70, left: 80 },
-                { top: 40, left: 50 }
-            ];
-
-            const gridConfig = [
-                { top: 5, left: 10 }, { top: 15, left: 60 },
-                { top: 55, left: 15 }, { top: 65, left: 70 }
-            ];
-
-            if (smokeContainer) {
-                // Generar los orbes
-                for (let i = 0; i < orbsConfig.length; i++) {
-                    const orb = document.createElement('div');
-                    orb.classList.add('absolute', 'bg-gradient-to-tr', 'from-brand-primary/20', 'to-brand-red/10', 'blur-[100px]', 'rounded-full', 'transition-transform', 'duration-[1500ms]', 'ease-out');
-
-                    const size = Math.random() * 200 + 150;
-                    orb.style.width = `${size}px`;
-                    orb.style.height = `${size}px`;
-                    orb.style.left = `${orbsConfig[i].left}%`;
-
-                    const posY = (window.innerHeight * orbsConfig[i].top) / 100;
-                    smokeContainer.appendChild(orb);
-
-                    animatedElements.push({
-                        element: orb,
-                        baseY: posY,
-                        speed: Math.random() * 0.15 + 0.05,
-                        baseLeft: orbsConfig[i].left,
-                        isSquare: false
-                    });
-                }
-
-                // Generar los cuadrados
-                for (let i = 0; i < gridConfig.length; i++) {
-                    const square = document.createElement('div');
-                    square.classList.add('absolute', 'border', 'border-gray-500/20', 'rounded-sm');
-
-                    const size = Math.random() * 150 + 50;
-                    const rotation = Math.random() * 360;
-
-                    square.style.width = `${size}px`;
-                    square.style.height = `${size}px`;
-                    square.style.left = `${gridConfig[i].left}%`;
-
-                    const posY = (window.innerHeight * gridConfig[i].top) / 100;
-                    smokeContainer.appendChild(square);
-
-                    animatedElements.push({
-                        element: square,
-                        baseY: posY,
-                        baseRotation: rotation,
-                        speed: Math.random() * 0.3 + 0.1,
-                        isSquare: true
-                    });
-                }
-
-                // Aplicar posición inicial
-                const totalHeight = window.innerHeight * 1.5;
-                animatedElements.forEach(item => {
-                    const offset = initialScrollY * item.speed;
-                    let currentY = item.baseY - offset;
-                    let wrappedY = ((currentY % totalHeight) + totalHeight) % totalHeight;
-
-                    if (item.isSquare) {
-                        const currentRotation = item.baseRotation + (initialScrollY * 0.05);
-                        item.element.style.transform = `translateY(${wrappedY - 100}px) rotate(${currentRotation}deg)`;
-                    } else {
-                        item.element.style.transform = `translate(0px, ${wrappedY - 100}px) scale(1)`;
-                    }
-                });
-            }
-
-            /* --- 4.1 DISTORSIÓN DEL MOUSE (Orbes) --- */
-            let mouseX = window.innerWidth / 2;
-            let mouseY = window.innerHeight / 2;
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-
-            function updateBackgroundElements() {
-                const scrollY = window.scrollY;
-                const totalHeight = window.innerHeight * 1.5;
-
-                animatedElements.forEach(item => {
-                    const offset = scrollY * item.speed;
-                    let currentY = item.baseY - offset;
-                    let wrappedY = ((currentY % totalHeight) + totalHeight) % totalHeight;
-
-                    if (item.isSquare) {
-                        const currentRotation = item.baseRotation + (scrollY * 0.05);
-                        item.element.style.transform = `translateY(${wrappedY - 100}px) rotate(${currentRotation}deg)`;
-                    } else {
-                        const orbRect = item.element.getBoundingClientRect();
-                        const orbCenterX = orbRect.left + (orbRect.width / 2);
-                        const orbCenterY = orbRect.top + (orbRect.height / 2);
-
-                        const dx = mouseX - orbCenterX;
-                        const dy = mouseY - orbCenterY;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-
-                        if (distance < 300) {
-                            const force = (300 - distance) / 300;
-                            const repulseX = -(dx / distance) * force * 60;
-                            const repulseY = -(dy / distance) * force * 60;
-                            item.element.style.transform = `translate(${repulseX}px, ${wrappedY - 100 + repulseY}px) scale(1.2)`;
-                        } else {
-                            item.element.style.transform = `translate(0px, ${wrappedY - 100}px) scale(1)`;
-                        }
-                    }
-                });
-                requestAnimationFrame(updateBackgroundElements);
-            }
-            updateBackgroundElements();
-
-            /* --- 5. CARRUSEL CONSTANTE DE CLIENTES --- */
+            /* 2. GENERACIÓN DINÁMICA DEL CARRUSEL DE CLIENTES */
             const waveTrack = document.getElementById('wave-track');
-
             if (waveTrack) {
-                // 1. PRIMERO duplicamos el contenido para el scroll infinito
-                waveTrack.innerHTML += waveTrack.innerHTML;
+                const logos = ['automotores-inka', 'beaute', 'brandm', 'brasas-club', 'contrunor', 'fecasa', 'haray', 'impultsa', 'irvin-flama', 'la-granja', 'mannucci', 'mar-verde', 'mirano', 'mr-li', 'peru-drive', 'pizzeteria', 'prime-glof', 'rca', 'rio-alto', 'tipica', 'zumo-mar', 'canvax', 'los-portales', 'maranathan', 'mi-lord', 'oriente', 'rr', 'santa-cruz'];
+                waveTrack.innerHTML = logos.map(l => `<div class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative"><img src="img/${l}-flama.svg" alt="${l}" class="max-w-full max-h-full object-contain" onerror="this.src='img/${l}.svg'"></div>`).join('');
+                waveTrack.innerHTML += waveTrack.innerHTML; // Duplicar para el scroll infinito
 
-                // 2. DESPUÉS seleccionamos todos los elementos, incluyendo las copias
-                const allWaveElements = document.querySelectorAll('.wave-element');
-
-                let currentHorizontalX = 0;
-                let timeOffset = 0; // Usaremos el tiempo para la onda continua
-
+                const waveElements = document.querySelectorAll('.wave-element');
+                let curX = 0, timeOff = 0;
                 function animateCarousel() {
-                    // Movimiento horizontal continuo
-                    currentHorizontalX -= 0.8;
-                    if (Math.abs(currentHorizontalX) >= waveTrack.scrollWidth / 2) {
-                        currentHorizontalX = 0;
-                    }
-                    waveTrack.style.transform = `translateX(${currentHorizontalX}px)`;
-
-                    // Movimiento vertical perpetuo (Onda forzada por transform 3D)
-                    timeOffset += 0.04;
-                    allWaveElements.forEach((el, index) => {
-                        const verticalOffset = Math.sin(timeOffset + (index * 0.4)) * 18; // Amplitud mayor
-                        el.style.transform = `translate3d(0, ${verticalOffset}px, 0)`;
-                    });
-
+                    curX -= 0.8; if (Math.abs(curX) >= waveTrack.scrollWidth / 2) curX = 0;
+                    waveTrack.style.transform = `translateX(${curX}px)`;
+                    timeOff += 0.04; waveElements.forEach((el, i) => { el.style.transform = `translate3d(0, ${Math.sin(timeOff + (i * 0.4)) * 18}px, 0)`; });
                     requestAnimationFrame(animateCarousel);
-                }
-                animateCarousel();
+                } animateCarousel();
             }
 
-            /* --- 6. EVENTO SCROLL GLOBAL --- */
-            const mainNav = document.getElementById('main-nav');
-            let ticking = false;
-            let lastScrollYNav = window.scrollY;
-
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    window.requestAnimationFrame(() => {
-                        let currentScrollY = window.scrollY;
-
-                        if (mainNav) {
-                            if (currentScrollY > 80) { // Un poco más de margen
-                                mainNav.classList.remove('bg-transparent', 'py-6');
-                                mainNav.classList.add('bg-[#131313]/95', 'backdrop-blur-md', 'py-4');
-
-                                // Si baja, oculta. Si sube, muestra.
-                                if (currentScrollY > lastScrollYNav) {
-                                    mainNav.classList.add('-translate-y-full');
-                                } else {
-                                    mainNav.classList.remove('-translate-y-full');
-                                }
-                            } else {
-                                // Arriba del todo: completamente transparente y visible
-                                mainNav.classList.add('bg-transparent', 'py-6');
-                                mainNav.classList.remove('bg-[#131313]/95', 'backdrop-blur-md', 'py-4', '-translate-y-full');
-                            }
-                        }
-
-                        lastScrollYNav = currentScrollY;
-                        ticking = false;
+            /* 3. SWITCH DE PRECIOS */
+            const t = document.getElementById('toggle-descuento'), bM = document.getElementById('btn-marketing'), bW = document.getElementById('btn-web');
+            if (bM && bW) {
+                const switchG = (mkt) => {
+                    bM.className = `px-4 py-1 text-[11px] uppercase tracking-wider rounded transition-all duration-300 ${mkt ? 'bg-gray-800 text-white font-bold' : 'text-gray-400 hover:text-white'}`;
+                    bW.className = `px-4 py-1 text-[11px] uppercase tracking-wider rounded transition-all duration-300 ${!mkt ? 'bg-gray-800 text-white font-bold' : 'text-gray-400 hover:text-white'}`;
+                    document.getElementById('planes-marketing-grid').className = mkt ? 'grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch' : 'hidden';
+                    document.getElementById('planes-web-grid').className = !mkt ? 'grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch' : 'hidden';
+                };
+                bM.addEventListener('click', () => switchG(true)); bW.addEventListener('click', () => switchG(false));
+            }
+            if (t) {
+                t.addEventListener('change', function () {
+                    const esA = this.checked;
+                    document.getElementById('label-mensual').className = `font-semibold text-[11px] uppercase tracking-wider transition-colors ${esA ? 'text-gray-400' : 'text-white'}`;
+                    document.getElementById('label-anual').className = `font-semibold text-[11px] uppercase tracking-wider transition-colors ${esA ? 'text-white' : 'text-gray-400'}`;
+                    document.querySelectorAll('[data-precio-base]').forEach(el => {
+                        const base = parseInt(el.getAttribute('data-precio-base')), val = el.querySelector('.precio-valor');
+                        if (val) val.innerText = (esA ? Math.round(base * 0.85) : base).toLocaleString('en-US');
                     });
-                    ticking = true;
-                }
+                });
+            }
+
+            /* 4. ORBES Y FONDOS INTERACTIVOS */
+            const smoke = document.getElementById('smoke-bg'), animEls = [];
+            if (smoke) {
+                [{ t: 10, l: 15 }, { t: 25, l: 75 }, { t: 60, l: 20 }, { t: 70, l: 80 }, { t: 40, l: 50 }].forEach(c => {
+                    let d = document.createElement('div'); d.className = 'absolute bg-gradient-to-tr from-brand-primary/20 to-brand-red/10 blur-[100px] rounded-full';
+                    d.style.cssText = `width:${Math.random() * 200 + 150}px;height:${Math.random() * 200 + 150}px;left:${c.l}%;`;
+                    smoke.appendChild(d); animEls.push({ e: d, by: (window.innerHeight * c.t) / 100, s: Math.random() * 0.15 + 0.05, sq: false });
+                });
+                [{ t: 5, l: 10 }, { t: 15, l: 60 }, { t: 55, l: 15 }, { t: 65, l: 70 }].forEach(c => {
+                    let d = document.createElement('div'); d.className = 'absolute border border-gray-500/20 rounded-sm';
+                    d.style.cssText = `width:${Math.random() * 150 + 50}px;height:${Math.random() * 150 + 50}px;left:${c.l}%;`;
+                    smoke.appendChild(d); animEls.push({ e: d, by: (window.innerHeight * c.t) / 100, br: Math.random() * 360, s: Math.random() * 0.3 + 0.1, sq: true });
+                });
+                let mX = window.innerWidth / 2, mY = window.innerHeight / 2;
+                document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
+                (function renderBg() {
+                    const sY = window.scrollY, tH = window.innerHeight * 1.5;
+                    animEls.forEach(i => {
+                        let wY = ((i.by - (sY * i.s)) % tH + tH) % tH;
+                        if (i.sq) i.e.style.transform = `translateY(${wY - 100}px) rotate(${i.br + (sY * 0.05)}deg)`;
+                        else {
+                            let r = i.e.getBoundingClientRect(), dX = mX - (r.left + r.width / 2), dY = mY - (r.top + r.height / 2), dist = Math.hypot(dX, dY);
+                            i.e.style.transform = dist < 300 ? `translate(${-(dX / dist) * ((300 - dist) / 300) * 60}px, ${wY - 100 - (dY / dist) * ((300 - dist) / 300) * 60}px) scale(1.2)` : `translate(0, ${wY - 100}px) scale(1)`;
+                        }
+                    }); requestAnimationFrame(renderBg);
+                })();
+            }
+
+            /* 5. NAVBAR STICKY */
+            const nav = document.getElementById('main-nav'); let lastY = window.scrollY;
+            window.addEventListener('scroll', () => {
+                requestAnimationFrame(() => {
+                    if (nav) {
+                        if (window.scrollY > 80) { nav.className = `fixed w-full z-50 transition-all duration-300 bg-[#131313]/95 backdrop-blur-md py-4 ${window.scrollY > lastY ? '-translate-y-full' : ''}`; }
+                        else { nav.className = 'fixed w-full z-50 py-6 bg-transparent transition-all duration-300'; }
+                    } lastY = window.scrollY;
+                })
             }, { passive: true });
 
-            /* --- 7. ANIMACIÓN DE LOGO FLAMA FINAL (FOOTER) --- */
-            const footerLogoContainer = document.getElementById('footer-logo-container');
-
-            if (footerLogoContainer) {
-                const footerObserver = new IntersectionObserver((entries, obs) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-
-                            const f3 = document.getElementById('f-flama-3');
-                            const f2 = document.getElementById('f-flama-2');
-                            const f4 = document.getElementById('f-flama-4');
-                            const f1 = document.getElementById('f-flama-1');
-                            const f5 = document.getElementById('f-flama-5');
-
-                            setTimeout(() => {
-                                if (f3) { f3.style.opacity = '1'; }
-                            }, 100);
-
-                            setTimeout(() => {
-                                if (f2 && f4) {
-                                    f2.style.opacity = '1';
-                                    f4.style.opacity = '1';
-                                }
-                            }, 500);
-
-                            setTimeout(() => {
-                                if (f1 && f5) {
-                                    f1.style.opacity = '1';
-                                    f5.style.opacity = '1';
-                                }
-                            }, 900);
-
-                            obs.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.5 });
-
-                footerObserver.observe(footerLogoContainer);
-            }
-
-            /* --- 8. ENVÍO DE FORMULARIO POR WHATSAPP --- */
-            const whatsappForm = document.getElementById('whatsappForm');
-
-            if (whatsappForm) {
-                whatsappForm.addEventListener('submit', function (e) {
-                    e.preventDefault(); // Evita que la página se recargue
-
-                    // Obtenemos los valores de los inputs
-                    const nombre = document.getElementById('waName').value;
-                    const email = document.getElementById('waEmail').value;
-                    const mensaje = document.getElementById('waMessage').value;
-
-                    // Formateamos el texto para la URL de WhatsApp
-                    const textoWhatsApp = `Hola Flama Agency,%0A%0AMi nombre es: ${encodeURIComponent(nombre)}%0AMi correo es: ${encodeURIComponent(email)}%0A%0A${encodeURIComponent(mensaje)}`;
-
-                    // Número de teléfono (el mismo que tienes en el footer)
-                    const numeroTelefono = "51979456610";
-
-                    // Abrimos la ventana de WhatsApp
-                    window.open(`https://wa.me/${numeroTelefono}?text=${textoWhatsApp}`, '_blank');
-                });
-            }
-
-        });
-
-        /* --- FUNCIONES MODAL (Añadidas globalmente para los botones onclick) --- */
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (!modal) return;
-
-            const content = modal.querySelector('div');
-
-            modal.classList.remove('hidden');
-
-            if (modalId === 'videoModal') {
-                const videoEl = document.getElementById('myLocalVideo');
-                if (videoEl) videoEl.play();
-            }
-
-            setTimeout(() => {
-                content.classList.remove('scale-95', 'opacity-0');
-                content.classList.add('scale-100', 'opacity-100');
-            }, 10);
-        }
-
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (!modal) return;
-
-            const content = modal.querySelector('div');
-
-            if (modalId === 'videoModal') {
-                const videoEl = document.getElementById('myLocalVideo');
-                if (videoEl) videoEl.pause();
-            }
-
-            content.classList.remove('scale-100', 'opacity-100');
-            content.classList.add('scale-95', 'opacity-0');
-
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
-        }
-
-        // Cerrar al hacer clic afuera
-        document.addEventListener('click', (event) => {
-            const modals = document.querySelectorAll('.fixed.inset-0:not(.hidden)');
-            modals.forEach(modal => {
-                // Buscamos el contenedor interno del modal
-                const content = modal.querySelector('.max-w-5xl, .max-w-4xl, .max-w-sm, .max-w-6xl');
-
-                // Si el clic fue en el fondo oscuro (el modal en sí), pero no dentro del content
-                if (event.target === modal || (content && !content.contains(event.target) && event.target !== content)) {
-                    // Solo cerramos si el click no fue originado por un botón de abrir modal (para evitar doble trigger)
-                    if (!event.target.closest('button[onclick^="openModal"]')) {
-                        closeModal(modal.id);
+            /* 6. LOGO FOOTER & WHATSAPP */
+            const footLogo = document.getElementById('footer-logo-container');
+            if (footLogo) {
+                new IntersectionObserver((ent, obs) => ent.forEach(e => {
+                    if (e.isIntersecting) {
+                        setTimeout(() => document.getElementById('f-flama-3')?.style.setProperty('opacity', '1'), 100);
+                        setTimeout(() => ['2', '4'].forEach(n => document.getElementById(`f-flama-${n}`)?.style.setProperty('opacity', '1')), 500);
+                        setTimeout(() => ['1', '5'].forEach(n => document.getElementById(`f-flama-${n}`)?.style.setProperty('opacity', '1')), 900);
+                        obs.unobserve(e.target);
                     }
-                }
+                }), { threshold: 0.5 }).observe(footLogo);
+            }
+            document.getElementById('whatsappForm')?.addEventListener('submit', e => {
+                e.preventDefault();
+                window.open(`https://wa.me/51979456610?text=Hola Flama Agency,%0A%0AMi nombre es: ${encodeURIComponent(document.getElementById('waName').value)}%0AMi correo es: ${encodeURIComponent(document.getElementById('waEmail').value)}%0A%0A${encodeURIComponent(document.getElementById('waMessage').value)}`, '_blank');
             });
         });
 
+        /* FUNCIONES MODAL */
+        function openModal(id) { const m = document.getElementById(id); if (m) { m.classList.remove('hidden'); if (id === 'videoModal') document.getElementById('myLocalVideo')?.play(); setTimeout(() => m.children[0].className = m.children[0].className.replace('scale-95 opacity-0', 'scale-100 opacity-100'), 10); } }
+        function closeModal(id) { const m = document.getElementById(id); if (m) { if (id === 'videoModal') document.getElementById('myLocalVideo')?.pause(); m.children[0].className = m.children[0].className.replace('scale-100 opacity-100', 'scale-95 opacity-0'); setTimeout(() => m.classList.add('hidden'), 300); } }
+        document.addEventListener('click', e => { document.querySelectorAll('.fixed.inset-0:not(.hidden)').forEach(m => { if ((e.target === m || (m.children[0] && !m.children[0].contains(e.target) && e.target !== m.children[0])) && !e.target.closest('button[onclick^="openModal"]')) closeModal(m.id); }); });
     </script>
 </body>
 
