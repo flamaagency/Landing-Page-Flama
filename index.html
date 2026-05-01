@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flama Agency - Potenciamos tus ventas</title>
 
-    <!-- FAVICON -->
+    <!-- FAVICON (Ícono negro en la pestaña) -->
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 51.69 50.52'><path fill='%23000000' d='M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z'/></svg>">
 
@@ -28,6 +28,7 @@
     </script>
 
     <style>
+        /* BASE Y SCROLL REVEAL */
         .js-animate {
             opacity: 0;
             transform: translateY(40px) scale(0.98);
@@ -46,6 +47,55 @@
             color: #ffffff;
         }
 
+        /* FONDO CSS FLUIDO Y ETERNO (No usa JS) */
+        @keyframes pulse-slow {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float-spin {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        .anim-pulse {
+            animation: pulse-slow 6s infinite ease-in-out;
+        }
+
+        .anim-float {
+            animation: float-spin 15s infinite linear;
+        }
+
+        .delay-1 {
+            animation-delay: 2s;
+        }
+
+        .delay-2 {
+            animation-delay: 4s;
+        }
+
+        .delay-3 {
+            animation-delay: 6s;
+        }
+
         /* TOGGLE PRECIOS */
         .toggle-checkbox:checked {
             right: 0;
@@ -56,7 +106,7 @@
             background-color: #7854FF;
         }
 
-        /* EFECTO NEÓN LOGO */
+        /* EFECTO NEÓN LOGO (Grueso en móvil: 3px, Fino en PC: 1.2px) */
         .flama-letter-glow {
             fill: #ffffff;
             filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
@@ -249,8 +299,34 @@
 
 <body class="font-sans relative">
 
-    <!-- FONDO INTERACTIVO DE ORBES Y CUADRADOS (JS SCROLL) -->
-    <div id="smoke-bg" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+    <!-- FONDO BLINDADO 100% CSS -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <!-- Orbes -->
+        <div
+            class="absolute top-[10%] left-[10%] w-[250px] h-[250px] bg-brand-primary/20 rounded-full blur-[100px] anim-pulse">
+        </div>
+        <div
+            class="absolute top-[60%] left-[15%] w-[300px] h-[300px] bg-brand-primary/10 rounded-full blur-[100px] anim-pulse delay-1">
+        </div>
+        <div
+            class="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-brand-red/10 rounded-full blur-[100px] anim-pulse delay-2">
+        </div>
+        <div
+            class="absolute bottom-[10%] right-[15%] w-[250px] h-[250px] bg-brand-red/10 rounded-full blur-[100px] anim-pulse delay-3">
+        </div>
+        <!-- Cuadrados Flotantes -->
+        <div class="absolute top-[15%] left-[20%] w-[100px] h-[100px] border border-gray-500/20 rounded-sm anim-float">
+        </div>
+        <div
+            class="absolute top-[65%] left-[25%] w-[150px] h-[150px] border border-gray-500/20 rounded-sm anim-float delay-1">
+        </div>
+        <div
+            class="absolute top-[25%] right-[20%] w-[80px] h-[80px] border border-gray-500/20 rounded-sm anim-float delay-2">
+        </div>
+        <div
+            class="absolute bottom-[20%] right-[25%] w-[120px] h-[120px] border border-gray-500/20 rounded-sm anim-float delay-3">
+        </div>
+    </div>
 
     <div class="relative z-10">
 
@@ -269,12 +345,12 @@
                     <li><a href="#planes" class="hover:text-brand-primary transition-colors pb-1">PLANES</a></li>
                     <li><a href="#clientes" class="hover:text-brand-primary transition-colors pb-1">CLIENTES</a></li>
                     <li><a href="#contacto" class="hover:text-brand-primary transition-colors pb-1">CONTACTO</a></li>
-                    <li><a href="https://api.whatsapp.com/send?phone=51979456610" target="_blank"
+                    <li><a href="https://wa.me/51979456610" target="_blank"
                             class="bg-white text-brand-primary px-8 py-3 rounded font-black hover:bg-gray-200 transition-colors ml-4 uppercase">WHATSAPP</a>
                     </li>
                 </ul>
 
-                <button onclick="openMobileMenu()" class="md:hidden text-white focus:outline-none p-2 relative z-50">
+                <button onclick="openMobileMenu()" class="md:hidden text-white focus:outline-none p-2 relative z-[110]">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16"></path>
@@ -283,82 +359,96 @@
             </div>
         </nav>
 
+        <!-- HEADER CON ZONAS RÍGIDAS DE FLUJO NORMAL -->
         <header id="inicio"
-            class="min-h-screen flex flex-col justify-center items-center text-center pt-32 pb-24 relative px-[50px]">
-            <!-- LOGO SVG CON MARGEN RIGIDO MÓVIL (px-[50px]) -->
-            <div id="hero-logo-container"
-                class="relative flex flex-row items-end justify-center gap-1.5 md:gap-6 w-full h-[14vw] sm:h-[10vw] md:h-64 mb-16 max-w-[calc(100%-100px)] md:max-w-[90%] mx-auto overflow-visible">
-                <svg id="flama-1" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 36.5 49.66">
-                    <g>
-                        <path class="flama-letter-glow" d="M9.5,8.41v12.28h23.95v8.75H9.5v20.22H0V0h36.5v8.41H9.5Z" />
-                    </g>
-                </svg>
-                <svg id="flama-2" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 35.75 49.66">
-                    <g>
-                        <path class="flama-letter-glow" d="M35.75,41.25v8.41H0V0h9.5v41.25h26.25Z" />
-                    </g>
-                </svg>
-                <svg id="flama-3"
-                    class="h-full w-auto opacity-0 transition-opacity duration-700 overflow-visible flama-letter-svg"
-                    viewBox="0 0 51.69 50.52">
-                    <defs>
-                        <linearGradient id="neon-gradient" x1="-50%" y1="100%" x2="0%" y2="0%">
-                            <stop offset="0%" stop-color="#7854FF" />
-                            <stop offset="50%" stop-color="#b663af" />
-                            <stop offset="100%" stop-color="#FF725E" />
-                            <animate attributeName="x1" values="-50%; 100%" dur="1s" fill="freeze" />
-                            <animate attributeName="x2" values="0%; 150%" dur="1s" fill="freeze" />
-                            <animate attributeName="y1" values="100%; 0%" dur="1s" fill="freeze" />
-                            <animate attributeName="y2" values="0%; -100%" dur="1s" fill="freeze" />
-                        </linearGradient>
-                    </defs>
-                    <g style="transform-origin: center;">
-                        <path class="flama-fill-final"
-                            d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
-                        <path class="flama-neon-glow" pathLength="100"
-                            d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
-                        <path class="flama-neon-core" pathLength="100"
-                            d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
-                    </g>
-                </svg>
-                <svg id="flama-4" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 50 49.59">
-                    <g>
-                        <path class="flama-letter-glow"
-                            d="M50,0v49.59h-9.5v-25.1l-15.53,18.66-15.47-18.66v25.1H0V0h.61l24.35,28.63L49.39,0h.61Z" />
-                    </g>
-                </svg>
-                <svg id="flama-5" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 51.69 49.59">
-                    <g>
-                        <path class="flama-letter-glow"
-                            d="M0,49.59L25.37,0h.95l25.37,49.59h-10.31l-3.86-7.8H14.11l-3.8,7.8H0ZM18.72,33.51h14.18l-7.05-14.99-7.12,14.99Z" />
-                    </g>
-                </svg>
-            </div>
+            class="min-h-[100svh] flex flex-col items-center justify-between text-center pt-28 pb-8 relative px-6 z-10 overflow-hidden">
 
-            <div class="flex flex-col items-center w-full max-w-[1200px] mx-auto js-animate z-20 px-4"
-                style="transition-delay: 1500ms;">
-                <h2
-                    class="text-[13px] sm:text-base md:text-5xl text-gray-300 md:text-white font-extrabold md:font-black uppercase tracking-[0.2em] md:tracking-tight leading-relaxed md:leading-tight mb-10 text-center w-full max-w-[320px] md:max-w-full mx-auto">
-                    POTENCIAMOS TUS VENTAS <br class="md:hidden"> MEDIANTE <br class="hidden md:block"> MARKETING Y
-                    TECNOLOGÍA
-                </h2>
+            <!-- CONTENEDOR FLEXIBLE CENTRAL (Logo + Textos) -->
+            <div class="flex-grow flex flex-col justify-center items-center w-full mt-4 md:mt-12">
 
-                <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
-                    <a href="#planes"
-                        class="bg-brand-primary px-16 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-brand-primaryHover transition-colors shadow-lg text-white">COTIZAR</a>
-                    <button onclick="openModal('videoModal')"
-                        class="flex items-center gap-4 group cursor-pointer bg-transparent border-none p-0 text-left">
-                        <div
-                            class="border border-brand-red rounded flex items-center justify-center w-12 h-12 group-hover:bg-brand-red/10 transition-colors">
-                            <span class="text-brand-red text-lg ml-1">▷</span></div>
-                        <span class="text-brand-red text-[10px] tracking-[0.2em] uppercase font-bold text-left">VER
-                            REEL<br>2026</span>
-                    </button>
+                <!-- LOGO SVG CON MARGEN RIGIDO MÓVIL (px-[50px]) -->
+                <div class="w-full px-4 md:px-[50px] mx-auto flex justify-center mb-8 md:mb-12">
+                    <!-- h-[15vh] se adapta a laptops cortas, max-h-[220px] evita que crezca demasiado -->
+                    <div id="hero-logo-container"
+                        class="relative flex flex-row items-end justify-center gap-1.5 md:gap-6 w-full h-[12vh] md:h-[18vh] min-h-[60px] max-h-[220px] overflow-visible">
+                        <svg id="flama-1" class="h-full w-auto overflow-visible dynamic-letter"
+                            viewBox="0 0 36.5 49.66">
+                            <g>
+                                <path class="flama-letter-glow"
+                                    d="M9.5,8.41v12.28h23.95v8.75H9.5v20.22H0V0h36.5v8.41H9.5Z" />
+                            </g>
+                        </svg>
+                        <svg id="flama-2" class="h-full w-auto overflow-visible dynamic-letter"
+                            viewBox="0 0 35.75 49.66">
+                            <g>
+                                <path class="flama-letter-glow" d="M35.75,41.25v8.41H0V0h9.5v41.25h26.25Z" />
+                            </g>
+                        </svg>
+                        <svg id="flama-3"
+                            class="h-full w-auto opacity-0 transition-opacity duration-700 overflow-visible flama-letter-svg"
+                            viewBox="0 0 51.69 50.52">
+                            <defs>
+                                <linearGradient id="neon-gradient" x1="-50%" y1="100%" x2="0%" y2="0%">
+                                    <stop offset="0%" stop-color="#7854FF" />
+                                    <stop offset="50%" stop-color="#b663af" />
+                                    <stop offset="100%" stop-color="#FF725E" />
+                                    <animate attributeName="x1" values="-50%; 100%" dur="1s" fill="freeze" />
+                                    <animate attributeName="x2" values="0%; 150%" dur="1s" fill="freeze" />
+                                    <animate attributeName="y1" values="100%; 0%" dur="1s" fill="freeze" />
+                                    <animate attributeName="y2" values="0%; -100%" dur="1s" fill="freeze" />
+                                </linearGradient>
+                            </defs>
+                            <g style="transform-origin: center;">
+                                <path class="flama-fill-final"
+                                    d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
+                                <path class="flama-neon-glow" pathLength="100"
+                                    d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
+                                <path class="flama-neon-core" pathLength="100"
+                                    d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
+                            </g>
+                        </svg>
+                        <svg id="flama-4" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 50 49.59">
+                            <g>
+                                <path class="flama-letter-glow"
+                                    d="M50,0v49.59h-9.5v-25.1l-15.53,18.66-15.47-18.66v25.1H0V0h.61l24.35,28.63L49.39,0h.61Z" />
+                            </g>
+                        </svg>
+                        <svg id="flama-5" class="h-full w-auto overflow-visible dynamic-letter"
+                            viewBox="0 0 51.69 49.59">
+                            <g>
+                                <path class="flama-letter-glow"
+                                    d="M0,49.59L25.37,0h.95l25.37,49.59h-10.31l-3.86-7.8H14.11l-3.8,7.8H0ZM18.72,33.51h14.18l-7.05-14.99-7.12,14.99Z" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- TEXTO RESPONSIVO ADAPTADO A LAPTOP Y CELULAR -->
+                <div class="flex flex-col items-center w-full max-w-[1200px] mx-auto js-animate z-20"
+                    style="transition-delay: 1500ms;">
+                    <h2
+                        class="text-[13px] sm:text-base md:text-3xl lg:text-5xl text-gray-300 md:text-white font-extrabold md:font-black uppercase tracking-[0.2em] md:tracking-tight leading-relaxed md:leading-tight mb-8 md:mb-10 text-center w-full max-w-[320px] md:max-w-full mx-auto">
+                        POTENCIAMOS TUS VENTAS <br class="md:hidden"> MEDIANTE <br class="hidden md:block"> MARKETING Y
+                        TECNOLOGÍA
+                    </h2>
+
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
+                        <a href="#planes"
+                            class="bg-brand-primary px-12 md:px-16 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-brand-primaryHover transition-colors shadow-lg text-white">COTIZAR</a>
+                        <button onclick="openModal('videoModal')"
+                            class="flex items-center gap-4 group cursor-pointer bg-transparent border-none p-0 text-left">
+                            <div
+                                class="border border-brand-red rounded flex items-center justify-center w-12 h-12 group-hover:bg-brand-red/10 transition-colors">
+                                <span class="text-brand-red text-lg ml-1">▷</span></div>
+                            <span class="text-brand-red text-[10px] tracking-[0.2em] uppercase font-bold text-left">VER
+                                REEL<br>2026</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div class="w-full flex justify-center js-animate z-20 absolute bottom-10 left-0"
-                style="transition-delay: 2000ms;">
+            <!-- INDICADOR SCROLL EN FLUJO NATURAL (mt-auto lo empuja al fondo sin que choque con nada) -->
+            <div class="w-full flex justify-center js-animate z-20 mt-auto pt-8" style="transition-delay: 2000ms;">
                 <div class="flex flex-col items-center">
                     <span class="text-[9px] text-gray-500 tracking-[0.3em] uppercase mb-4 font-bold">EXPLORA NUESTROS
                         SERVICIOS</span>
@@ -367,6 +457,7 @@
                     </div>
                 </div>
             </div>
+
         </header>
 
         <section id="servicios" class="py-24 max-w-[1400px] mx-auto px-6 js-animate mt-12 border-t-0">
@@ -452,7 +543,7 @@
 
         <section id="planes" class="py-24 max-w-[1400px] mx-auto px-6 border-t-0">
             <h3 class="text-3xl md:text-5xl font-black mb-4 uppercase tracking-tighter js-animate">PLANES DE <br><span
-                    class="text-brand-red">FLAMA</span></h3>
+                    class="text-brand-red">IGNICIÓN</span></h3>
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 js-animate"
                 style="transition-delay: 100ms;">
                 <p class="text-gray-400 max-w-md text-sm mb-6 md:mb-0">Escala tu negocio con el plan que mejor se adapte
@@ -833,13 +924,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- NOTA THE FROG -->
                 <div
                     class="text-center text-[10px] text-gray-600 border-t border-gray-800/50 mt-16 pt-8 w-full uppercase tracking-widest">
                     Esta página fue creada por <span class="text-gray-400 font-bold">The Frog Soluciones
                         digitales</span>, escríbenos al <a href="https://api.whatsapp.com/send?phone=51913330912"
-                        target="_blank"
-                        class="text-brand-primary font-black hover:text-white transition-colors">913330912</a></div>
+                        target="_blank" class="text-brand-primary font-black">913330912</a></div>
             </div>
         </footer>
     </div>
@@ -910,24 +999,49 @@
                     d.style.cssText = `width:${Math.random() * 200 + 150}px;height:${Math.random() * 200 + 150}px;left:${c.l}%;`;
                     sBg.appendChild(d); animEls.push({ e: d, by: (window.innerHeight * c.t) / 100, s: Math.random() * 0.15 + 0.05, sq: false });
                 });
+
                 [{ t: 5, l: 10 }, { t: 15, l: 60 }, { t: 55, l: 15 }, { t: 65, l: 70 }].forEach(c => {
                     let d = document.createElement('div'); d.className = 'absolute border border-gray-500/20 rounded-sm';
                     d.style.cssText = `width:${Math.random() * 150 + 50}px;height:${Math.random() * 150 + 50}px;left:${c.l}%;`;
                     sBg.appendChild(d); animEls.push({ e: d, by: (window.innerHeight * c.t) / 100, br: Math.random() * 360, s: Math.random() * 0.3 + 0.1, sq: true });
                 });
+
                 let mX = window.innerWidth / 2, mY = window.innerHeight / 2;
                 document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
-                function rBg() {
-                    const sY = window.scrollY, tH = window.innerHeight * 1.5;
-                    animEls.forEach(i => {
-                        let wY = ((i.by - (sY * i.s)) % tH + tH) % tH;
-                        if (i.sq) i.e.style.transform = `translateY(${wY - 100}px) rotate(${i.br + (sY * 0.05)}deg)`;
-                        else {
-                            let r = i.e.getBoundingClientRect(), dX = mX - (r.left + r.width / 2), dY = mY - (r.top + r.height / 2), dist = Math.hypot(dX, dY);
-                            i.e.style.transform = dist < 300 ? `translate(${-(dX / dist) * ((300 - dist) / 300) * 60}px,${wY - 100 - (dY / dist) * ((300 - dist) / 300) * 60}px) scale(1.2)` : `translate(0,${wY - 100}px) scale(1)`;
+
+                function updateBackgroundElements() {
+                    const sY = window.scrollY;
+                    const tH = window.innerHeight * 1.5;
+
+                    animEls.forEach(item => {
+                        const offset = sY * item.s;
+                        let currentY = item.by - offset;
+                        let wrappedY = ((currentY % tH) + tH) % tH;
+
+                        if (item.sq) {
+                            const currentRotation = item.br + (sY * 0.05);
+                            item.e.style.transform = `translateY(${wrappedY - 100}px) rotate(${currentRotation}deg)`;
+                        } else {
+                            let r = item.e.getBoundingClientRect();
+                            const orbCenterX = r.left + (r.width / 2);
+                            const orbCenterY = r.top + (r.height / 2);
+                            const dx = mX - orbCenterX;
+                            const dy = mY - orbCenterY;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+
+                            if (distance < 300) {
+                                const force = (300 - distance) / 300;
+                                const repulseX = -(dx / distance) * force * 60;
+                                const repulseY = -(dy / distance) * force * 60;
+                                item.e.style.transform = `translate(${repulseX}px, ${wrappedY - 100 + repulseY}px) scale(1.2)`;
+                            } else {
+                                item.e.style.transform = `translate(0px, ${wrappedY - 100}px) scale(1)`;
+                            }
                         }
-                    }); requestAnimationFrame(rBg);
-                } rBg();
+                    });
+                    requestAnimationFrame(updateBackgroundElements);
+                }
+                updateBackgroundElements();
             }
 
             const wT = document.getElementById('wave-track');
