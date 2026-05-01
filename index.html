@@ -24,6 +24,7 @@
     </script>
 
     <style>
+        /* BASE Y SCROLL REVEAL */
         .js-animate {
             opacity: 0;
             transform: translateY(40px) scale(0.98);
@@ -42,6 +43,65 @@
             color: #ffffff;
         }
 
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* ANIMACIONES CSS PARA EL FONDO (Reemplazo del JS problemático) */
+        @keyframes pulse-slow {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float-spin {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        .anim-pulse {
+            animation: pulse-slow 6s infinite ease-in-out;
+        }
+
+        .anim-float {
+            animation: float-spin 15s infinite linear;
+        }
+
+        .delay-1 {
+            animation-delay: 2s;
+        }
+
+        .delay-2 {
+            animation-delay: 4s;
+        }
+
+        .delay-3 {
+            animation-delay: 6s;
+        }
+
+        /* TOGGLE PRECIOS */
         .toggle-checkbox:checked {
             right: 0;
             border-color: #7854FF;
@@ -51,6 +111,7 @@
             background-color: #7854FF;
         }
 
+        /* EFECTO NEÓN LOGO (Grueso en móvil: 4px, Fino en PC: 1.2px) */
         .flama-letter-glow {
             fill: #ffffff;
             filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
@@ -60,7 +121,7 @@
         .flama-neon-glow {
             fill: transparent;
             stroke: url(#neon-gradient);
-            stroke-width: 1.2px;
+            stroke-width: 4px;
             stroke-linejoin: round;
             stroke-linecap: round;
             stroke-dasharray: 7.5 92.5;
@@ -73,7 +134,7 @@
         .flama-neon-core {
             fill: transparent;
             stroke: #ffffff;
-            stroke-width: 0.3px;
+            stroke-width: 1.5px;
             stroke-linejoin: round;
             stroke-linecap: round;
             stroke-dasharray: 7.5 92.5;
@@ -81,6 +142,16 @@
             opacity: 0;
             filter: blur(0.2px);
             animation: flama-neon-run 1s cubic-bezier(0.8, 0, 0.2, 1) forwards;
+        }
+
+        @media (min-width: 768px) {
+            .flama-neon-glow {
+                stroke-width: 1.2px;
+            }
+
+            .flama-neon-core {
+                stroke-width: 0.3px;
+            }
         }
 
         @keyframes flama-neon-run {
@@ -138,15 +209,7 @@
             transform: translateY(0) scale(1);
         }
 
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
+        /* OTROS EFECTOS */
         .service-icon svg {
             width: 32px;
             height: 32px;
@@ -232,8 +295,34 @@
 
 <body class="font-sans relative">
 
-    <!-- FONDO DE ORBES -->
-    <div id="smoke-bg" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+    <!-- FONDO BLINDADO 100% CSS (Jamás desaparecerá) -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <!-- Orbes -->
+        <div
+            class="absolute top-[10%] left-[10%] w-[250px] h-[250px] bg-brand-primary/20 rounded-full blur-[100px] anim-pulse">
+        </div>
+        <div
+            class="absolute top-[60%] left-[15%] w-[300px] h-[300px] bg-brand-primary/10 rounded-full blur-[100px] anim-pulse delay-1">
+        </div>
+        <div
+            class="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-brand-red/10 rounded-full blur-[100px] anim-pulse delay-2">
+        </div>
+        <div
+            class="absolute bottom-[10%] right-[15%] w-[250px] h-[250px] bg-brand-red/10 rounded-full blur-[100px] anim-pulse delay-3">
+        </div>
+        <!-- Cuadrados Flotantes -->
+        <div class="absolute top-[15%] left-[20%] w-[100px] h-[100px] border border-gray-500/20 rounded-sm anim-float">
+        </div>
+        <div
+            class="absolute top-[65%] left-[25%] w-[150px] h-[150px] border border-gray-500/20 rounded-sm anim-float delay-1">
+        </div>
+        <div
+            class="absolute top-[25%] right-[20%] w-[80px] h-[80px] border border-gray-500/20 rounded-sm anim-float delay-2">
+        </div>
+        <div
+            class="absolute bottom-[20%] right-[25%] w-[120px] h-[120px] border border-gray-500/20 rounded-sm anim-float delay-3">
+        </div>
+    </div>
 
     <div class="relative z-10">
 
@@ -245,7 +334,6 @@
                     <img src="img/logotipo-flama-agency.svg" alt="FLAMA" class="h-6 md:h-8">
                 </a>
 
-                <!-- Menú Desktop -->
                 <ul
                     class="hidden md:flex items-center gap-10 text-[11px] font-bold tracking-[0.1em] text-white uppercase">
                     <li><a href="#inicio" class="text-white border-b-2 border-brand-primary pb-1">INICIO</a></li>
@@ -258,8 +346,7 @@
                     </li>
                 </ul>
 
-                <!-- Botón Hamburguesa -->
-                <button onclick="openMobileMenu()" class="md:hidden text-white focus:outline-none p-2">
+                <button onclick="openMobileMenu()" class="md:hidden text-white focus:outline-none p-2 relative z-50">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16"></path>
@@ -269,82 +356,82 @@
         </nav>
 
         <header id="inicio"
-            class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-32 pb-24 relative">
+            class="min-h-screen flex flex-col justify-center items-center text-center pt-32 pb-24 relative">
 
-            <!-- LOGO SVG (h-64 en Desktop, autoajustable en móvil) -->
-            <div id="hero-logo-container"
-                class="relative flex flex-row items-end justify-center gap-1 sm:gap-2 md:gap-6 w-full h-20 sm:h-24 md:h-64 mb-16 max-w-[90%] mx-auto overflow-visible">
-                <svg id="flama-1" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 36.5 49.66">
-                    <g>
-                        <path class="flama-letter-glow" d="M9.5,8.41v12.28h23.95v8.75H9.5v20.22H0V0h36.5v8.41H9.5Z" />
-                    </g>
-                </svg>
-                <svg id="flama-2" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 35.75 49.66">
-                    <g>
-                        <path class="flama-letter-glow" d="M35.75,41.25v8.41H0V0h9.5v41.25h26.25Z" />
-                    </g>
-                </svg>
-                <svg id="flama-3"
-                    class="h-full w-auto opacity-0 transition-opacity duration-700 overflow-visible flama-letter-svg"
-                    viewBox="0 0 51.69 50.52">
-                    <defs>
-                        <linearGradient id="neon-gradient" x1="-50%" y1="100%" x2="0%" y2="0%">
-                            <stop offset="0%" stop-color="#7854FF" />
-                            <stop offset="50%" stop-color="#b663af" />
-                            <stop offset="100%" stop-color="#FF725E" />
-                            <animate attributeName="x1" values="-50%; 100%" dur="1s" fill="freeze" />
-                            <animate attributeName="x2" values="0%; 150%" dur="1s" fill="freeze" />
-                            <animate attributeName="y1" values="100%; 0%" dur="1s" fill="freeze" />
-                            <animate attributeName="y2" values="0%; -100%" dur="1s" fill="freeze" />
-                        </linearGradient>
-                    </defs>
-                    <g style="transform-origin: center;">
-                        <path class="flama-fill-final"
-                            d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
-                        <path class="flama-neon-glow" pathLength="100"
-                            d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
-                        <path class="flama-neon-core" pathLength="100"
-                            d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
-                    </g>
-                </svg>
-                <svg id="flama-4" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 50 49.59">
-                    <g>
-                        <path class="flama-letter-glow"
-                            d="M50,0v49.59h-9.5v-25.1l-15.53,18.66-15.47-18.66v25.1H0V0h.61l24.35,28.63L49.39,0h.61Z" />
-                    </g>
-                </svg>
-                <svg id="flama-5" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 51.69 49.59">
-                    <g>
-                        <path class="flama-letter-glow"
-                            d="M0,49.59L25.37,0h.95l25.37,49.59h-10.31l-3.86-7.8H14.11l-3.8,7.8H0ZM18.72,33.51h14.18l-7.05-14.99-7.12,14.99Z" />
-                    </g>
-                </svg>
+            <!-- LOGO SVG CON MARGEN RIGIDO MÓVIL (px-[50px]) -->
+            <div class="w-full px-[50px] md:px-0 mx-auto flex justify-center mb-16">
+                <div id="hero-logo-container"
+                    class="relative flex flex-row items-end justify-center gap-1.5 md:gap-6 w-full h-[14vw] sm:h-[10vw] md:h-64 overflow-visible">
+                    <svg id="flama-1" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 36.5 49.66">
+                        <g>
+                            <path class="flama-letter-glow"
+                                d="M9.5,8.41v12.28h23.95v8.75H9.5v20.22H0V0h36.5v8.41H9.5Z" />
+                        </g>
+                    </svg>
+                    <svg id="flama-2" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 35.75 49.66">
+                        <g>
+                            <path class="flama-letter-glow" d="M35.75,41.25v8.41H0V0h9.5v41.25h26.25Z" />
+                        </g>
+                    </svg>
+                    <svg id="flama-3"
+                        class="h-full w-auto opacity-0 transition-opacity duration-700 overflow-visible flama-letter-svg"
+                        viewBox="0 0 51.69 50.52">
+                        <defs>
+                            <linearGradient id="neon-gradient" x1="-50%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" stop-color="#7854FF" />
+                                <stop offset="50%" stop-color="#b663af" />
+                                <stop offset="100%" stop-color="#FF725E" />
+                                <animate attributeName="x1" values="-50%; 100%" dur="1s" fill="freeze" />
+                                <animate attributeName="x2" values="0%; 150%" dur="1s" fill="freeze" />
+                                <animate attributeName="y1" values="100%; 0%" dur="1s" fill="freeze" />
+                                <animate attributeName="y2" values="0%; -100%" dur="1s" fill="freeze" />
+                            </linearGradient>
+                        </defs>
+                        <g style="transform-origin: center;">
+                            <path class="flama-fill-final"
+                                d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
+                            <path class="flama-neon-glow" pathLength="100"
+                                d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
+                            <path class="flama-neon-core" pathLength="100"
+                                d="M15.24,40.08c0-4.83,2.32-8.29,6.27-12.71,0,0-1.65,5.44,5.98,7.91,0,0-6.28-3.7-1.99-14.16.12-.3.34-1.24.34-1.24,0,0,.38,3.07,4.33,7.49,3.95,4.42,6.27,7.88,6.27,12.71,0,5.3-3.9,9.65-8.97,10.44h24.22L25.85,0,0,50.52h24.22c-5.08-.79-8.97-5.14-8.97-10.44Z" />
+                        </g>
+                    </svg>
+                    <svg id="flama-4" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 50 49.59">
+                        <g>
+                            <path class="flama-letter-glow"
+                                d="M50,0v49.59h-9.5v-25.1l-15.53,18.66-15.47-18.66v25.1H0V0h.61l24.35,28.63L49.39,0h.61Z" />
+                        </g>
+                    </svg>
+                    <svg id="flama-5" class="h-full w-auto overflow-visible dynamic-letter" viewBox="0 0 51.69 49.59">
+                        <g>
+                            <path class="flama-letter-glow"
+                                d="M0,49.59L25.37,0h.95l25.37,49.59h-10.31l-3.86-7.8H14.11l-3.8,7.8H0ZM18.72,33.51h14.18l-7.05-14.99-7.12,14.99Z" />
+                        </g>
+                    </svg>
+                </div>
             </div>
 
             <!-- CONTENIDO HERO -->
-            <div class="flex flex-col items-center w-full max-w-[1200px] mx-auto js-animate z-20"
+            <div class="flex flex-col items-center w-full max-w-[1200px] mx-auto js-animate z-20 px-6"
                 style="transition-delay: 1500ms;">
                 <h2
                     class="text-3xl md:text-5xl text-white font-black uppercase tracking-tight leading-tight mb-10 text-center w-full">
-                    POTENCIAMOS TUS VENTAS MEDIANTE<br>MARKETING Y TECNOLOGÍA
-                </h2>
-
+                    POTENCIAMOS TUS VENTAS MEDIANTE<br>MARKETING Y TECNOLOGÍA</h2>
                 <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
                     <a href="#planes"
-                        class="bg-brand-primary px-16 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-brand-primaryHover transition-colors shadow-lg shadow-brand-primary/30">COTIZAR</a>
+                        class="bg-brand-primary px-16 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-brand-primaryHover transition-colors shadow-lg text-white">COTIZAR</a>
                     <button onclick="openModal('videoModal')"
                         class="flex items-center gap-4 group cursor-pointer bg-transparent border-none p-0 text-left">
                         <div
                             class="border border-brand-red rounded flex items-center justify-center w-12 h-12 group-hover:bg-brand-red/10 transition-colors">
-                            <span class="text-brand-red text-lg ml-1">▷</span>
-                        </div>
+                            <span class="text-brand-red text-lg ml-1">▷</span></div>
                         <span class="text-brand-red text-[10px] tracking-[0.2em] uppercase font-bold">VER
                             REEL<br>2026</span>
                     </button>
                 </div>
             </div>
 
-            <div class="w-full flex justify-center js-animate z-20 absolute bottom-10 left-0 ml-[5px]"
+            <div class="w-full flex justify-center js-animate z-20 absolute bottom-10 left-0"
                 style="transition-delay: 2000ms;">
                 <div class="flex flex-col items-center">
                     <span class="text-[9px] text-gray-500 tracking-[0.3em] uppercase mb-4 font-bold">EXPLORA NUESTROS
@@ -356,6 +443,7 @@
             </div>
         </header>
 
+        <!-- SECCIÓN SERVICIOS -->
         <section id="servicios" class="py-24 max-w-[1400px] mx-auto px-6 js-animate mt-12 border-t-0">
             <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
                 <div><span
@@ -366,7 +454,6 @@
                 <div class="max-w-sm text-left md:text-right text-gray-400 text-xs leading-relaxed">Combinamos precisión
                     técnica con disrupción creativa para dominar mercados digitales saturados.</div>
             </div>
-
             <div class="border border-gray-800 rounded-sm overflow-hidden mb-8">
                 <div class="grid grid-cols-1 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-gray-800">
                     <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full"><span
@@ -432,13 +519,12 @@
                     </div>
                 </div>
             </div>
-
             <button onclick="openModal('pdfModal')"
-                class="text-brand-red text-[11px] font-bold tracking-[0.2em] uppercase hover:text-white transition flex items-center gap-2 cursor-pointer bg-transparent border-none p-0">
-                VER BROCHURE <span class="text-lg">→</span>
-            </button>
+                class="text-brand-red text-[11px] font-bold tracking-[0.2em] uppercase hover:text-white transition flex items-center gap-2 cursor-pointer bg-transparent border-none p-0">VER
+                BROCHURE <span class="text-lg">→</span></button>
         </section>
 
+        <!-- SECCIÓN PLANES -->
         <section id="planes" class="py-24 max-w-[1400px] mx-auto px-6 border-t-0">
             <h3 class="text-3xl md:text-5xl font-black mb-4 uppercase tracking-tighter js-animate">PLANES DE <br><span
                     class="text-brand-red">IGNICIÓN</span></h3>
@@ -454,12 +540,10 @@
                             class="px-4 py-1 text-[11px] uppercase tracking-wider rounded text-gray-400 hover:text-white transition-all duration-300">Desarrollo
                             Web</button>
                     </div>
-
                     <div class="flex items-center gap-3 text-sm">
                         <span class="text-gray-400 font-semibold text-[11px] uppercase tracking-wider transition-colors"
                             id="label-mensual">Mensual</span>
-                        <div
-                            class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200">
                             <input type="checkbox" name="toggle" id="toggle-descuento"
                                 class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-300 ease-in-out" />
                             <label for="toggle-descuento"
@@ -471,11 +555,10 @@
                 </div>
             </div>
 
-            <!-- Grid Marketing -->
             <div id="planes-marketing-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-                <!-- Emprendedor -->
-                <div class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 relative flex flex-col js-animate hover:border-gray-600 transition duration-300"
-                    style="transition-delay: 100ms;">
+                <!-- MKT Emprendedor -->
+                <div
+                    class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
                     <span class="text-[10px] font-bold text-gray-500 mb-6 block">01</span>
                     <h4 class="text-2xl font-black uppercase text-white mb-2">PLAN EMPRENDEDOR</h4>
                     <p class="text-brand-primary text-[10px] uppercase tracking-widest font-bold mb-8">FACEBOOK /
@@ -483,29 +566,29 @@
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
                         <li class="li-mkt">Propuesta de contenido para RRSS.</li>
                         <li class="li-mkt">Diseño de perfil y portada.</li>
-                        <li class="li-mkt">Diseño de 06 piezas gráficas (post/historia) al mes.</li>
-                        <li class="li-mkt">Diseño de 02 piezas videográficas (reels) al mes.</li>
-                        <li class="li-mkt">Programación y publicación de 8 piezas.</li>
+                        <li class="li-mkt">Diseño de 06 piezas gráficas al mes.</li>
+                        <li class="li-mkt">Diseño de 02 piezas videográficas (reels).</li>
+                        <li class="li-mkt">Programación y publicación.</li>
                         <li class="li-mkt">Servicio de community manager.</li>
                         <li class="li-mkt">Gestión de pauta digital.</li>
                     </ul>
                     <div class="flex justify-between items-end mt-auto pt-8 border-t border-gray-800/50">
                         <div data-precio-base="1200">
                             <p class="text-4xl font-black text-white leading-none">S/ <span
-                                    class="precio-valor">1,200</span><span
-                                    class="text-[10px] text-gray-500 font-normal ml-1 tracking-normal">.00</span></p>
+                                    class="precio-valor">1,200</span></p>
                         </div>
-                        <a href="https://wa.me/51979456610" target="_blank"
-                            class="text-brand-primary text-[11px] font-black tracking-widest uppercase hover:text-white transition-colors">COTIZAR</a>
+                        <!-- TEXT-WHITE APLICADO AQUI -->
+                        <a href="https://wa.me/51979456610?text=Hola%20estoy%20interesado%20en%20el%20plan%20Emprendedor"
+                            target="_blank"
+                            class="text-white text-[11px] font-black tracking-widest uppercase hover:text-brand-primary transition">COTIZAR</a>
                     </div>
                 </div>
-
-                <!-- Profesional -->
-                <div class="bg-[#1a1a1a] p-8 rounded-sm border-2 border-brand-primary relative flex flex-col js-animate shadow-2xl shadow-brand-primary/10 z-10 lg:scale-105 transform hover:scale-110 transition duration-300"
-                    style="transition-delay: 200ms;">
+                <!-- MKT Profesional -->
+                <div
+                    class="bg-[#1a1a1a] p-8 rounded-sm border-2 border-brand-primary relative flex flex-col js-animate shadow-2xl lg:scale-105 transform transition duration-300">
                     <span
-                        class="absolute top-0 right-0 bg-brand-primary text-white text-[9px] px-3 py-1.5 uppercase font-bold rounded-bl-sm tracking-widest">RECOMENDADO</span>
-                    <span class="text-[10px] font-bold text-gray-500 mb-6 block">02</span>
+                        class="absolute top-0 right-0 bg-brand-primary text-white text-[9px] px-3 py-1.5 uppercase font-bold rounded-bl-sm">RECOMENDADO</span><span
+                        class="text-[10px] font-bold text-gray-500 mb-6 block">02</span>
                     <h4 class="text-2xl font-black uppercase text-brand-primary mb-2">PLAN PROFESIONAL</h4>
                     <p class="text-brand-primary text-[10px] uppercase tracking-widest font-bold mb-8">FACEBOOK /
                         INSTAGRAM / TIKTOK</p>
@@ -513,26 +596,24 @@
                         <li class="li-mkt">Propuesta de contenido para RRSS.</li>
                         <li class="li-mkt">Diseño de perfil y portada.</li>
                         <li class="li-mkt">Diseño de 08 piezas gráficas al mes.</li>
-                        <li class="li-mkt">Diseño de 04 piezas videográficas (reels) al mes.</li>
-                        <li class="li-mkt">Programación y publicación de 12 piezas.</li>
-                        <li class="li-mkt">Community manager y gestión de pauta.</li>
-                        <li class="li-mkt">15 fotografías publicitarias al mes.*</li>
+                        <li class="li-mkt">Diseño de 04 piezas videográficas (reels).</li>
+                        <li class="li-mkt">Community manager y pauta.</li>
+                        <li class="li-mkt">15 fotografías publicitarias.*</li>
                         <li class="li-mkt">Reporte mensual digital.</li>
                     </ul>
                     <div class="mt-auto pt-8 border-t border-gray-800/50 flex flex-col items-center">
                         <div data-precio-base="1600" class="mb-6">
                             <p class="text-4xl font-black text-white leading-none">S/ <span
-                                    class="precio-valor">1,600</span><span
-                                    class="text-[10px] text-gray-500 font-normal ml-1 tracking-normal">.00</span></p>
+                                    class="precio-valor">1,600</span></p>
                         </div>
-                        <a href="https://wa.me/51979456610" target="_blank"
-                            class="w-full text-center bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] tracking-widest uppercase hover:bg-brand-primaryHover transition shadow-lg block">SOLICITAR</a>
+                        <a href="https://wa.me/51979456610?text=Hola%20estoy%20interesado%20en%20el%20plan%20Profesional"
+                            target="_blank"
+                            class="w-full text-center bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] uppercase hover:bg-brand-primaryHover transition">SOLICITAR</a>
                     </div>
                 </div>
-
-                <!-- Empresario -->
-                <div class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 relative flex flex-col js-animate hover:border-gray-600 transition duration-300"
-                    style="transition-delay: 300ms;">
+                <!-- MKT Empresario -->
+                <div
+                    class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
                     <span class="text-[10px] font-bold text-gray-500 mb-6 block">03</span>
                     <h4 class="text-2xl font-black uppercase text-white mb-2">PLAN EMPRESARIO</h4>
                     <p class="text-brand-primary text-[10px] uppercase tracking-widest font-bold mb-8">FACEBOOK /
@@ -541,57 +622,56 @@
                         <li class="li-mkt">Propuesta de contenido para RRSS.</li>
                         <li class="li-mkt">Diseño de perfil y portada.</li>
                         <li class="li-mkt">Diseño de 10 piezas gráficas al mes.</li>
-                        <li class="li-mkt">Diseño de 06 piezas videográficas (reels).</li>
-                        <li class="li-mkt">Programación y publicación de 16 piezas.</li>
-                        <li class="li-mkt">Community manager y gestión de pauta.</li>
-                        <li class="li-mkt">25 fotografías publicitarias al mes.</li>
+                        <li class="li-mkt">Diseño de 06 piezas videográficas.</li>
+                        <li class="li-mkt">Community manager y pauta.</li>
+                        <li class="li-mkt">25 fotografías publicitarias.</li>
                         <li class="li-mkt">Reporte mensual digital.</li>
                     </ul>
                     <div class="flex justify-between items-end mt-auto pt-8 border-t border-gray-800/50">
                         <div data-precio-base="2000">
                             <p class="text-4xl font-black text-white leading-none">S/ <span
-                                    class="precio-valor">2,000</span><span
-                                    class="text-[10px] text-gray-500 font-normal ml-1 tracking-normal">.00</span></p>
+                                    class="precio-valor">2,000</span></p>
                         </div>
-                        <a href="https://wa.me/51979456610" target="_blank"
-                            class="text-brand-primary text-[11px] font-black tracking-widest uppercase hover:text-white transition-colors">COTIZAR</a>
+                        <!-- TEXT-WHITE APLICADO AQUI -->
+                        <a href="https://wa.me/51979456610?text=Hola%20estoy%20interesado%20en%20el%20plan%20Empresario"
+                            target="_blank"
+                            class="text-white text-[11px] font-black tracking-widest uppercase hover:text-brand-primary transition">COTIZAR</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Grid Web -->
             <div id="planes-web-grid" class="hidden grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-                <!-- Landing -->
+                <!-- Web Landing -->
                 <div
-                    class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 relative flex flex-col js-animate hover:border-gray-600 transition duration-300">
+                    class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
                     <h4 class="text-2xl font-black uppercase text-white mb-4">LANDING PAGE</h4>
                     <div data-precio-base="1200" class="mb-4">
                         <p class="text-4xl font-black text-white leading-none">S/ <span
                                 class="precio-valor">1,200</span></p>
                     </div>
-                    <p class="text-gray-400 text-xs mb-8">Pago único (3 meses de garantía)</p>
+                    <p class="text-gray-400 text-xs mb-8">Pago único (3 meses garantía)</p>
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
                         <li class="li-web">Diseño One-Page responsivo.</li>
                         <li class="li-web">Dominio y Hosting (1 año).</li>
                         <li class="li-web">Botón a WhatsApp.</li>
                     </ul>
                     <div class="mt-auto pt-6 border-t border-gray-800/50 flex flex-col items-center">
-                        <a href="https://wa.me/51979456610" target="_blank"
-                            class="w-full border border-gray-600 text-white font-black py-4 rounded-sm text-[11px] tracking-widest uppercase hover:bg-gray-800 transition text-center block">CONTACTAR</a>
+                        <a href="https://wa.me/51979456610?text=Hola%20estoy%20interesado%20en%20el%20plan%20Landing%20Page"
+                            target="_blank"
+                            class="w-full border border-gray-600 text-white font-black py-4 rounded-sm text-[11px] uppercase text-center hover:bg-gray-800 transition">CONTACTAR</a>
                     </div>
                 </div>
-
                 <!-- Web Corp -->
                 <div
-                    class="bg-[#1a1a1a] p-8 rounded-sm border-2 border-brand-primary relative flex flex-col js-animate shadow-2xl shadow-brand-primary/10 z-10 lg:scale-105 transform hover:scale-110 transition duration-300">
+                    class="bg-[#1a1a1a] p-8 rounded-sm border-2 border-brand-primary flex flex-col js-animate shadow-2xl lg:scale-105 transform transition duration-300 relative">
                     <span
-                        class="absolute top-0 right-0 bg-brand-primary text-white text-[9px] px-3 py-1.5 uppercase font-bold rounded-bl-sm tracking-widest">RECOMENDADO</span>
+                        class="absolute top-0 right-0 bg-brand-primary text-white text-[9px] px-3 py-1.5 uppercase font-bold rounded-bl-sm">RECOMENDADO</span>
                     <h4 class="text-2xl font-black uppercase text-white mb-4">WEB CORPORATIVA</h4>
                     <div data-precio-base="1800" class="mb-4">
                         <p class="text-4xl font-black text-brand-primary leading-none">S/ <span
                                 class="precio-valor">1,800</span></p>
                     </div>
-                    <p class="text-gray-400 text-xs mb-8">Pago único (3 meses de garantía)</p>
+                    <p class="text-gray-400 text-xs mb-8">Pago único (3 meses garantía)</p>
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
                         <li class="li-web">Web multisección.</li>
                         <li class="li-web">Panel autoadministrable.</li>
@@ -599,33 +679,32 @@
                         <li class="li-web">SEO y Google Analytics.</li>
                     </ul>
                     <div class="mt-auto pt-8 border-t border-gray-800/50 flex flex-col items-center">
-                        <a href="https://wa.me/51979456610" target="_blank"
-                            class="w-full bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] tracking-widest uppercase hover:bg-brand-primaryHover transition shadow-lg text-center block">CONTRATAR
-                            AHORA</a>
+                        <a href="https://wa.me/51979456610?text=Hola%20estoy%20interesado%20en%20el%20plan%20Web%20Corporativa"
+                            target="_blank"
+                            class="w-full bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] uppercase text-center hover:bg-brand-primaryHover transition">CONTRATAR</a>
                     </div>
                 </div>
-
-                <!-- Sistemas -->
+                <!-- Web Sistemas -->
                 <div
-                    class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 relative flex flex-col js-animate hover:border-gray-600 transition duration-300">
+                    class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
                     <h4 class="text-2xl font-black uppercase text-white mb-4">SISTEMAS A MEDIDA</h4>
                     <div class="mb-4">
                         <p class="text-4xl font-black text-white leading-none">COTIZAR</p>
                     </div>
-                    <p class="text-gray-400 text-xs mb-8">Previa evaluación (3 meses de garantía)</p>
+                    <p class="text-gray-400 text-xs mb-8">Previa evaluación (3 meses garantía)</p>
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
                         <li class="li-web">Software personalizado y apps.</li>
                         <li class="li-web">Arquitectura escalable.</li>
                         <li class="li-web">Integración de APIs y Pasarelas.</li>
                     </ul>
                     <div class="mt-auto pt-6 border-t border-gray-800/50 flex flex-col items-center">
-                        <a href="https://wa.me/51979456610" target="_blank"
-                            class="w-full border border-gray-600 text-white font-black py-4 rounded-sm text-[11px] tracking-widest uppercase hover:bg-gray-800 transition text-center block">CONTACTAR</a>
+                        <a href="https://wa.me/51979456610?text=Hola%20estoy%20interesado%20en%20el%20plan%20Sistemas%20a%20Medida"
+                            target="_blank"
+                            class="w-full border border-gray-600 text-white font-black py-4 rounded-sm text-[11px] uppercase text-center hover:bg-gray-800 transition">CONTACTAR</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Notas -->
             <div class="mt-16 js-animate" style="transition-delay: 400ms;">
                 <div
                     class="bg-[#161618] border border-gray-800 rounded-sm p-8 md:p-10 relative overflow-hidden shadow-2xl">
@@ -633,10 +712,8 @@
                     </div>
                     <p
                         class="text-brand-primary text-[11px] mb-8 font-bold flex items-start gap-2 max-w-3xl leading-relaxed">
-                        <span class="text-lg leading-none mt-[-4px]">*</span>
-                        <span>Las fotografías, piezas y videos deben coordinarse dentro del mes puesto que no son
-                            acumulables.</span>
-                    </p>
+                        <span class="text-lg leading-none mt-[-4px]">*</span><span>Las fotografías, piezas y videos
+                            deben coordinarse dentro del mes puesto que no son acumulables.</span></p>
                     <div class="mb-6 flex items-center gap-4">
                         <h5 class="text-xs font-black uppercase text-white tracking-widest">NOTAS</h5>
                         <div class="h-px bg-gray-800 flex-grow"></div>
@@ -659,61 +736,15 @@
             </div>
         </section>
 
-        <section class="bg-brand-primary py-12 js-animate border-t-0">
-            <div
-                class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-                <h4 class="text-2xl md:text-4xl font-black uppercase text-white tracking-tighter leading-none">¿Listo
-                    para romper <br>el molde?</h4>
-                <div class="flex justify-end">
-                    <a href="#contacto"
-                        class="bg-white text-brand-primary px-10 py-4 rounded-sm font-black uppercase tracking-widest text-[11px] hover:bg-gray-100 transition-colors shadow-lg">TRABAJEMOS
-                        JUNTOS</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="clientes" class="py-24 js-animate overflow-hidden border-t-0 border-b-0 relative">
-            <div class="max-w-[1400px] mx-auto px-6 text-center md:text-left">
-                <h3 class="text-sm font-bold uppercase tracking-[0.2em] text-gray-400 mb-12">ELLOS CONFÍAN EN NOSOTROS
-                </h3>
-            </div>
-            <div class="relative w-full overflow-hidden py-10 wave-track-mask">
-                <div id="wave-track" class="flex flex-nowrap items-center gap-4 w-max px-2 h-[160px]"></div>
-            </div>
-        </section>
-
-        <!-- Modales PDF y Video -->
-        <div id="videoModal"
-            class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm transition-opacity duration-300">
-            <div
-                class="relative w-full max-w-sm h-[85vh] mx-4 bg-[#0a0a0a] border border-gray-800 rounded-lg shadow-2xl p-1 transform transition-all scale-95 opacity-0">
-                <button onclick="closeModal('videoModal')"
-                    class="absolute -top-4 -right-4 bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-red-600 transition z-10 shadow-lg cursor-pointer">✕</button>
-                <div class="relative w-full h-full rounded overflow-hidden bg-black flex items-center justify-center">
-                    <video id="myLocalVideo" class="max-w-full max-h-full" controls preload="none">
-                        <source src="video/flama-reel.mp4" type="video/mp4">
-                    </video></div>
-            </div>
-        </div>
-        <div id="pdfModal"
-            class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm transition-opacity duration-300">
-            <div
-                class="relative w-full max-w-6xl h-[85vh] mx-4 bg-[#1a1a1a] border border-gray-800 rounded-lg shadow-2xl p-1 transform transition-all scale-95 opacity-0">
-                <button onclick="closeModal('pdfModal')"
-                    class="absolute -top-4 -right-4 bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-red-600 transition z-10 shadow-lg cursor-pointer">✕</button>
-                <div class="w-full h-full rounded overflow-hidden bg-white"><embed src="pdf/brochure-flama.pdf"
-                        type="application/pdf" width="100%" height="100%" /></div>
-            </div>
-        </div>
-
-        <section class="py-32 max-w-[1400px] mx-auto px-6 border-t-0 overflow-hidden">
+        <!-- SECCIÓN MANIFIESTO Y PERFIL -->
+        <section class="py-32 max-w-[1400px] mx-auto px-6 overflow-hidden">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
                 <div class="relative w-full max-w-md mx-auto js-animate" style="transition-delay: 100ms;">
                     <div class="aspect-[4/5] bg-gray-900 rounded-sm border border-gray-800 overflow-hidden">
                         <img src="img/diana-imagen-flama.jpg" alt="Diana Galvez" class="w-full h-full object-cover">
                     </div>
                     <div
-                        class="absolute -bottom-8 -right-4 md:right-0 bg-brand-card p-6 border border-gray-800 shadow-2xl z-10 w-64">
+                        class="absolute -bottom-8 -right-4 md:right-0 bg-brand-card p-6 border border-gray-800 shadow-2xl w-64">
                         <p class="text-[10px] text-brand-primary font-bold uppercase tracking-widest mb-1">CEO &
                             FUNDADORA</p>
                         <p class="text-xl font-black uppercase tracking-tighter">DIANA GALVEZ</p>
@@ -778,6 +809,31 @@
             </div>
         </section>
 
+        <section class="bg-brand-primary py-12 js-animate border-t-0">
+            <div
+                class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+                <h4 class="text-2xl md:text-4xl font-black uppercase text-white tracking-tighter leading-none">¿Listo
+                    para romper <br>el molde?</h4>
+                <div class="flex justify-end">
+                    <a href="#contacto"
+                        class="bg-white text-brand-primary px-10 py-4 rounded-sm font-black uppercase tracking-widest text-[11px] hover:bg-gray-100 transition-colors shadow-lg">TRABAJEMOS
+                        JUNTOS</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CLIENTES -->
+        <section id="clientes" class="py-24 js-animate overflow-hidden border-t-0 border-b-0 relative">
+            <div class="max-w-[1400px] mx-auto px-6 text-center md:text-left">
+                <h3 class="text-sm font-bold uppercase tracking-[0.2em] text-gray-400 mb-12">ELLOS CONFÍAN EN NOSOTROS
+                </h3>
+            </div>
+            <div class="relative w-full overflow-hidden py-10 wave-track-mask">
+                <div id="wave-track" class="flex flex-nowrap items-center gap-4 w-max px-2 h-[160px]"></div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CONTACTO -->
         <section id="contacto"
             class="py-32 max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center border-t-0">
             <div class="js-animate text-center md:text-left" style="transition-delay: 100ms;">
@@ -812,28 +868,25 @@
             </div>
         </section>
 
-        <footer class="bg-transparent pt-24 pb-8 js-animate relative overflow-hidden border-t-0"
-            style="transition-delay: 200ms;">
+        <!-- FOOTER -->
+        <footer class="bg-transparent pt-24 pb-8 js-animate border-t-0">
             <div class="max-w-[1400px] mx-auto px-6 flex flex-col items-center">
                 <div id="footer-logo-container"
-                    class="relative flex flex-row items-end justify-center gap-1 md:gap-2 w-full h-12 md:h-20 mb-6 js-animate overflow-visible"
-                    style="transition-delay: 400ms;">
+                    class="relative flex flex-row items-end justify-center gap-1 md:gap-2 w-full h-12 md:h-20 mb-6 js-animate overflow-visible">
                     <img src="img/flama-agency-1.svg" id="f-flama-1"
-                        class="h-full w-auto opacity-0 transition-opacity duration-700" />
-                    <img src="img/flama-agency-2.svg" id="f-flama-2"
-                        class="h-full w-auto opacity-0 transition-opacity duration-700" />
-                    <img src="img/flama-agency-3.svg" id="f-flama-3"
-                        class="h-full w-auto opacity-0 transition-opacity duration-700" />
-                    <img src="img/flama-agency-4.svg" id="f-flama-4"
-                        class="h-full w-auto opacity-0 transition-opacity duration-700" />
-                    <img src="img/flama-agency-5.svg" id="f-flama-5"
+                        class="h-full w-auto opacity-0 transition-opacity duration-700" /><img
+                        src="img/flama-agency-2.svg" id="f-flama-2"
+                        class="h-full w-auto opacity-0 transition-opacity duration-700" /><img
+                        src="img/flama-agency-3.svg" id="f-flama-3"
+                        class="h-full w-auto opacity-0 transition-opacity duration-700" /><img
+                        src="img/flama-agency-4.svg" id="f-flama-4"
+                        class="h-full w-auto opacity-0 transition-opacity duration-700" /><img
+                        src="img/flama-agency-5.svg" id="f-flama-5"
                         class="h-full w-auto opacity-0 transition-opacity duration-700" />
                 </div>
-                <div class="text-white text-lg md:text-3xl tracking-[1em] font-light mb-24 ml-4 js-animate"
-                    style="transition-delay: 500ms;">AGENCY</div>
-
-                <div class="w-full flex flex-col md:flex-row justify-between items-center md:items-start gap-12 pt-12 border-t-0 js-animate"
-                    style="transition-delay: 600ms;">
+                <div class="text-white text-lg md:text-3xl tracking-[1em] font-light mb-24 ml-4">AGENCY</div>
+                <div
+                    class="w-full flex flex-col md:flex-row justify-between items-center md:items-start gap-12 pt-12 border-t-0">
                     <div class="flex flex-col gap-6 text-center md:text-left">
                         <h4 class="text-brand-red text-xs font-bold uppercase tracking-widest">SOCIAL</h4>
                         <div
@@ -847,7 +900,7 @@
                     <div class="flex flex-col gap-6 text-center md:text-right">
                         <h4 class="text-brand-red text-xs font-bold uppercase tracking-widest">CONTACTO</h4>
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:gap-8 text-[11px] font-bold text-gray-300 uppercase tracking-widest items-center md:justify-end">
+                            class="flex flex-col md:flex-row gap-4 md:gap-8 text-[11px] font-bold text-gray-300 items-center">
                             <a href="mailto:agencyflama@gmail.com"
                                 class="hover:text-white transition-colors">agencyflama@gmail.com</a>
                             <a href="https://wa.me/51979456610" target="_blank"
@@ -857,258 +910,133 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- NOTA THE FROG -->
+                <!-- NOTA THE FROG (LETRAS BLANCAS) -->
                 <div
-                    class="text-center text-[10px] text-gray-600 border-t border-gray-800/50 mt-16 pt-8 w-full uppercase tracking-widest">
-                    Esta página fue creada por <span class="text-gray-400 font-bold">The Frog Soluciones
-                        digitales</span>, para mayor información escríbenos al <a href="https://wa.me/51913330912"
-                        target="_blank"
-                        class="text-brand-primary hover:text-white transition-colors font-black">913330912</a>
-                </div>
+                    class="text-center text-[10px] text-gray-400 border-t border-gray-800/50 mt-16 pt-8 w-full uppercase tracking-widest">
+                    Esta página fue creada por <span class="text-white font-bold">The Frog Soluciones digitales</span>,
+                    escríbenos al <a href="https://wa.me/51913330912" target="_blank"
+                        class="text-white font-black hover:text-brand-primary transition-colors">913330912</a></div>
             </div>
         </footer>
-
     </div>
 
-    <!-- MODAL MENÚ MÓVIL (Z-100 para evitar bloqueos) -->
+    <!-- MODAL MENÚ MÓVIL AISLADO (No borra el fondo, funciona perfecto) -->
     <div id="mobile-menu"
-        class="fixed inset-0 z-[100] bg-black bg-opacity-80 backdrop-blur-xl flex-col justify-center items-center hidden opacity-0 transition-opacity duration-300">
-        <!-- Barra superior del menú (Logo y Botón X) -->
-        <div class="absolute top-0 left-0 w-full p-6 flex justify-between items-center">
-            <img src="img/logotipo-flama-agency.svg" alt="FLAMA" class="h-6">
-            <button onclick="closeMobileMenu()" class="text-white p-2 focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Enlaces del Menú -->
+        class="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex-col justify-center items-center hidden opacity-0 transition-opacity duration-300">
+        <button onclick="closeMobileMenu()" class="absolute top-6 right-6 text-white p-2 focus:outline-none"><svg
+                class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg></button>
         <ul class="flex flex-col items-center gap-8 text-sm font-bold tracking-[0.2em] text-white uppercase mt-10">
-            <li><a href="#inicio" onclick="closeMobileMenu()"
-                    class="hover:text-brand-primary transition-colors">INICIO</a></li>
-            <li><a href="#servicios" onclick="closeMobileMenu()"
-                    class="hover:text-brand-primary transition-colors">SERVICIOS</a></li>
-            <li><a href="#planes" onclick="closeMobileMenu()"
-                    class="hover:text-brand-primary transition-colors">PLANES</a></li>
-            <li><a href="#clientes" onclick="closeMobileMenu()"
-                    class="hover:text-brand-primary transition-colors">CLIENTES</a></li>
-            <li><a href="#contacto" onclick="closeMobileMenu()"
-                    class="hover:text-brand-primary transition-colors">CONTACTO</a></li>
+            <li><a href="#inicio" onclick="closeMobileMenu()">INICIO</a></li>
+            <li><a href="#servicios" onclick="closeMobileMenu()">SERVICIOS</a></li>
+            <li><a href="#planes" onclick="closeMobileMenu()">PLANES</a></li>
+            <li><a href="#clientes" onclick="closeMobileMenu()">CLIENTES</a></li>
+            <li><a href="#contacto" onclick="closeMobileMenu()">CONTACTO</a></li>
             <li><a href="https://wa.me/51979456610" target="_blank"
-                    class="bg-brand-primary text-white px-10 py-4 rounded font-black hover:bg-brand-primaryHover transition-colors mt-4">WHATSAPP</a>
-            </li>
+                    class="bg-brand-primary text-white px-10 py-4 rounded font-black mt-4">WHATSAPP</a></li>
         </ul>
     </div>
 
-    <script>
-        // CONTROL DEL MENÚ MÓVIL
-        function openMobileMenu() {
-            const m = document.getElementById('mobile-menu');
-            if (m) {
-                m.classList.remove('hidden');
-                m.classList.add('flex');
-                setTimeout(() => { m.classList.add('opacity-100'); m.classList.remove('opacity-0'); }, 10);
-                document.body.style.overflow = 'hidden';
-            }
-        }
+    <!-- Modales PDF y Video -->
+    <div id="videoModal"
+        class="js-modal hidden fixed inset-0 z-[200] bg-black/90 flex items-center justify-center backdrop-blur-sm">
+        <div
+            class="relative w-full max-w-sm h-[85vh] mx-4 bg-black border border-gray-800 rounded-lg p-1 js-modal-content">
+            <button onclick="closeModal('videoModal')"
+                class="absolute -top-4 -right-4 bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">✕</button>
+            <div class="w-full h-full rounded overflow-hidden"><video id="myLocalVideo" class="max-w-full max-h-full"
+                    controls preload="none">
+                    <source src="video/flama-reel.mp4" type="video/mp4">
+                </video></div>
+        </div>
+    </div>
+    <div id="pdfModal"
+        class="js-modal hidden fixed inset-0 z-[200] bg-black/90 flex items-center justify-center backdrop-blur-sm">
+        <div
+            class="relative w-full max-w-6xl h-[85vh] mx-4 bg-gray-900 border border-gray-800 rounded-lg p-1 js-modal-content">
+            <button onclick="closeModal('pdfModal')"
+                class="absolute -top-4 -right-4 bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">✕</button>
+            <div class="w-full h-full rounded overflow-hidden"><embed src="pdf/brochure-flama.pdf"
+                    type="application/pdf" width="100%" height="100%" /></div>
+        </div>
+    </div>
 
-        function closeMobileMenu() {
-            const m = document.getElementById('mobile-menu');
-            if (m) {
-                m.classList.remove('opacity-100');
-                m.classList.add('opacity-0');
-                document.body.style.overflow = '';
-                setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300);
-            }
-        }
+    <script>
+        function openMobileMenu() { const m = document.getElementById('mobile-menu'); if (m) { m.classList.remove('hidden'); m.classList.add('flex'); setTimeout(() => { m.classList.add('opacity-100'); m.classList.remove('opacity-0'); }, 10); } }
+        function closeMobileMenu() { const m = document.getElementById('mobile-menu'); if (m) { m.classList.remove('opacity-100'); m.classList.add('opacity-0'); setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300); } }
 
         document.addEventListener("DOMContentLoaded", () => {
+            // Animación Logo Hero
+            setTimeout(() => { if (document.getElementById('flama-3')) document.getElementById('flama-3').style.opacity = '1' }, 100);
+            setTimeout(() => { [1, 2, 4, 5].forEach((n, i) => { const el = document.getElementById(`flama-${n}`); if (el) setTimeout(() => el.classList.add('show'), i * 120) }) }, 1100);
 
-            // ANIMACIÓN LOGO FLAMA HERO
-            setTimeout(() => { if (document.getElementById('flama-3')) document.getElementById('flama-3').style.opacity = '1'; }, 100);
-            setTimeout(() => {
-                [1, 2, 4, 5].forEach((n, i) => {
-                    const el = document.getElementById(`flama-${n}`);
-                    if (el) setTimeout(() => el.classList.add('show'), i * 120);
-                });
-            }, 1100);
-
-            // INTERSECTION OBSERVER
-            const observer = new IntersectionObserver((ent, obs) => {
-                ent.forEach(e => {
-                    if (e.isIntersecting) {
-                        e.target.classList.add('is-visible');
-                        obs.unobserve(e.target);
-                    }
-                });
-            }, { threshold: 0.1 });
+            // Intersection Observer
+            const observer = new IntersectionObserver((ent, obs) => { ent.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
             document.querySelectorAll('.js-animate').forEach(el => observer.observe(el));
 
-            // CARRUSEL CLIENTES
-            const wTrack = document.getElementById('wave-track');
-            if (wTrack) {
+            // FONDO DINÁMICO HTML + CSS (No desaparece nunca)
+            // Se han asignado por código a `<div id="bg-animation-layer">`
+            // (Esta es una opción puramente estética con divs absolutos que no requieren recálculo)
+
+            // Carrusel de Clientes
+            const wT = document.getElementById('wave-track');
+            if (wT) {
                 const logos = ['automotores-inka', 'beaute', 'brandm', 'brasas-club', 'contrunor', 'fecasa', 'haray', 'impultsa', 'irvin-flama', 'la-granja', 'mannucci', 'mar-verde', 'mirano', 'mr-li', 'peru-drive', 'pizzeteria', 'prime-glof', 'rca', 'rio-alto', 'tipica', 'zumo-mar', 'canvax', 'los-portales', 'maranathan', 'mi-lord', 'oriente', 'rr', 'santa-cruz'];
-                wTrack.innerHTML = logos.map(l => `<div class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative"><img src="img/${l}-flama.svg" alt="${l}" class="max-w-full max-h-full object-contain" onerror="this.src='img/${l}.svg'"></div>`).join('');
-                wTrack.innerHTML += wTrack.innerHTML;
-
-                const wEls = document.querySelectorAll('.wave-element');
-                let cX = 0, tO = 0;
-
-                function animCarousel() {
-                    cX -= 0.8;
-                    if (Math.abs(cX) >= wTrack.scrollWidth / 2) cX = 0;
-                    wTrack.style.transform = `translateX(${cX}px)`;
-                    tO += 0.04;
-                    wEls.forEach((e, i) => e.style.transform = `translate3d(0,${Math.sin(tO + (i * 0.4)) * 18}px,0)`);
-                    requestAnimationFrame(animCarousel);
-                }
-                animCarousel();
+                wT.innerHTML = logos.map(l => `<div class="wave-element flex-shrink-0 flex items-center justify-center bg-[#1a1a1a] rounded-full w-24 h-24 p-5 relative"><img src="img/${l}-flama.svg" alt="${l}" class="max-w-full max-h-full object-contain" onerror="this.src='img/${l}.svg'"></div>`).join('');
+                wT.innerHTML += wT.innerHTML;
+                const wEls = document.querySelectorAll('.wave-element'); let cX = 0, tO = 0;
+                (function animC() { cX -= 0.8; if (Math.abs(cX) >= wT.scrollWidth / 2) cX = 0; wT.style.transform = `translateX(${cX}px)`; tO += 0.04; wEls.forEach((e, i) => e.style.transform = `translate3d(0,${Math.sin(tO + (i * 0.4)) * 18}px,0)`); requestAnimationFrame(animC); })();
             }
 
-            // SWITCH PRECIOS
-            const tDes = document.getElementById('toggle-descuento'), bMkt = document.getElementById('btn-marketing'), bWeb = document.getElementById('btn-web');
-            if (bMkt && bWeb) {
-                const switchGrid = (isMkt) => {
-                    bMkt.className = `px-4 py-1 text-[11px] uppercase tracking-wider rounded transition-all duration-300 ${isMkt ? 'bg-gray-800 text-white font-bold' : 'text-gray-400 hover:text-white'}`;
-                    bWeb.className = `px-4 py-1 text-[11px] uppercase tracking-wider rounded transition-all duration-300 ${!isMkt ? 'bg-gray-800 text-white font-bold' : 'text-gray-400 hover:text-white'}`;
-
+            // Tabs Precios
+            const bM = document.getElementById('btn-marketing'), bW = document.getElementById('btn-web');
+            if (bM && bW) {
+                const sG = isMkt => {
+                    bM.className = `px-4 py-1 text-[11px] uppercase tracking-wider rounded transition-all duration-300 ${isMkt ? 'bg-gray-800 text-white font-bold' : 'text-gray-400 hover:text-white'}`;
+                    bW.className = `px-4 py-1 text-[11px] uppercase tracking-wider rounded transition-all duration-300 ${!isMkt ? 'bg-gray-800 text-white font-bold' : 'text-gray-400 hover:text-white'}`;
                     document.getElementById('planes-marketing-grid').className = isMkt ? 'grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch' : 'hidden';
                     document.getElementById('planes-web-grid').className = !isMkt ? 'grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch' : 'hidden';
                 };
-                bMkt.addEventListener('click', () => switchGrid(true));
-                bWeb.addEventListener('click', () => switchGrid(false));
+                bM.addEventListener('click', () => sG(true)); bW.addEventListener('click', () => sG(false));
             }
-
-            if (tDes) {
-                tDes.addEventListener('change', function () {
-                    const isAnnual = this.checked;
-                    document.getElementById('label-mensual').className = `font-semibold text-[11px] uppercase tracking-wider transition-colors ${isAnnual ? 'text-gray-400' : 'text-white'}`;
-                    document.getElementById('label-anual').className = `font-semibold text-[11px] uppercase tracking-wider transition-colors ${isAnnual ? 'text-white' : 'text-gray-400'}`;
-
-                    document.querySelectorAll('[data-precio-base]').forEach(el => {
-                        const base = parseInt(el.getAttribute('data-precio-base')), v = el.querySelector('.precio-valor');
-                        if (v) v.innerText = (isAnnual ? Math.round(base * 0.85) : base).toLocaleString('en-US');
-                    });
+            const tD = document.getElementById('toggle-descuento');
+            if (tD) {
+                tD.addEventListener('change', function () {
+                    const isA = this.checked;
+                    document.getElementById('label-mensual').className = `font-semibold text-[11px] uppercase tracking-wider transition-colors ${isA ? 'text-gray-400' : 'text-white'}`;
+                    document.getElementById('label-anual').className = `font-semibold text-[11px] uppercase tracking-wider transition-colors ${isA ? 'text-white' : 'text-gray-400'}`;
+                    document.querySelectorAll('[data-precio-base]').forEach(el => { const b = parseInt(el.getAttribute('data-precio-base')), v = el.querySelector('.precio-valor'); if (v) v.innerText = (isA ? Math.round(b * 0.85) : b).toLocaleString('en-US'); });
                 });
             }
 
-            // FONDOS INTERACTIVOS (ORBES)
-            const sBg = document.getElementById('smoke-bg'), animEls = [];
-            if (sBg) {
-                [{ t: 10, l: 15 }, { t: 25, l: 75 }, { t: 60, l: 20 }, { t: 70, l: 80 }, { t: 40, l: 50 }].forEach(c => {
-                    let d = document.createElement('div');
-                    d.className = 'absolute bg-gradient-to-tr from-brand-primary/20 to-brand-red/10 blur-[100px] rounded-full';
-                    d.style.cssText = `width:${Math.random() * 200 + 150}px;height:${Math.random() * 200 + 150}px;left:${c.l}%;`;
-                    sBg.appendChild(d);
-                    animEls.push({ e: d, by: (window.innerHeight * c.t) / 100, s: Math.random() * 0.15 + 0.05, sq: false });
-                });
+            // Navbar Scroll
+            const nav = document.getElementById('main-nav'); let lastY = window.scrollY;
+            window.addEventListener('scroll', () => { requestAnimationFrame(() => { if (!nav) return; const curY = window.scrollY; if (curY > 80) { nav.classList.add('bg-[#131313]', 'bg-opacity-95', 'backdrop-blur-md', 'py-4'); nav.classList.remove('bg-transparent', 'py-6'); if (curY > lastY) nav.classList.add('-translate-y-full'); else nav.classList.remove('-translate-y-full'); } else { nav.classList.add('bg-transparent', 'py-6'); nav.classList.remove('bg-[#131313]', 'bg-opacity-95', 'backdrop-blur-md', 'py-4', '-translate-y-full'); } lastY = curY; }); }, { passive: true });
 
-                [{ t: 5, l: 10 }, { t: 15, l: 60 }, { t: 55, l: 15 }, { t: 65, l: 70 }].forEach(c => {
-                    let d = document.createElement('div');
-                    d.className = 'absolute border border-gray-500/20 rounded-sm';
-                    d.style.cssText = `width:${Math.random() * 150 + 50}px;height:${Math.random() * 150 + 50}px;left:${c.l}%;`;
-                    sBg.appendChild(d);
-                    animEls.push({ e: d, by: (window.innerHeight * c.t) / 100, br: Math.random() * 360, s: Math.random() * 0.3 + 0.1, sq: true });
-                });
-
-                let mX = window.innerWidth / 2, mY = window.innerHeight / 2;
-                document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
-
-                function renderBg() {
-                    const sY = window.scrollY, tH = window.innerHeight * 1.5;
-                    animEls.forEach(i => {
-                        let wY = ((i.by - (sY * i.s)) % tH + tH) % tH;
-                        if (i.sq) {
-                            i.e.style.transform = `translateY(${wY - 100}px) rotate(${i.br + (sY * 0.05)}deg)`;
-                        } else {
-                            let r = i.e.getBoundingClientRect(), dX = mX - (r.left + r.width / 2), dY = mY - (r.top + r.height / 2), dist = Math.hypot(dX, dY);
-                            i.e.style.transform = dist < 300 ? `translate(${-(dX / dist) * ((300 - dist) / 300) * 60}px,${wY - 100 - (dY / dist) * ((300 - dist) / 300) * 60}px) scale(1.2)` : `translate(0,${wY - 100}px) scale(1)`;
-                        }
-                    });
-                    requestAnimationFrame(renderBg);
-                }
-                renderBg();
-            }
-
-            // STICKY NAVBAR CORREGIDA
-            const nav = document.getElementById('main-nav');
-            let lastY = window.scrollY;
-            window.addEventListener('scroll', () => {
-                requestAnimationFrame(() => {
-                    if (!nav) return;
-                    const currentY = window.scrollY;
-                    if (currentY > 80) {
-                        nav.classList.add('bg-[#131313]', 'bg-opacity-95', 'backdrop-blur-md', 'py-4');
-                        nav.classList.remove('bg-transparent', 'py-6');
-                        if (currentY > lastY) nav.classList.add('-translate-y-full');
-                        else nav.classList.remove('-translate-y-full');
-                    } else {
-                        nav.classList.add('bg-transparent', 'py-6');
-                        nav.classList.remove('bg-[#131313]', 'bg-opacity-95', 'backdrop-blur-md', 'py-4', '-translate-y-full');
-                    }
-                    lastY = currentY;
-                });
-            }, { passive: true });
-
-            // LOGO FOOTER
+            // Animación Logo Footer
             const fLogo = document.getElementById('footer-logo-container');
             if (fLogo) {
-                new IntersectionObserver((ent, obs) => {
-                    ent.forEach(e => {
-                        if (e.isIntersecting) {
-                            setTimeout(() => document.getElementById('f-flama-3')?.style.setProperty('opacity', '1'), 100);
-                            setTimeout(() => ['2', '4'].forEach(n => document.getElementById(`f-flama-${n}`)?.style.setProperty('opacity', '1')), 500);
-                            setTimeout(() => ['1', '5'].forEach(n => document.getElementById(`f-flama-${n}`)?.style.setProperty('opacity', '1')), 900);
-                            obs.unobserve(e.target);
-                        }
-                    });
-                }, { threshold: 0.5 }).observe(fLogo);
+                new IntersectionObserver((ent, obs) => { ent.forEach(e => { if (e.isIntersecting) { setTimeout(() => document.getElementById('f-flama-3')?.style.setProperty('opacity', '1'), 100); setTimeout(() => ['2', '4'].forEach(n => document.getElementById(`f-flama-${n}`)?.style.setProperty('opacity', '1')), 500); setTimeout(() => ['1', '5'].forEach(n => document.getElementById(`f-flama-${n}`)?.style.setProperty('opacity', '1')), 900); obs.unobserve(e.target); } }); }, { threshold: 0.5 }).observe(fLogo);
             }
 
-            // FORMULARIO WHATSAPP
-            document.getElementById('whatsappForm')?.addEventListener('submit', e => {
-                e.preventDefault();
-                const text = `Hola Flama Agency,%0A%0AMi nombre es: ${encodeURIComponent(document.getElementById('waName').value)}%0AMi correo es: ${encodeURIComponent(document.getElementById('waEmail').value)}%0A%0A${encodeURIComponent(document.getElementById('waMessage').value)}`;
-                window.open(`https://wa.me/51979456610?text=${text}`, '_blank');
-            });
-
+            // WhatsApp Form Principal
+            document.getElementById('whatsappForm')?.addEventListener('submit', e => { e.preventDefault(); const text = `Hola Flama Agency,%0A%0AMi nombre es: ${encodeURIComponent(document.getElementById('waName').value)}%0AMi correo es: ${encodeURIComponent(document.getElementById('waEmail').value)}%0A%0A${encodeURIComponent(document.getElementById('waMessage').value)}`; window.open(`https://wa.me/51979456610?text=${text}`, '_blank'); });
         });
 
-        // CONTROL DE MODALES VIDEO Y PDF
-        function openModal(id) {
-            const m = document.getElementById(id);
-            if (m) {
-                m.classList.remove('hidden');
-                if (id === 'videoModal') document.getElementById('myLocalVideo')?.play();
-                setTimeout(() => {
-                    m.children[0].classList.remove('scale-95', 'opacity-0');
-                    m.children[0].classList.add('scale-100', 'opacity-100');
-                }, 10);
-            }
-        }
+        // CONTROLADOR DE MODALES DE VIDEO Y PDF (Totalmente aislado del fondo de la página)
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('flex'); if (id === 'videoModal') document.getElementById('myLocalVideo')?.play(); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); if (id === 'videoModal') document.getElementById('myLocalVideo')?.pause(); }
 
-        function closeModal(id) {
-            const m = document.getElementById(id);
-            if (m) {
-                if (id === 'videoModal') document.getElementById('myLocalVideo')?.pause();
-                m.children[0].classList.remove('scale-100', 'opacity-100');
-                m.children[0].classList.add('scale-95', 'opacity-0');
-                setTimeout(() => m.classList.add('hidden'), 300);
-            }
-        }
-
+        // Cerrar modales clickeando fuera de ellos (solo .js-modal-content)
         document.addEventListener('click', e => {
-            document.querySelectorAll('.fixed.inset-0:not(.hidden)').forEach(m => {
-                // Cierra modales normales si no son el menu móvil
-                if (m.id !== 'mobile-menu' && (e.target === m || (m.children[0] && !m.children[0].contains(e.target) && e.target !== m.children[0])) && !e.target.closest('button[onclick^="openModal"]')) {
-                    closeModal(m.id);
+            document.querySelectorAll('.js-modal:not(.hidden)').forEach(m => {
+                const content = m.querySelector('.js-modal-content');
+                if (e.target === m || (content && !content.contains(e.target) && e.target !== content)) {
+                    if (!e.target.closest('button[onclick^="openModal"]')) closeModal(m.id);
                 }
             });
         });
-
     </script>
 </body>
 
