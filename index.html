@@ -24,7 +24,6 @@
     </script>
 
     <style>
-        /* BASE Y SCROLL REVEAL */
         .js-animate {
             opacity: 0;
             transform: translateY(40px) scale(0.98);
@@ -43,64 +42,6 @@
             color: #ffffff;
         }
 
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* ANIMACIONES CSS PARA EL FONDO (Reemplazo del JS problemático) */
-        @keyframes pulse-slow {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.6;
-            }
-
-            50% {
-                transform: scale(1.3);
-                opacity: 1;
-            }
-        }
-
-        @keyframes float-spin {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-30px) rotate(180deg);
-            }
-
-            100% {
-                transform: translateY(0) rotate(360deg);
-            }
-        }
-
-        .anim-pulse {
-            animation: pulse-slow 6s infinite ease-in-out;
-        }
-
-        .anim-float {
-            animation: float-spin 15s infinite linear;
-        }
-
-        .delay-1 {
-            animation-delay: 2s;
-        }
-
-        .delay-2 {
-            animation-delay: 4s;
-        }
-
-        .delay-3 {
-            animation-delay: 6s;
-        }
-
         /* TOGGLE PRECIOS */
         .toggle-checkbox:checked {
             right: 0;
@@ -111,7 +52,7 @@
             background-color: #7854FF;
         }
 
-        /* EFECTO NEÓN LOGO (Grueso en móvil: 4px, Fino en PC: 1.2px) */
+        /* EFECTO NEÓN LOGO (Grueso en móvil: 3px, Fino en PC: 1.2px) */
         .flama-letter-glow {
             fill: #ffffff;
             filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
@@ -121,7 +62,7 @@
         .flama-neon-glow {
             fill: transparent;
             stroke: url(#neon-gradient);
-            stroke-width: 4px;
+            stroke-width: 3px;
             stroke-linejoin: round;
             stroke-linecap: round;
             stroke-dasharray: 7.5 92.5;
@@ -134,7 +75,7 @@
         .flama-neon-core {
             fill: transparent;
             stroke: #ffffff;
-            stroke-width: 1.5px;
+            stroke-width: 1px;
             stroke-linejoin: round;
             stroke-linecap: round;
             stroke-dasharray: 7.5 92.5;
@@ -210,6 +151,15 @@
         }
 
         /* OTROS EFECTOS */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         .service-icon svg {
             width: 32px;
             height: 32px;
@@ -295,34 +245,8 @@
 
 <body class="font-sans relative">
 
-    <!-- FONDO BLINDADO 100% CSS (Jamás desaparecerá) -->
-    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <!-- Orbes -->
-        <div
-            class="absolute top-[10%] left-[10%] w-[250px] h-[250px] bg-brand-primary/20 rounded-full blur-[100px] anim-pulse">
-        </div>
-        <div
-            class="absolute top-[60%] left-[15%] w-[300px] h-[300px] bg-brand-primary/10 rounded-full blur-[100px] anim-pulse delay-1">
-        </div>
-        <div
-            class="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-brand-red/10 rounded-full blur-[100px] anim-pulse delay-2">
-        </div>
-        <div
-            class="absolute bottom-[10%] right-[15%] w-[250px] h-[250px] bg-brand-red/10 rounded-full blur-[100px] anim-pulse delay-3">
-        </div>
-        <!-- Cuadrados Flotantes -->
-        <div class="absolute top-[15%] left-[20%] w-[100px] h-[100px] border border-gray-500/20 rounded-sm anim-float">
-        </div>
-        <div
-            class="absolute top-[65%] left-[25%] w-[150px] h-[150px] border border-gray-500/20 rounded-sm anim-float delay-1">
-        </div>
-        <div
-            class="absolute top-[25%] right-[20%] w-[80px] h-[80px] border border-gray-500/20 rounded-sm anim-float delay-2">
-        </div>
-        <div
-            class="absolute bottom-[20%] right-[25%] w-[120px] h-[120px] border border-gray-500/20 rounded-sm anim-float delay-3">
-        </div>
-    </div>
+    <!-- FONDO INTERACTIVO DE ORBES Y CUADRADOS (JS SCROLL) -->
+    <div id="smoke-bg" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
 
     <div class="relative z-10">
 
@@ -342,7 +266,7 @@
                     <li><a href="#clientes" class="hover:text-brand-primary transition-colors pb-1">CLIENTES</a></li>
                     <li><a href="#contacto" class="hover:text-brand-primary transition-colors pb-1">CONTACTO</a></li>
                     <li><a href="https://wa.me/51979456610" target="_blank"
-                            class="bg-white text-brand-primary px-8 py-3 rounded font-black hover:bg-gray-200 transition-colors ml-4">WHATSAPP</a>
+                            class="bg-white text-brand-primary px-8 py-3 rounded font-black hover:bg-gray-200 transition-colors ml-4 uppercase">WHATSAPP</a>
                     </li>
                 </ul>
 
@@ -411,8 +335,7 @@
                 </div>
             </div>
 
-            <!-- CONTENIDO HERO -->
-            <div class="flex flex-col items-center w-full max-w-[1200px] mx-auto js-animate z-20 px-6"
+            <div class="flex flex-col items-center w-full max-w-[1200px] mx-auto js-animate z-20"
                 style="transition-delay: 1500ms;">
                 <h2
                     class="text-3xl md:text-5xl text-white font-black uppercase tracking-tight leading-tight mb-10 text-center w-full">
@@ -424,7 +347,8 @@
                         class="flex items-center gap-4 group cursor-pointer bg-transparent border-none p-0 text-left">
                         <div
                             class="border border-brand-red rounded flex items-center justify-center w-12 h-12 group-hover:bg-brand-red/10 transition-colors">
-                            <span class="text-brand-red text-lg ml-1">▷</span></div>
+                            <span class="text-brand-red text-lg ml-1">▷</span>
+                        </div>
                         <span class="text-brand-red text-[10px] tracking-[0.2em] uppercase font-bold">VER
                             REEL<br>2026</span>
                     </button>
@@ -443,7 +367,6 @@
             </div>
         </header>
 
-        <!-- SECCIÓN SERVICIOS -->
         <section id="servicios" class="py-24 max-w-[1400px] mx-auto px-6 js-animate mt-12 border-t-0">
             <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
                 <div><span
@@ -454,10 +377,12 @@
                 <div class="max-w-sm text-left md:text-right text-gray-400 text-xs leading-relaxed">Combinamos precisión
                     técnica con disrupción creativa para dominar mercados digitales saturados.</div>
             </div>
+
             <div class="border border-gray-800 rounded-sm overflow-hidden mb-8">
                 <div class="grid grid-cols-1 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-gray-800">
-                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full"><span
-                            class="text-4xl font-mono text-gray-700 mb-12 block">01</span>
+                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full">
+                        <!-- NUMEROS AHORA EN BLANCO -->
+                        <span class="text-4xl font-mono text-white mb-12 block">01</span>
                         <div class="text-brand-primary mb-6 service-icon"><svg fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -468,8 +393,9 @@
                         <p class="text-gray-500 text-[11px] leading-relaxed">Identidades forjadas para resistir el paso
                             del tiempo.</p>
                     </div>
-                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full"><span
-                            class="text-4xl font-mono text-gray-700 mb-12 block">02</span>
+                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full">
+                        <!-- NUMEROS AHORA EN BLANCO -->
+                        <span class="text-4xl font-mono text-white mb-12 block">02</span>
                         <div class="text-brand-red mb-6 service-icon"><svg fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -481,8 +407,9 @@
                         <p class="text-gray-500 text-[11px] leading-relaxed">Narrativas cinemáticas de alto impacto
                             visual.</p>
                     </div>
-                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full"><span
-                            class="text-4xl font-mono text-gray-700 mb-12 block">03</span>
+                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full">
+                        <!-- NUMEROS AHORA EN BLANCO -->
+                        <span class="text-4xl font-mono text-white mb-12 block">03</span>
                         <div class="text-brand-primary mb-6 service-icon"><svg fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -493,8 +420,9 @@
                         <p class="text-gray-500 text-[11px] leading-relaxed">Estrategias basadas en datos exponenciales.
                         </p>
                     </div>
-                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full"><span
-                            class="text-4xl font-mono text-gray-700 mb-12 block">04</span>
+                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full">
+                        <!-- NUMEROS AHORA EN BLANCO -->
+                        <span class="text-4xl font-mono text-white mb-12 block">04</span>
                         <div class="text-brand-red mb-6 service-icon"><svg fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -505,8 +433,9 @@
                         <p class="text-gray-500 text-[11px] leading-relaxed">Comunicación masiva con alta conversión.
                         </p>
                     </div>
-                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full"><span
-                            class="text-4xl font-mono text-gray-700 mb-12 block">05</span>
+                    <div class="p-8 hover:bg-gray-900/50 transition-colors flex flex-col h-full">
+                        <!-- NUMEROS AHORA EN BLANCO -->
+                        <span class="text-4xl font-mono text-white mb-12 block">05</span>
                         <div class="text-brand-primary mb-6 service-icon"><svg fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -527,7 +456,7 @@
         <!-- SECCIÓN PLANES -->
         <section id="planes" class="py-24 max-w-[1400px] mx-auto px-6 border-t-0">
             <h3 class="text-3xl md:text-5xl font-black mb-4 uppercase tracking-tighter js-animate">PLANES DE <br><span
-                    class="text-brand-red">IGNICIÓN</span></h3>
+                    class="text-brand-red">FLAMA/span></h3>
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 js-animate"
                 style="transition-delay: 100ms;">
                 <p class="text-gray-400 max-w-md text-sm mb-6 md:mb-0">Escala tu negocio con el plan que mejor se adapte
@@ -577,8 +506,7 @@
                             <p class="text-4xl font-black text-white leading-none">S/ <span
                                     class="precio-valor">1,200</span></p>
                         </div>
-                        <!-- TEXT-WHITE APLICADO AQUI -->
-                        <a href="https://wa.me/51979456610?text=Hola%20estoy%20interesado%20en%20el%20plan%20Emprendedor"
+                        <a href="https://wa.me/51979456610?text=Hola%20estoy%20interesado%20en%20el%20Plan%20Emprendedor"
                             target="_blank"
                             class="text-white text-[11px] font-black tracking-widest uppercase hover:text-brand-primary transition">COTIZAR</a>
                     </div>
@@ -606,7 +534,7 @@
                             <p class="text-4xl font-black text-white leading-none">S/ <span
                                     class="precio-valor">1,600</span></p>
                         </div>
-                        <a href="https://wa.me/51979456610?text=Hola%20estoy%20interesado%20en%20el%20plan%20Profesional"
+                        <a href="https://wa.me/51979456610?text=Hola%20estoy%20interesado%20en%20el%20Plan%20Profesional"
                             target="_blank"
                             class="w-full text-center bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] uppercase hover:bg-brand-primaryHover transition">SOLICITAR</a>
                     </div>
@@ -632,8 +560,7 @@
                             <p class="text-4xl font-black text-white leading-none">S/ <span
                                     class="precio-valor">2,000</span></p>
                         </div>
-                        <!-- TEXT-WHITE APLICADO AQUI -->
-                        <a href="https://wa.me/51979456610?text=Hola%20estoy%20interesado%20en%20el%20plan%20Empresario"
+                        <a href="https://wa.me/51979456610?text=Hola%20estoy%20interesado%20en%20el%20Plan%20Empresario"
                             target="_blank"
                             class="text-white text-[11px] font-black tracking-widest uppercase hover:text-brand-primary transition">COTIZAR</a>
                     </div>
@@ -713,7 +640,8 @@
                     <p
                         class="text-brand-primary text-[11px] mb-8 font-bold flex items-start gap-2 max-w-3xl leading-relaxed">
                         <span class="text-lg leading-none mt-[-4px]">*</span><span>Las fotografías, piezas y videos
-                            deben coordinarse dentro del mes puesto que no son acumulables.</span></p>
+                            deben coordinarse dentro del mes puesto que no son acumulables.</span>
+                    </p>
                     <div class="mb-6 flex items-center gap-4">
                         <h5 class="text-xs font-black uppercase text-white tracking-widest">NOTAS</h5>
                         <div class="h-px bg-gray-800 flex-grow"></div>
@@ -838,7 +766,8 @@
             class="py-32 max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center border-t-0">
             <div class="js-animate text-center md:text-left" style="transition-delay: 100ms;">
                 <h3 class="text-5xl md:text-8xl font-black uppercase mb-4 tracking-tighter leading-[0.9]">¿LISTO PARA
-                    <br><span class="text-brand-red">ENCENDER</span> <br>LA MECHA?</h3>
+                    <br><span class="text-brand-red">ENCENDER</span> <br>LA MECHA?
+                </h3>
             </div>
             <div class="bg-[#161618] p-8 md:p-12 rounded-sm border border-gray-800 js-animate relative shadow-2xl"
                 style="transition-delay: 300ms;">
@@ -910,17 +839,17 @@
                         </div>
                     </div>
                 </div>
-                <!-- NOTA THE FROG (LETRAS BLANCAS) -->
+                <!-- NOTA THE FROG -->
                 <div
-                    class="text-center text-[10px] text-gray-400 border-t border-gray-800/50 mt-16 pt-8 w-full uppercase tracking-widest">
-                    Esta página fue creada por <span class="text-white font-bold">The Frog Soluciones digitales</span>,
-                    escríbenos al <a href="https://wa.me/51913330912" target="_blank"
-                        class="text-white font-black hover:text-brand-primary transition-colors">913330912</a></div>
+                    class="text-center text-[10px] text-gray-600 border-t border-gray-800/50 mt-16 pt-8 w-full uppercase tracking-widest">
+                    Esta página fue creada por <span class="text-gray-400 font-bold">The Frog Soluciones
+                        digitales</span>, escríbenos al <a href="https://wa.me/51913330912" target="_blank"
+                        class="text-brand-primary font-black">913330912</a></div>
             </div>
         </footer>
     </div>
 
-    <!-- MODAL MENÚ MÓVIL AISLADO (No borra el fondo, funciona perfecto) -->
+    <!-- MODAL MENÚ MÓVIL (FUERA DEL FLUJO PARA EVITAR ERRORES DE FONDO) -->
     <div id="mobile-menu"
         class="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex-col justify-center items-center hidden opacity-0 transition-opacity duration-300">
         <button onclick="closeMobileMenu()" class="absolute top-6 right-6 text-white p-2 focus:outline-none"><svg
@@ -940,9 +869,9 @@
 
     <!-- Modales PDF y Video -->
     <div id="videoModal"
-        class="js-modal hidden fixed inset-0 z-[200] bg-black/90 flex items-center justify-center backdrop-blur-sm">
+        class="custom-modal hidden fixed inset-0 z-[200] bg-black/90 flex items-center justify-center backdrop-blur-sm transition-opacity duration-300">
         <div
-            class="relative w-full max-w-sm h-[85vh] mx-4 bg-black border border-gray-800 rounded-lg p-1 js-modal-content">
+            class="relative w-full max-w-sm h-[85vh] mx-4 bg-black border border-gray-800 rounded-lg p-1 transform transition-all scale-95 opacity-0 js-modal-content">
             <button onclick="closeModal('videoModal')"
                 class="absolute -top-4 -right-4 bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">✕</button>
             <div class="w-full h-full rounded overflow-hidden"><video id="myLocalVideo" class="max-w-full max-h-full"
@@ -952,9 +881,9 @@
         </div>
     </div>
     <div id="pdfModal"
-        class="js-modal hidden fixed inset-0 z-[200] bg-black/90 flex items-center justify-center backdrop-blur-sm">
+        class="custom-modal hidden fixed inset-0 z-[200] bg-black/90 flex items-center justify-center backdrop-blur-sm transition-opacity duration-300">
         <div
-            class="relative w-full max-w-6xl h-[85vh] mx-4 bg-gray-900 border border-gray-800 rounded-lg p-1 js-modal-content">
+            class="relative w-full max-w-6xl h-[85vh] mx-4 bg-gray-900 border border-gray-800 rounded-lg p-1 transform transition-all scale-95 opacity-0 js-modal-content">
             <button onclick="closeModal('pdfModal')"
                 class="absolute -top-4 -right-4 bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">✕</button>
             <div class="w-full h-full rounded overflow-hidden"><embed src="pdf/brochure-flama.pdf"
@@ -963,21 +892,55 @@
     </div>
 
     <script>
-        function openMobileMenu() { const m = document.getElementById('mobile-menu'); if (m) { m.classList.remove('hidden'); m.classList.add('flex'); setTimeout(() => { m.classList.add('opacity-100'); m.classList.remove('opacity-0'); }, 10); } }
-        function closeMobileMenu() { const m = document.getElementById('mobile-menu'); if (m) { m.classList.remove('opacity-100'); m.classList.add('opacity-0'); setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300); } }
+        function openMobileMenu() {
+            const m = document.getElementById('mobile-menu');
+            if (m) { m.classList.remove('hidden'); m.classList.add('flex'); setTimeout(() => { m.classList.add('opacity-100'); m.classList.remove('opacity-0'); }, 10); }
+        }
+        function closeMobileMenu() {
+            const m = document.getElementById('mobile-menu');
+            if (m) { m.classList.remove('opacity-100'); m.classList.add('opacity-0'); setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300); }
+        }
 
         document.addEventListener("DOMContentLoaded", () => {
-            // Animación Logo Hero
+            // Animaciones Logo Hero
             setTimeout(() => { if (document.getElementById('flama-3')) document.getElementById('flama-3').style.opacity = '1' }, 100);
             setTimeout(() => { [1, 2, 4, 5].forEach((n, i) => { const el = document.getElementById(`flama-${n}`); if (el) setTimeout(() => el.classList.add('show'), i * 120) }) }, 1100);
 
-            // Intersection Observer
+            // Scroll Reveal Animaciones
             const observer = new IntersectionObserver((ent, obs) => { ent.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
             document.querySelectorAll('.js-animate').forEach(el => observer.observe(el));
 
-            // FONDO DINÁMICO HTML + CSS (No desaparece nunca)
-            // Se han asignado por código a `<div id="bg-animation-layer">`
-            // (Esta es una opción puramente estética con divs absolutos que no requieren recálculo)
+            // RESTAURACIÓN DE FONDO DE ORBES Y CUADRADOS ANIMADOS EN JS
+            const sBg = document.getElementById('smoke-bg'), animEls = [];
+            if (sBg) {
+                [{ t: 10, l: 15 }, { t: 25, l: 75 }, { t: 60, l: 20 }, { t: 70, l: 80 }, { t: 40, l: 50 }].forEach(c => {
+                    let d = document.createElement('div'); d.className = 'absolute bg-gradient-to-tr from-brand-primary/20 to-brand-red/10 blur-[100px] rounded-full';
+                    d.style.cssText = `width:${Math.random() * 200 + 150}px;height:${Math.random() * 200 + 150}px;left:${c.l}%;`;
+                    sBg.appendChild(d); animEls.push({ e: d, by: (window.innerHeight * c.t) / 100, s: Math.random() * 0.15 + 0.05, sq: false });
+                });
+
+                // CUADRADOS AÑADIDOS AL FONDO
+                [{ t: 5, l: 10 }, { t: 15, l: 60 }, { t: 55, l: 15 }, { t: 65, l: 70 }].forEach(c => {
+                    let d = document.createElement('div'); d.className = 'absolute border border-gray-500/20 rounded-sm';
+                    d.style.cssText = `width:${Math.random() * 150 + 50}px;height:${Math.random() * 150 + 50}px;left:${c.l}%;`;
+                    sBg.appendChild(d); animEls.push({ e: d, by: (window.innerHeight * c.t) / 100, br: Math.random() * 360, s: Math.random() * 0.3 + 0.1, sq: true });
+                });
+
+                let mX = window.innerWidth / 2, mY = window.innerHeight / 2;
+                document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
+
+                function rBg() {
+                    const sY = window.scrollY, tH = window.innerHeight * 1.5;
+                    animEls.forEach(i => {
+                        let wY = ((i.by - (sY * i.s)) % tH + tH) % tH;
+                        if (i.sq) i.e.style.transform = `translateY(${wY - 100}px) rotate(${i.br + (sY * 0.05)}deg)`;
+                        else {
+                            let r = i.e.getBoundingClientRect(), dX = mX - (r.left + r.width / 2), dY = mY - (r.top + r.height / 2), dist = Math.hypot(dX, dY);
+                            i.e.style.transform = dist < 300 ? `translate(${-(dX / dist) * ((300 - dist) / 300) * 60}px,${wY - 100 - (dY / dist) * ((300 - dist) / 300) * 60}px) scale(1.2)` : `translate(0,${wY - 100}px) scale(1)`;
+                        }
+                    }); requestAnimationFrame(rBg);
+                } rBg();
+            }
 
             // Carrusel de Clientes
             const wT = document.getElementById('wave-track');
@@ -1020,17 +983,36 @@
                 new IntersectionObserver((ent, obs) => { ent.forEach(e => { if (e.isIntersecting) { setTimeout(() => document.getElementById('f-flama-3')?.style.setProperty('opacity', '1'), 100); setTimeout(() => ['2', '4'].forEach(n => document.getElementById(`f-flama-${n}`)?.style.setProperty('opacity', '1')), 500); setTimeout(() => ['1', '5'].forEach(n => document.getElementById(`f-flama-${n}`)?.style.setProperty('opacity', '1')), 900); obs.unobserve(e.target); } }); }, { threshold: 0.5 }).observe(fLogo);
             }
 
-            // WhatsApp Form Principal
+            // WhatsApp Form
             document.getElementById('whatsappForm')?.addEventListener('submit', e => { e.preventDefault(); const text = `Hola Flama Agency,%0A%0AMi nombre es: ${encodeURIComponent(document.getElementById('waName').value)}%0AMi correo es: ${encodeURIComponent(document.getElementById('waEmail').value)}%0A%0A${encodeURIComponent(document.getElementById('waMessage').value)}`; window.open(`https://wa.me/51979456610?text=${text}`, '_blank'); });
         });
 
-        // CONTROLADOR DE MODALES DE VIDEO Y PDF (Totalmente aislado del fondo de la página)
-        function openModal(id) { document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('flex'); if (id === 'videoModal') document.getElementById('myLocalVideo')?.play(); }
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); if (id === 'videoModal') document.getElementById('myLocalVideo')?.pause(); }
+        // Modales Individuales
+        function openModal(id) {
+            const m = document.getElementById(id);
+            if (m) {
+                m.classList.remove('hidden');
+                m.classList.add('flex');
+                if (id === 'videoModal') document.getElementById('myLocalVideo')?.play();
+                setTimeout(() => {
+                    m.querySelector('.js-modal-content').classList.add('scale-100', 'opacity-100');
+                    m.querySelector('.js-modal-content').classList.remove('scale-95', 'opacity-0');
+                }, 10);
+            }
+        }
+        function closeModal(id) {
+            const m = document.getElementById(id);
+            if (m) {
+                if (id === 'videoModal') document.getElementById('myLocalVideo')?.pause();
+                m.querySelector('.js-modal-content').classList.remove('scale-100', 'opacity-100');
+                m.querySelector('.js-modal-content').classList.add('scale-95', 'opacity-0');
+                setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300);
+            }
+        }
 
-        // Cerrar modales clickeando fuera de ellos (solo .js-modal-content)
+        // CERRAR SOLO MODALES AL CLICLEAR FUERA (EXCLUYENDO FONDO)
         document.addEventListener('click', e => {
-            document.querySelectorAll('.js-modal:not(.hidden)').forEach(m => {
+            document.querySelectorAll('.custom-modal:not(.hidden)').forEach(m => {
                 const content = m.querySelector('.js-modal-content');
                 if (e.target === m || (content && !content.contains(e.target) && e.target !== content)) {
                     if (!e.target.closest('button[onclick^="openModal"]')) closeModal(m.id);
