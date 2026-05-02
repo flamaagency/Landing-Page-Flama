@@ -299,7 +299,7 @@
 
 <body class="font-sans relative">
 
-    <!-- FONDO BLINDADO 100% CSS -->
+    <!-- FONDO BLINDADO 100% CSS Y JS CONTROLADO -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden" id="bg-layer">
         <!-- Orbes -->
         <div
@@ -315,15 +315,19 @@
             class="absolute bottom-[10%] right-[15%] w-[250px] h-[250px] bg-brand-red/10 rounded-full blur-[100px] anim-pulse delay-3">
         </div>
 
-        <!-- Cuadrados Flotantes (La animación se hará por Scroll JS) -->
-        <div id="sq-1" class="absolute top-[15%] left-[20%] w-[100px] h-[100px] border border-gray-500/20 rounded-sm">
+        <!-- Cuadrados Flotantes (Distancia blindada para móvil y PC, rotación por JS) -->
+        <div id="sq-1"
+            class="absolute top-[10%] md:top-[15%] -left-4 md:left-[20%] w-[80px] md:w-[100px] h-[80px] md:h-[100px] border border-gray-500/20 rounded-sm">
         </div>
-        <div id="sq-2" class="absolute top-[65%] left-[25%] w-[150px] h-[150px] border border-gray-500/20 rounded-sm">
+        <div id="sq-2"
+            class="absolute top-[75%] md:top-[65%] -left-8 md:left-[25%] w-[110px] md:w-[150px] h-[110px] md:h-[150px] border border-gray-500/20 rounded-sm">
         </div>
-        <div id="sq-3" class="absolute top-[25%] right-[20%] w-[80px] h-[80px] border border-gray-500/20 rounded-sm">
+        <div id="sq-3"
+            class="absolute top-[35%] md:top-[25%] -right-4 md:right-[20%] w-[60px] md:w-[80px] h-[60px] md:h-[80px] border border-gray-500/20 rounded-sm">
         </div>
         <div id="sq-4"
-            class="absolute bottom-[20%] right-[25%] w-[120px] h-[120px] border border-gray-500/20 rounded-sm"></div>
+            class="absolute bottom-[10%] md:bottom-[20%] -right-8 md:right-[25%] w-[100px] md:w-[120px] h-[100px] md:h-[120px] border border-gray-500/20 rounded-sm">
+        </div>
     </div>
 
     <div class="relative z-10">
@@ -539,7 +543,7 @@
                 BROCHURE <span class="text-lg">→</span></button>
         </section>
 
-        <!-- SECCIÓN PLANES (ACTUALIZADO A "PLANES DE FLAMA" Y DESCUENTO 30% FIJO) -->
+        <!-- SECCIÓN PLANES -->
         <section id="planes" class="py-24 max-w-[1400px] mx-auto px-6 border-t-0">
             <h3 class="text-3xl md:text-5xl font-black mb-4 uppercase tracking-tighter js-animate">PLANES DE <br><span
                     class="text-brand-red uppercase">FLAMA</span></h3>
@@ -1003,56 +1007,27 @@
             const observer = new IntersectionObserver((ent, obs) => { ent.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
             document.querySelectorAll('.js-animate').forEach(el => observer.observe(el));
 
-            const sBg = document.getElementById('smoke-bg'), animEls = [];
-            if (sBg) {
-                [{ t: 10, l: 15 }, { t: 25, l: 75 }, { t: 60, l: 20 }, { t: 70, l: 80 }, { t: 40, l: 50 }].forEach(c => {
-                    let d = document.createElement('div'); d.className = 'absolute bg-gradient-to-tr from-brand-primary/20 to-brand-red/10 blur-[100px] rounded-full transition-transform duration-500 ease-out';
-                    d.style.cssText = `width:${Math.random() * 200 + 150}px;height:${Math.random() * 200 + 150}px;left:${c.l}%; top:${c.t}%;`;
-                    sBg.appendChild(d); animEls.push({ e: d, type: 'orb' });
+            // ANIMACIÓN DE CUADRADOS (Rotan solo con scroll, con distancias blindadas)
+            const squares = [
+                { el: document.getElementById('sq-1'), rotSpeed: 0.15, dir: 1 },
+                { el: document.getElementById('sq-2'), rotSpeed: 0.1, dir: -1 },
+                { el: document.getElementById('sq-3'), rotSpeed: 0.12, dir: 1 },
+                { el: document.getElementById('sq-4'), rotSpeed: 0.08, dir: -1 }
+            ];
+
+            function updateSquares() {
+                const sY = window.scrollY;
+                squares.forEach(sq => {
+                    if (sq.el) {
+                        const rotation = sY * sq.rotSpeed * sq.dir;
+                        const moveY = Math.sin(sY * 0.002) * 20;
+                        sq.el.style.transform = `translateY(${moveY}px) rotate(${rotation}deg)`;
+                    }
                 });
-
-                [{ t: 5, l: 10 }, { t: 15, l: 60 }, { t: 55, l: 15 }, { t: 65, l: 70 }].forEach(c => {
-                    let d = document.createElement('div'); d.className = 'absolute border border-gray-500/20 rounded-sm';
-                    d.style.cssText = `width:${Math.random() * 150 + 50}px;height:${Math.random() * 150 + 50}px;left:${c.l}%;`;
-                    sBg.appendChild(d); animEls.push({ e: d, type: 'square', by: (window.innerHeight * c.t) / 100, br: Math.random() * 360, s: Math.random() * 0.3 + 0.1 });
-                });
-
-                let mX = window.innerWidth / 2, mY = window.innerHeight / 2;
-
-                function updateBackgroundElements() {
-                    const sY = window.scrollY;
-                    const tH = window.innerHeight * 1.5;
-
-                    animEls.forEach(item => {
-                        if (item.type === 'square') {
-                            // ROTACIÓN VINCULADA ESTRICTAMENTE AL SCROLL
-                            let wY = ((item.by - (sY * item.s)) % tH + tH) % tH;
-                            item.e.style.transform = `translateY(${wY - 100}px) rotate(${item.br + (sY * 0.1)}deg)`;
-                        } else {
-                            // ORBES CON EFECTO REPELENTE AL MOUSE
-                            let r = item.e.getBoundingClientRect();
-                            const orbCenterX = r.left + (r.width / 2);
-                            const orbCenterY = r.top + (r.height / 2);
-                            const dx = mX - orbCenterX;
-                            const dy = mY - orbCenterY;
-                            const distance = Math.sqrt(dx * dx + dy * dy);
-
-                            if (distance < 300) {
-                                const force = (300 - distance) / 300;
-                                const repulseX = -(dx / distance) * force * 60;
-                                const repulseY = -(dy / distance) * force * 60;
-                                item.e.style.transform = `translate(${repulseX}px, ${repulseY}px) scale(1.2)`;
-                            } else {
-                                item.e.style.transform = `translate(0px, 0px) scale(1)`;
-                            }
-                        }
-                    });
-                }
-
-                window.addEventListener('scroll', () => requestAnimationFrame(updateBackgroundElements), { passive: true });
-                document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; requestAnimationFrame(updateBackgroundElements); });
-                updateBackgroundElements();
             }
+
+            window.addEventListener('scroll', () => requestAnimationFrame(updateSquares), { passive: true });
+            updateSquares(); // Run once on load
 
             const wT = document.getElementById('wave-track');
             if (wT) {
