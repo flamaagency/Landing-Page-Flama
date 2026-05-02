@@ -439,8 +439,7 @@
                             class="flex items-center gap-4 group cursor-pointer bg-transparent border-none p-0 text-left">
                             <div
                                 class="border border-brand-red rounded flex items-center justify-center w-12 h-12 group-hover:bg-brand-red/10 transition-colors">
-                                <span class="text-brand-red text-lg ml-1">▷</span>
-                            </div>
+                                <span class="text-brand-red text-lg ml-1">▷</span></div>
                             <span class="text-brand-red text-[10px] tracking-[0.2em] uppercase font-bold text-left">VER
                                 REEL<br>2026</span>
                         </button>
@@ -448,7 +447,7 @@
                 </div>
             </div>
 
-            <!-- INDICADOR SCROLL EN FLUJO NATURAL (mt-auto lo empuja al fondo sin que choque con nada) -->
+            <!-- INDICADOR SCROLL EN FLUJO NATURAL -->
             <div class="w-full flex justify-center js-animate z-20 mt-auto pt-8" style="transition-delay: 2000ms;">
                 <div class="flex flex-col items-center">
                     <span class="text-[9px] text-gray-500 tracking-[0.3em] uppercase mb-4 font-bold">EXPLORA NUESTROS
@@ -542,7 +541,7 @@
                 BROCHURE <span class="text-lg">→</span></button>
         </section>
 
-        <!-- SECCIÓN PLANES (ACTUALIZADO A "PLANES DE FLAMA") -->
+        <!-- SECCIÓN PLANES (ACTUALIZADO A "PLANES DE FLAMA" Y DESCUENTO 30% FIJO) -->
         <section id="planes" class="py-24 max-w-[1400px] mx-auto px-6 border-t-0">
             <h3 class="text-3xl md:text-5xl font-black mb-4 uppercase tracking-tighter js-animate">PLANES DE <br><span
                     class="text-brand-red uppercase">FLAMA</span></h3>
@@ -551,34 +550,22 @@
                 <p class="text-gray-400 max-w-md text-sm mb-6 md:mb-0">Escala tu negocio con el plan que mejor se adapte
                     a tu fase de crecimiento.</p>
                 <div class="flex flex-col items-start md:items-end gap-4 w-full md:w-auto">
-                    <div class="flex gap-2 bg-brand-card p-1 rounded-lg border border-gray-800"><button
-                            id="btn-marketing"
+                    <div class="flex gap-2 bg-brand-card p-1 rounded-lg border border-gray-800">
+                        <button id="btn-marketing"
                             class="px-4 py-1 text-[11px] uppercase tracking-wider rounded bg-gray-800 text-white font-bold transition-all duration-300">Marketing</button><button
                             id="btn-web"
                             class="px-4 py-1 text-[11px] uppercase tracking-wider rounded text-gray-400 hover:text-white transition-all duration-300">Desarrollo
-                            Web</button></div>
-                    <div class="flex items-center gap-3 text-sm"><span
-                            class="text-gray-400 font-semibold text-[11px] uppercase tracking-wider transition-colors"
-                            id="label-mensual">Mensual</span>
-                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200">
-                            <input type="checkbox" name="toggle" id="toggle-descuento"
-                                class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-300 ease-in-out" /><label
-                                for="toggle-descuento"
-                                class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-600 cursor-pointer transition-colors"></label>
-                        </div><span
-                            class="text-gray-400 font-semibold text-[11px] uppercase tracking-wider transition-colors"
-                            id="label-anual">3 Meses <span class="text-brand-red ml-1">-15%</span></span>
+                            Web</button>
                     </div>
                 </div>
             </div>
 
             <div id="planes-marketing-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-                <div
-                    class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
+                <!-- MKT Emprendedor -->
+                <div class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
                     <span class="text-[10px] font-bold text-gray-500 mb-6 block">01</span>
                     <h4 class="text-2xl font-black uppercase text-white mb-2">PLAN EMPRENDEDOR</h4>
-                    <p class="text-brand-primary text-[10px] uppercase tracking-widest font-bold mb-8">FACEBOOK /
-                        INSTAGRAM / TIKTOK</p>
+                    <p class="text-brand-primary text-[10px] uppercase tracking-widest font-bold mb-8">FACEBOOK / INSTAGRAM / TIKTOK</p>
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
                         <li class="li-mkt">Propuesta de contenido para RRSS.</li>
                         <li class="li-mkt">Diseño de perfil y portada.</li>
@@ -589,23 +576,19 @@
                         <li class="li-mkt">Gestión de pauta digital.</li>
                     </ul>
                     <div class="flex justify-between items-end mt-auto pt-8 border-t border-gray-800/50">
-                        <div data-precio-base="1200">
-                            <p class="text-4xl font-black text-white leading-none">S/ <span
-                                    class="precio-valor">1,200</span></p>
-                        </div><a
-                            href="https://api.whatsapp.com/send?phone=51979456610&text=Hola%20estoy%20interesado%20en%20el%20Plan%20Emprendedor"
-                            target="_blank"
-                            class="text-white text-[11px] font-black tracking-widest uppercase hover:text-brand-primary transition">COTIZAR</a>
+                        <div>
+                            <p class="text-gray-500 line-through text-sm mb-1">S/ 1,500</p>
+                            <p class="text-4xl font-black text-white leading-none">S/ 1,050 <span class="text-[10px] text-brand-red tracking-widest uppercase ml-2 align-middle border border-brand-red px-1 py-0.5 rounded">-30% OFF</span></p>
+                        </div>
                     </div>
+                    <a href="https://api.whatsapp.com/send?phone=51979456610&text=Hola%20estoy%20interesado%20en%20el%20Plan%20Emprendedor" target="_blank" class="w-full text-center border border-gray-600 text-white font-black py-4 rounded-sm text-[11px] uppercase hover:bg-gray-800 transition mt-6">COTIZAR</a>
                 </div>
-                <div
-                    class="bg-[#1a1a1a] p-8 rounded-sm border-2 border-brand-primary relative flex flex-col js-animate shadow-2xl lg:scale-105 transform transition duration-300">
-                    <span
-                        class="absolute top-0 right-0 bg-brand-primary text-white text-[9px] px-3 py-1.5 uppercase font-bold rounded-bl-sm">RECOMENDADO</span><span
-                        class="text-[10px] font-bold text-gray-500 mb-6 block">02</span>
+
+                <!-- MKT Profesional -->
+                <div class="bg-[#1a1a1a] p-8 rounded-sm border-2 border-brand-primary relative flex flex-col js-animate shadow-2xl lg:scale-105 transform transition duration-300">
+                    <span class="absolute top-0 right-0 bg-brand-primary text-white text-[9px] px-3 py-1.5 uppercase font-bold rounded-bl-sm">RECOMENDADO</span><span class="text-[10px] font-bold text-gray-500 mb-6 block">02</span>
                     <h4 class="text-2xl font-black uppercase text-brand-primary mb-2">PLAN PROFESIONAL</h4>
-                    <p class="text-brand-primary text-[10px] uppercase tracking-widest font-bold mb-8">FACEBOOK /
-                        INSTAGRAM / TIKTOK</p>
+                    <p class="text-brand-primary text-[10px] uppercase tracking-widest font-bold mb-8">FACEBOOK / INSTAGRAM / TIKTOK</p>
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
                         <li class="li-mkt">Propuesta de contenido para RRSS.</li>
                         <li class="li-mkt">Diseño de perfil y portada.</li>
@@ -616,21 +599,19 @@
                         <li class="li-mkt">Reporte mensual digital.</li>
                     </ul>
                     <div class="mt-auto pt-8 border-t border-gray-800/50 flex flex-col items-center">
-                        <div data-precio-base="1600" class="mb-6">
-                            <p class="text-4xl font-black text-white leading-none">S/ <span
-                                    class="precio-valor">1,600</span></p>
-                        </div><a
-                            href="https://api.whatsapp.com/send?phone=51979456610&text=Hola%20estoy%20interesado%20en%20el%20Plan%20Profesional"
-                            target="_blank"
-                            class="w-full text-center bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] uppercase hover:bg-brand-primaryHover transition">SOLICITAR</a>
+                        <div class="mb-6 flex flex-col items-center">
+                            <p class="text-gray-500 line-through text-sm mb-1">S/ 2,000</p>
+                            <p class="text-4xl font-black text-brand-primary leading-none flex items-center gap-2">S/ 1,400 <span class="text-[10px] text-brand-red tracking-widest uppercase border border-brand-red px-1 py-0.5 rounded">-30% OFF</span></p>
+                        </div>
+                        <a href="https://api.whatsapp.com/send?phone=51979456610&text=Hola%20estoy%20interesado%20en%20el%20Plan%20Profesional" target="_blank" class="w-full text-center bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] uppercase hover:bg-brand-primaryHover transition">SOLICITAR</a>
                     </div>
                 </div>
-                <div
-                    class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
+
+                <!-- MKT Empresario -->
+                <div class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
                     <span class="text-[10px] font-bold text-gray-500 mb-6 block">03</span>
                     <h4 class="text-2xl font-black uppercase text-white mb-2">PLAN EMPRESARIO</h4>
-                    <p class="text-brand-primary text-[10px] uppercase tracking-widest font-bold mb-8">FACEBOOK /
-                        INSTAGRAM / TIKTOK</p>
+                    <p class="text-brand-primary text-[10px] uppercase tracking-widest font-bold mb-8">FACEBOOK / INSTAGRAM / TIKTOK</p>
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
                         <li class="li-mkt">Propuesta de contenido para RRSS.</li>
                         <li class="li-mkt">Diseño de perfil y portada.</li>
@@ -641,29 +622,28 @@
                         <li class="li-mkt">Reporte mensual digital.</li>
                     </ul>
                     <div class="flex justify-between items-end mt-auto pt-8 border-t border-gray-800/50">
-                        <div data-precio-base="2000">
-                            <p class="text-4xl font-black text-white leading-none">S/ <span
-                                    class="precio-valor">2,000</span></p>
-                        </div><a
-                            href="https://api.whatsapp.com/send?phone=51979456610&text=Hola%20estoy%20interesado%20en%20el%20Plan%20Empresario"
-                            target="_blank"
-                            class="text-white text-[11px] font-black tracking-widest uppercase hover:text-brand-primary transition">COTIZAR</a>
+                        <div>
+                            <p class="text-gray-500 line-through text-sm mb-1">S/ 2,500</p>
+                            <p class="text-4xl font-black text-white leading-none">S/ 1,750 <span class="text-[10px] text-brand-red tracking-widest uppercase ml-2 align-middle border border-brand-red px-1 py-0.5 rounded">-30% OFF</span></p>
+                        </div>
                     </div>
+                    <a href="https://api.whatsapp.com/send?phone=51979456610&text=Hola%20estoy%20interesado%20en%20el%20Plan%20Empresario" target="_blank" class="w-full text-center border border-gray-600 text-white font-black py-4 rounded-sm text-[11px] uppercase hover:bg-gray-800 transition mt-6">COTIZAR</a>
                 </div>
             </div>
 
+            <!-- PLANES WEB -->
             <div id="planes-web-grid" class="hidden grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-                <div
-                    class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
+                <!-- Web Landing -->
+                <div class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
                     <h4 class="text-2xl font-black uppercase text-white mb-4">LANDING PAGE</h4>
-                    <div data-precio-base="1200" class="mb-4">
-                        <p class="text-4xl font-black text-white leading-none">S/ <span
-                                class="precio-valor">1,200</span></p>
+                    <div class="mb-4">
+                        <p class="text-gray-500 line-through text-sm mb-1">S/ 1,800</p>
+                        <p class="text-4xl font-black text-white leading-none">S/ 1,260 <span class="text-[10px] text-brand-red tracking-widest uppercase ml-2 align-middle border border-brand-red px-1 py-0.5 rounded">-30% OFF</span></p>
                     </div>
                     <p class="text-gray-400 text-xs mb-8">Pago único (3 meses garantía)</p>
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
                         <li class="li-web">Diseño One-Page responsivo.</li>
-                        <li class="li-web">Dominio y Hosting (1 año).</li>
+                        <li class="li-web text-white font-bold">INCLUYE DOMINIO Y HOSTING (1 AÑO)</li>
                         <li class="li-web">Botón a WhatsApp.</li>
                     </ul>
                     <div class="mt-auto pt-6 border-t border-gray-800/50 flex flex-col items-center">
@@ -672,20 +652,19 @@
                             class="w-full border border-gray-600 text-white font-black py-4 rounded-sm text-[11px] uppercase text-center hover:bg-gray-800 transition">CONTACTAR</a>
                     </div>
                 </div>
-                <div
-                    class="bg-[#1a1a1a] p-8 rounded-sm border-2 border-brand-primary flex flex-col js-animate shadow-2xl lg:scale-105 transform transition duration-300 relative">
-                    <span
-                        class="absolute top-0 right-0 bg-brand-primary text-white text-[9px] px-3 py-1.5 uppercase font-bold rounded-bl-sm">RECOMENDADO</span>
+                <!-- Web Corp -->
+                <div class="bg-[#1a1a1a] p-8 rounded-sm border-2 border-brand-primary flex flex-col js-animate shadow-2xl lg:scale-105 transform transition duration-300 relative">
+                    <span class="absolute top-0 right-0 bg-brand-primary text-white text-[9px] px-3 py-1.5 uppercase font-bold rounded-bl-sm">RECOMENDADO</span>
                     <h4 class="text-2xl font-black uppercase text-white mb-4">WEB CORPORATIVA</h4>
-                    <div data-precio-base="1800" class="mb-4">
-                        <p class="text-4xl font-black text-brand-primary leading-none">S/ <span
-                                class="precio-valor">1,800</span></p>
+                    <div class="mb-4 flex flex-col items-start lg:items-center">
+                        <p class="text-gray-500 line-through text-sm mb-1">S/ 2,500</p>
+                        <p class="text-4xl font-black text-brand-primary leading-none flex items-center gap-2">S/ 1,750 <span class="text-[10px] text-brand-red tracking-widest uppercase border border-brand-red px-1 py-0.5 rounded">-30% OFF</span></p>
                     </div>
                     <p class="text-gray-400 text-xs mb-8">Pago único (3 meses garantía)</p>
                     <ul class="space-y-4 mb-8 text-[11px] text-gray-300 flex-grow">
                         <li class="li-web">Web multisección.</li>
                         <li class="li-web">Panel autoadministrable.</li>
-                        <li class="li-web">Dominio y Hosting (1 año).</li>
+                        <li class="li-web text-white font-bold">INCLUYE DOMINIO Y HOSTING (1 AÑO)</li>
                         <li class="li-web">SEO y Google Analytics.</li>
                     </ul>
                     <div class="mt-auto pt-8 border-t border-gray-800/50 flex flex-col items-center">
@@ -694,8 +673,8 @@
                             class="w-full bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] uppercase text-center hover:bg-brand-primaryHover transition">CONTRATAR</a>
                     </div>
                 </div>
-                <div
-                    class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
+                <!-- Web Sistemas -->
+                <div class="bg-[#1a1a1a] p-8 rounded-sm border border-gray-800 flex flex-col js-animate hover:border-gray-600 transition duration-300">
                     <h4 class="text-2xl font-black uppercase text-white mb-4">SISTEMAS A MEDIDA</h4>
                     <div class="mb-4">
                         <p class="text-4xl font-black text-white leading-none">COTIZAR</p>
@@ -715,15 +694,12 @@
             </div>
 
             <div class="mt-16 js-animate" style="transition-delay: 400ms;">
-                <div
-                    class="bg-[#161618] border border-gray-800 rounded-sm p-8 md:p-10 relative overflow-hidden shadow-2xl">
+                <div class="bg-[#161618] border border-gray-800 rounded-sm p-8 md:p-10 relative overflow-hidden shadow-2xl">
                     <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-brand-primary to-brand-red">
                     </div>
-                    <p
-                        class="text-brand-primary text-[11px] mb-8 font-bold flex items-start gap-2 max-w-3xl leading-relaxed">
+                    <p class="text-brand-primary text-[11px] mb-8 font-bold flex items-start gap-2 max-w-3xl leading-relaxed">
                         <span class="text-lg leading-none mt-[-4px]">*</span><span>Las fotografías, piezas y videos
-                            deben coordinarse dentro del mes puesto que no son acumulables.</span>
-                    </p>
+                            deben coordinarse dentro del mes puesto que no son acumulables.</span></p>
                     <div class="mb-6 flex items-center gap-4">
                         <h5 class="text-xs font-black uppercase text-white tracking-widest">NOTAS</h5>
                         <div class="h-px bg-gray-800 flex-grow"></div>
@@ -766,21 +742,28 @@
                     <h3
                         class="text-5xl md:text-7xl font-black uppercase mb-8 leading-[0.9] tracking-tighter text-white">
                         LA ESTÉTICA ES <br><span class="text-gray-500">RESISTENCIA.</span></h3>
-                    <p class="text-gray-400 text-sm mb-12 leading-relaxed max-w-lg mx-auto md:mx-0">No hacemos marketing
-                        tradicional. Construimos marcas que no pueden ser ignoradas. Cada pixel y estrategia está
-                        diseñada para dominar el mercado.</p>
+                    
+                    <div class="space-y-4 text-gray-400 text-sm mb-12 leading-relaxed max-w-lg mx-auto md:mx-0 text-center md:text-left">
+                        <p>Soy Diana Gálvez, estratega de marketing y creadora de Flama Agency. Mi enfoque es directo: construir marcas que conecten, comuniquen y conviertan.</p>
+                        <p>Tengo más de 12 años desarrollando estrategias, liderando equipos y ejecutando campañas que generan resultados medibles. Trabajamos con criterio, análisis y decisiones que impactan en el negocio.</p>
+                        <p>Flama no es solo creatividad. Es estrategia bien pensada para que las marcas crezcan de verdad.</p>
+                    </div>
+
                     <div class="flex flex-wrap justify-center md:justify-start gap-6 mb-16 items-center">
                         <img src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-photoshop.png"
-                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition"><img
-                            src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-premiere-pro.png"
-                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition"><img
-                            src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-after-effects.png"
-                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition"><img
-                            src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-indesign.png"
-                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition"><img
-                            src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/freepik.svg"
-                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition invert"><img
-                            src="https://img.icons8.com/ios-filled/50/FFFFFF/canva.png"
+                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition">
+                        <img src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-illustrator.png"
+                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition">
+                        <img src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-premiere-pro.png"
+                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition">
+                        <img src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-after-effects.png"
+                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition">
+                        <img src="https://img.icons8.com/ios-filled/50/FFFFFF/adobe-indesign.png"
+                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/anthropic.svg"
+                            title="Claude - La IA más utilizada actualmente"
+                            class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition invert cursor-help">
+                        <img src="https://img.icons8.com/ios-filled/50/FFFFFF/canva.png"
                             class="w-8 h-8 opacity-70 hover:opacity-100 hover:scale-110 transition">
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 pt-10 border-t border-gray-800/50">
@@ -790,7 +773,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg></div>
-                            <p class="text-4xl font-black text-white mb-2">+10</p>
+                            <p class="text-4xl font-black text-white mb-2">+12</p>
                             <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">AÑOS EXPERIENCIA
                             </p>
                         </div>
@@ -833,49 +816,49 @@
         </section>
 
         <!-- SECCIÓN CLIENTES -->
-        <section id="clientes" class="py-24 js-animate overflow-hidden border-t-0 border-b-0 relative">
-            <div class="max-w-[1400px] mx-auto px-6 text-center md:text-left">
-                <h3 class="text-sm font-bold uppercase tracking-[0.2em] text-gray-400 mb-12">ELLOS CONFÍAN EN NOSOTROS
-                </h3>
+        <section id="clientes" class="py-24 overflow-hidden width-full border-t border-gray-800/50 bg-black/10">
+            <div class="max-w-[1400px] mx-auto px-6 mb-16 js-animate text-center md:text-left">
+                <span class="text-brand-red text-[10px] font-bold tracking-[0.2em] uppercase mb-2 block">PORTFOLIO</span>
+                <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">ELLOS CONFÍAN</h3>
+                <p class="text-gray-500 mt-4 max-w-md text-sm font-light mx-auto md:mx-0">Marcas que han encendido su potencial con nosotros.</p>
             </div>
-            <div class="relative w-full overflow-hidden py-10 wave-track-mask">
+            <div class="wave-track-mask relative w-full overflow-hidden py-10">
                 <div id="wave-track" class="flex flex-nowrap items-center gap-4 w-max px-2 h-[160px]"></div>
             </div>
         </section>
 
         <!-- SECCIÓN CONTACTO -->
-        <section id="contacto"
-            class="py-32 max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center border-t-0">
-            <div class="js-animate text-center md:text-left" style="transition-delay: 100ms;">
-                <h3 class="text-5xl md:text-8xl font-black uppercase mb-4 tracking-tighter leading-[0.9]">¿LISTO PARA
-                    <br><span class="text-brand-red">ENCENDER</span> <br>LA MECHA?
-                </h3>
-            </div>
-            <div class="bg-[#161618] p-8 md:p-12 rounded-sm border border-gray-800 js-animate relative shadow-2xl"
-                style="transition-delay: 300ms;">
-                <div
-                    class="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-red opacity-10 blur rounded-sm">
+        <section id="contacto" class="py-24 max-w-[1400px] mx-auto px-6 js-animate border-t border-gray-800/50 my-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="text-brand-red text-[10px] font-bold tracking-[0.2em] uppercase mb-2 block">CONTACTO</span>
+                    <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-6">¿LISTO PARA <br><span class="text-brand-primary">ENCENDER</span> TU MARCA?</h3>
+                    <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-10 font-light max-w-md">Cuéntanos sobre tu proyecto. Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas para trazar tu plan de acción.</p>
+                    <div class="space-y-4 text-sm text-gray-300">
+                        <p class="flex items-center gap-3"><span class="text-brand-primary text-lg">⦿</span> Chiclayo, Lambayeque - Perú</p>
+                        <p class="flex items-center gap-3"><span class="text-brand-primary text-lg">⦿</span> +51 979 456 610</p>
+                        <p class="flex items-center gap-3"><span class="text-brand-primary text-lg">⦿</span> contacto@flama.pe</p>
+                    </div>
                 </div>
-                <form id="whatsappForm" class="space-y-8 relative z-10">
-                    <div class="border-b border-gray-700 pb-2"><label
-                            class="block text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">NOMBRE</label><input
-                            type="text" id="waName"
-                            class="w-full bg-transparent border-none text-white focus:outline-none placeholder-gray-700 text-sm"
-                            required></div>
-                    <div class="border-b border-gray-700 pb-2"><label
-                            class="block text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">EMAIL</label><input
-                            type="email" id="waEmail"
-                            class="w-full bg-transparent border-none text-white focus:outline-none placeholder-gray-700 text-sm"
-                            required></div>
-                    <div class="border-b border-gray-700 pb-2"><label
-                            class="block text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">MENSAJE</label><textarea
-                            id="waMessage"
-                            class="w-full bg-transparent border-none text-white focus:outline-none resize-none h-16 placeholder-gray-700 text-sm"
-                            required></textarea></div>
-                    <button type="submit"
-                        class="w-full bg-brand-primary py-5 rounded-sm font-black uppercase tracking-widest text-[11px] hover:bg-brand-primaryHover transition-colors mt-8 text-white shadow-lg">ENVIAR
-                        MENSAJE</button>
-                </form>
+                <div class="bg-brand-card p-10 rounded-sm border border-gray-800 shadow-xl">
+                    <form id="whatsappForm" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <input type="text" id="waName" placeholder="NOMBRE COMPLETO" class="bg-brand-dark/50 border border-gray-700 text-white p-4 rounded-sm text-xs tracking-wider placeholder:text-gray-600 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition uppercase" required>
+                            <input type="text" placeholder="EMPRESA" class="bg-brand-dark/50 border border-gray-700 text-white p-4 rounded-sm text-xs tracking-wider placeholder:text-gray-600 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition uppercase">
+                        </div>
+                        <input type="email" id="waEmail" placeholder="CORREO ELECTRÓNICO" class="w-full bg-brand-dark/50 border border-gray-700 text-white p-4 rounded-sm text-xs tracking-wider placeholder:text-gray-600 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition uppercase" required>
+                        <input type="tel" placeholder="NÚMERO DE WHATSAPP" class="w-full bg-brand-dark/50 border border-gray-700 text-white p-4 rounded-sm text-xs tracking-wider placeholder:text-gray-600 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition uppercase">
+                        <select class="w-full bg-brand-dark/50 border border-gray-700 text-gray-400 p-4 rounded-sm text-xs tracking-wider focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition uppercase appearance-none">
+                            <option value="" disabled selected>INTERESADO EN EL PLAN...</option>
+                            <option value="emprendedor">PLAN EMPRENDEDOR</option>
+                            <option value="profesional">PLAN PROFESIONAL</option>
+                            <option value="empresario">PLAN EMPRESARIO</option>
+                            <option value="web">DESARROLLO WEB</option>
+                        </select>
+                        <textarea id="waMessage" placeholder="MENSAJE (OPCIONAL)" rows="4" class="w-full bg-brand-dark/50 border border-gray-700 text-white p-4 rounded-sm text-xs tracking-wider placeholder:text-gray-600 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition uppercase resize-none"></textarea>
+                        <button type="submit" class="w-full bg-brand-primary text-white font-black py-4 rounded-sm text-[11px] uppercase tracking-widest hover:bg-brand-primaryHover transition shadow-lg">ENVIAR SOLICITUD</button>
+                    </form>
+                </div>
             </div>
         </section>
 
@@ -923,9 +906,8 @@
                 </div>
                 <div
                     class="text-center text-[10px] text-gray-600 border-t border-gray-800/50 mt-16 pt-8 w-full uppercase tracking-widest">
-                    Esta página fue creada por <span class="text-white font-bold">The Frog Soluciones
-                        digitales</span>, escríbenos al <a href="https://api.whatsapp.com/send?phone=51913330912"
-                        target="_blank" class="text-brand-primary font-black">913330912</a></div>
+                    Esta página fue creada por <span class="text-white font-bold">The Frog Soluciones Digitales</span>.
+                </div>
             </div>
         </footer>
     </div>
@@ -1021,7 +1003,7 @@
                                 const force = (300 - distance) / 300;
                                 const repulseX = -(dx / distance) * force * 60;
                                 const repulseY = -(dy / distance) * force * 60;
-                                item.e.style.transform = `translate(${repulseX}px, ${repulseY}px) scale(1.1)`;
+                                item.e.style.transform = `translate(${repulseX}px, ${repulseY}px) scale(1.2)`;
                             } else {
                                 item.e.style.transform = `translate(0px, 0px) scale(1)`;
                             }
@@ -1052,15 +1034,6 @@
                     document.getElementById('planes-web-grid').className = !isMkt ? 'grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch' : 'hidden';
                 };
                 bM.addEventListener('click', () => sG(true)); bW.addEventListener('click', () => sG(false));
-            }
-            const tD = document.getElementById('toggle-descuento');
-            if (tD) {
-                tD.addEventListener('change', function () {
-                    const isA = this.checked;
-                    document.getElementById('label-mensual').className = `font-semibold text-[11px] uppercase tracking-wider transition-colors ${isA ? 'text-gray-400' : 'text-white'}`;
-                    document.getElementById('label-anual').className = `font-semibold text-[11px] uppercase tracking-wider transition-colors ${isA ? 'text-white' : 'text-gray-400'}`;
-                    document.querySelectorAll('[data-precio-base]').forEach(el => { const b = parseInt(el.getAttribute('data-precio-base')), v = el.querySelector('.precio-valor'); if (v) v.innerText = (isA ? Math.round(b * 0.85) : b).toLocaleString('en-US'); });
-                });
             }
 
             const nav = document.getElementById('main-nav'); let lastY = window.scrollY;
