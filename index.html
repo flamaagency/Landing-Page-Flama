@@ -951,20 +951,21 @@
         </section>
 
         <footer class="bg-transparent pt-32 pb-16 js-animate border-none relative overflow-hidden">
-            <div class="absolute top-1/4 left-[15%] w-64 h-64 border border-gray-800/30 rotate-45 pointer-events-none">
-            </div>
-            <div class="absolute top-1/4 right-[15%] w-64 h-64 border border-gray-800/30 rotate-45 pointer-events-none">
-            </div>
 
             <div class="max-w-[1400px] mx-auto px-6">
                 <div class="flex flex-col items-center justify-center w-full mb-24">
                     <div id="footer-logo-container"
                         class="flex flex-row items-end gap-1.5 h-16 md:h-24 overflow-visible">
-                        <img src="img/flama-agency-1.svg" class="h-full w-auto" />
-                        <img src="img/flama-agency-2.svg" class="h-full w-auto" />
-                        <img src="img/flama-agency-3.svg" class="h-full w-auto" />
-                        <img src="img/flama-agency-4.svg" class="h-full w-auto" />
-                        <img src="img/flama-agency-5.svg" class="h-full w-auto" />
+                        <img id="f-flama-1" src="img/flama-agency-1.svg"
+                            class="h-full w-auto opacity-0 transition-opacity duration-700" />
+                        <img id="f-flama-2" src="img/flama-agency-2.svg"
+                            class="h-full w-auto opacity-0 transition-opacity duration-700" />
+                        <img id="f-flama-3" src="img/flama-agency-3.svg"
+                            class="h-full w-auto opacity-0 transition-opacity duration-700" />
+                        <img id="f-flama-4" src="img/flama-agency-4.svg"
+                            class="h-full w-auto opacity-0 transition-opacity duration-700" />
+                        <img id="f-flama-5" src="img/flama-agency-5.svg"
+                            class="h-full w-auto opacity-0 transition-opacity duration-700" />
                     </div>
                     <div
                         class="text-white text-[14px] md:text-base tracking-[0.8em] font-light opacity-80 uppercase w-full text-center mt-6 pl-2 md:pl-4">
@@ -1145,6 +1146,11 @@
 
             const nav = document.getElementById('main-nav'); let lastY = window.scrollY;
             window.addEventListener('scroll', () => { requestAnimationFrame(() => { if (!nav) return; const curY = window.scrollY; if (curY > 80) { nav.classList.add('bg-[#131313]', 'bg-opacity-95', 'backdrop-blur-md', 'py-4'); nav.classList.remove('bg-transparent', 'py-6'); if (curY > lastY) nav.classList.add('-translate-y-full'); else nav.classList.remove('-translate-y-full'); } else { nav.classList.add('bg-transparent', 'py-6'); nav.classList.remove('bg-[#131313]', 'bg-opacity-95', 'backdrop-blur-md', 'py-4', '-translate-y-full'); } lastY = curY; }); }, { passive: true });
+
+            const fLogo = document.getElementById('footer-logo-container');
+            if (fLogo) {
+                new IntersectionObserver((ent, obs) => { ent.forEach(e => { if (e.isIntersecting) { setTimeout(() => document.getElementById('f-flama-3')?.style.setProperty('opacity', '1'), 100); setTimeout(() => ['2', '4'].forEach(n => document.getElementById(`f-flama-${n}`)?.style.setProperty('opacity', '1')), 500); setTimeout(() => ['1', '5'].forEach(n => document.getElementById(`f-flama-${n}`)?.style.setProperty('opacity', '1')), 900); obs.unobserve(e.target); } }); }, { threshold: 0.5 }).observe(fLogo);
+            }
 
             document.getElementById('whatsappForm')?.addEventListener('submit', e => { e.preventDefault(); const text = `Hola Flama Agency,%0A%0AMi nombre es: ${encodeURIComponent(document.getElementById('waName').value)}%0AMi correo es: ${encodeURIComponent(document.getElementById('waEmail').value)}%0A%0A${encodeURIComponent(document.getElementById('waMessage').value)}`; window.open(`https://api.whatsapp.com/send?phone=51979456610&text=${text}`, '_blank'); });
         });
